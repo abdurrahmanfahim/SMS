@@ -1,0 +1,73 @@
+institutions,case,line_item,unit_price_bdt,unit_price_usd,quantity,unit,monthly_cost_usd,confidence,note
+10,Low,Database and auth,,25,1,org/month,25.00,sourced,Supabase Pro base fee; $10 compute credit covers one Micro instance
+10,Base,Database and auth,,25,1,org/month,25.00,sourced,Same as Low; no compute upsize needed yet at this scale
+10,High,Database and auth,,35,1,org/month,35.00,estimate,Pro base + estimated small storage/compute headroom; confirm Supabase compute tier pricing
+50,Low,Database and auth,,25,1,org/month,25.00,sourced,Still within Pro base + Micro compute credit
+50,Base,Database and auth,,35,1,org/month,35.00,estimate,Assumes modest storage overage at 20k students
+50,High,Database and auth,,60,1,org/month,60.00,estimate,Assumes one compute tier upsize; exact price not found, confirm with Supabase
+200,Low,Database and auth,,35,1,org/month,35.00,estimate,Assumes some storage overage even in the optimistic case at 80k students
+200,Base,Database and auth,,60,1,org/month,60.00,estimate,Assumes compute upsize; exact tier price not confirmed
+200,High,Database and auth,,120,1,org/month,120.00,estimate,Assumes larger compute tier; exact tier price not confirmed, confirm with Supabase before budgeting
+10,Low,Storage and bandwidth,,0,1,month,0.00,sourced,Within Supabase Pro's bundled 100GB storage / 250GB egress
+10,Base,Storage and bandwidth,,0,1,month,0.00,sourced,Still within bundle
+10,High,Storage and bandwidth,,5,1,month,5.00,estimate,Small overage assumed for photo/PDF storage growth
+50,Low,Storage and bandwidth,,0,1,month,0.00,sourced,Within bundle
+50,Base,Storage and bandwidth,,5,1,month,5.00,estimate,Modest overage assumed
+50,High,Storage and bandwidth,,20,1,month,20.00,estimate,Larger overage assumed at higher usage intensity
+200,Low,Storage and bandwidth,,0,1,month,0.00,sourced,Assumed still within bundle at optimistic usage
+200,Base,Storage and bandwidth,,15,1,month,15.00,estimate,Overage assumed at 80k-student scale
+200,High,Storage and bandwidth,,60,1,month,60.00,estimate,Larger overage assumed
+10,Low,Hosting,,20,1,month,20.00,sourced,Netlify Pro base fee; within bundled 3000 credits (~150GB bandwidth)
+10,Base,Hosting,,20,1,month,20.00,sourced,Still within bundle
+10,High,Hosting,,20,1,month,20.00,sourced,Still within bundle at this scale
+50,Low,Hosting,,20,1,month,20.00,sourced,Within bundle
+50,Base,Hosting,,20,1,month,20.00,sourced,Within bundle
+50,High,Hosting,,40,1,month,40.00,estimate,One extra credit pack assumed (~$10/1500 credits, rounded)
+200,Low,Hosting,,20,1,month,20.00,sourced,Assumed still within bundle at optimistic usage
+200,Base,Hosting,,40,1,month,40.00,estimate,Overage assumed
+200,High,Hosting,,80,1,month,80.00,estimate,Larger overage assumed
+10,Low,PDF worker,,6,1,month,6.00,sourced,DigitalOcean Basic Droplet 1GB
+10,Base,PDF worker,,6,1,month,6.00,sourced,Same droplet size sufficient
+10,High,PDF worker,,12,1,month,12.00,sourced,DigitalOcean Basic Droplet 2GB for heavier batch rendering
+50,Low,PDF worker,,6,1,month,6.00,sourced,1GB droplet still sufficient
+50,Base,PDF worker,,12,1,month,12.00,sourced,2GB droplet
+50,High,PDF worker,,24,1,month,24.00,sourced,DigitalOcean Basic Droplet 4GB
+200,Low,PDF worker,,12,1,month,12.00,sourced,2GB droplet
+200,Base,PDF worker,,24,1,month,24.00,sourced,4GB droplet
+200,High,PDF worker,,48,1,month,48.00,sourced,DigitalOcean Basic Droplet 8GB
+10,Low,Monitoring,,0,1,month,0.00,sourced,Sentry Developer (free) plan sufficient
+10,Base,Monitoring,,0,1,month,0.00,sourced,Still within free tier limits assumed
+10,High,Monitoring,,26,1,month,26.00,sourced,Sentry Team plan
+50,Low,Monitoring,,0,1,month,0.00,sourced,Free tier assumed sufficient
+50,Base,Monitoring,,26,1,month,26.00,sourced,Sentry Team plan
+50,High,Monitoring,,26,1,month,26.00,sourced,Sentry Team plan assumed sufficient
+200,Low,Monitoring,,26,1,month,26.00,sourced,Sentry Team plan assumed needed even in Low case at this scale
+200,Base,Monitoring,,26,1,month,26.00,sourced,Sentry Team plan
+200,High,Monitoring,,80,1,month,80.00,sourced,Sentry Business plan for higher event volume
+10,Low,Backups,,0,1,month,0.00,sourced,7-day daily backups bundled in Supabase Pro base fee
+10,Base,Backups,,0,1,month,0.00,sourced,Same bundle
+10,High,Backups,,,1,month,,unknown,Point-in-time recovery add-on price not found; confirm on Supabase pricing page
+50,Low,Backups,,0,1,month,0.00,sourced,Bundled
+50,Base,Backups,,0,1,month,0.00,sourced,Bundled
+50,High,Backups,,,1,month,,unknown,PITR add-on price not found; confirm on Supabase pricing page
+200,Low,Backups,,0,1,month,0.00,sourced,Bundled
+200,Base,Backups,,0,1,month,0.00,sourced,Bundled
+200,High,Backups,,,1,month,,unknown,PITR add-on price not found; confirm on Supabase pricing page
+10,Low,Text alerts,0.25,,4000,student-months,8.13,estimate,4000 students x 1 segment/student/month x BDT0.25/segment / 123 BDT-per-USD
+10,Base,Text alerts,0.30,,4000,student-months,46.83,estimate,4000 students x 4.8 segments/student/month x BDT0.30/segment / 123
+10,High,Text alerts,0.55,,4000,student-months,214.63,estimate,4000 students x 12 segments/student/month x BDT0.55/segment / 123
+50,Low,Text alerts,0.25,,20000,student-months,40.65,estimate,20000 students x 1 segment/student/month x BDT0.25/segment / 123
+50,Base,Text alerts,0.30,,20000,student-months,234.15,estimate,20000 students x 4.8 segments/student/month x BDT0.30/segment / 123
+50,High,Text alerts,0.55,,20000,student-months,1073.17,estimate,20000 students x 12 segments/student/month x BDT0.55/segment / 123
+200,Low,Text alerts,0.25,,80000,student-months,162.60,estimate,80000 students x 1 segment/student/month x BDT0.25/segment / 123
+200,Base,Text alerts,0.30,,80000,student-months,936.59,estimate,80000 students x 4.8 segments/student/month x BDT0.30/segment / 123
+200,High,Text alerts,0.55,,80000,student-months,4292.68,estimate,80000 students x 12 segments/student/month x BDT0.55/segment / 123
+10,Low,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry, no online payment integration
+10,Base,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+10,High,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+50,Low,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+50,Base,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+50,High,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+200,Low,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+200,Base,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
+200,High,Payment fees,,0,1,month,0.00,sourced,D-09: v1 is manual fee entry
