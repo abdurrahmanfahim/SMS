@@ -65,7 +65,7 @@ Any institution must be able to run everything on phones alone, comfortably and 
 | D-07 | Result rules | Config-driven engine (grade-scheme presets plus custom rules), not hard-coded to one board. Published results are immutable snapshots | Leader | PROPOSED |
 | D-08 | Text-alert provider | Behind an adapter interface; per-institution credit ledger; provider chosen after `M0-R2` | Owner | OPEN |
 | D-09 | Payments | v1: manual fee entry and receipts. Online payments in M5 | Owner | PROPOSED |
-| D-10 | Hosting region | Closest available region to Bangladesh; separate staging and production | Leader | PROPOSED |
+| D-10 | Hosting region | ⚠️ **Under review, do not lock in yet** — was "closest region to Bangladesh," but Bangladesh's Personal Data Protection Act, 2026 (Law 63 of 2026, in force since April 2026) may require an in-country real-time copy of "restricted" data or Critical Information Infrastructure data (per the Feb 2026 Amendment Ordinance); sources disagree on whether this survived into the final Act (see `docs/research/privacy-checklist.md` §1.1, found by `M0-R3`). Needs a lawyer's reading of the gazetted Act text before `M0-P2`/`M0-P3` build on a specific region. | Owner (with lawyer) | OPEN |
 | D-11 | Pricing model | Decide from pilot evidence; no billing engine before then (manual subscription flag only) | Owner | OPEN |
 | D-12 | Bangla PDF approach | Decided by spike `M0-S1` (print CSS vs headless Chromium) | Leader | OPEN |
 | D-13 | Repository | New private repo; Munshi repo untouched | Owner | PROPOSED |
@@ -395,6 +395,7 @@ Rule: an item becomes `READY` only when at least two pilot or paying institution
 | 10 | Willingness to pay unproven | Pricing conversations in `M2-O3`; M3 exit requires payment evidence |
 | 11 | Platform cost and lock-in | Standard Postgres, cost dashboard, documented export, self-hosting possible later |
 | 12 | Two codebases to maintain (Munshi and SMS) | Munshi frozen apart from bug fixes; importer only; no shared runtime code |
+| 0 | **Bangladesh's Personal Data Protection Act, 2026 may require in-country data residency for some data categories** — could force a hosting-architecture change if D-02/D-10 are locked in first | Get a lawyer's reading of the gazetted Act text (Law 63 of 2026) before any production database region is chosen; `docs/research/privacy-checklist.md` (`M0-R3`) is the starting brief; escalated into `M0-O2` |
 | 13 | Pilot timing misses the exam calendar | Capture exam calendars in `M0-O1`; pilot attendance and notices first; run the first exam-cycle pilot in the institution's next real exam window; Munshi keeps serving exams that arrive before M2 is ready |
 | 14 | Phone-only institutions hit desktop-shaped jobs (import, bulk print, wide reports, complex editors) | `docs/spec/mobile-complete.md` task matrix, pasted-list import, server-made PDFs shared from the phone, phone list mode in `EntryGrid`, phone-only acceptance run `M2-Q3` |
 | 15 | iPhone web-app limits (no Background Sync, push only when installed, weaker storage persistence) | Sync on open and on foreground, install guide, guardian alerts by text message not push, iPhone test pass |
