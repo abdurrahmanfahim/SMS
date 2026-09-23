@@ -4,6 +4,10 @@ Binding per D-14/`docs/spec/ux-standard.md` and D-16/`docs/spec/mobile-complete.
 
 No visual design is decided here (M0-U2). No clickable prototypes (M1-U3). This is the map; the design system and prototypes come next.
 
+**Leader resolution to the two open questions raised in this task's report (see `docs/reports/M0-U1.md`):**
+1. **Student role, no dedicated UI in v1.** Intentional. Guardians act on a student's behalf (view attendance, results, dues, notices). A student-facing login may be added later (M5 backlog) if pilots ask for it; `permissions.md`'s `student` role stays defined for that future use but is not built against in M1–M3.
+2. **Accountant role, no dedicated M1/M2 screens.** Intentional. In M1/M2 the accountant only reads academic structure, students, attendance and results (per `permissions.md`'s matrix) through the same shared, permission-scoped views built for other roles — no separate accountant screen is needed until fee features exist. The accountant's own home and screens arrive with `M3-F1`–`M3-F4` (fee structure, invoicing, payments, reports and the accountant home widget).
+
 ## 1. Role homes and top-5 tasks
 
 Project rule (`ux-standard.md` §2): primary tasks reachable within 2 taps of home. "1 tap" means a single tap from the home screen itself (e.g. a button already on home); "2 taps" means one tap to a section (tab bar/sidebar item) plus one tap to the action within it. Home dashboards below are designed with contextual shortcut cards specifically so the *common* case of each top task fits in 2 taps — the Screen inventory (§3) states which task builds each screen.
