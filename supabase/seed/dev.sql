@@ -1,0 +1,20 @@
+-- Dev seed data, run automatically by `supabase db reset` after every migration.
+--
+-- Currently empty: no product tables exist yet (this task's baseline migration
+-- only adds the `private` schema's helper functions, which hold no data of
+-- their own). This file exists now so the pattern and the rule are set before
+-- the first real seed data is added by a later task (e.g. M1-A1 seeding a
+-- demo institution, class levels and a few students).
+--
+-- Rule for whoever adds the first real rows here: every statement must be
+-- SAFE TO RUN MORE THAN ONCE (idempotent), because `supabase db reset` runs
+-- this file every time, and CI's `db` job runs a fresh reset on every PR.
+-- Use one of:
+--   insert into public.<table> (...) values (...)
+--     on conflict (<unique column(s)>) do nothing;
+-- or, when there's no natural unique key to conflict on:
+--   insert into public.<table> (...)
+--   select ...
+--   where not exists (select 1 from public.<table> where <condition>);
+-- Never a bare `insert` with no guard — that would duplicate rows on every
+-- reset and make `pnpm db:reset` non-reproducible.
