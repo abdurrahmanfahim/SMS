@@ -1,0 +1,11 @@
+{
+  "extends": "@sms/config/tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "jsx": "react-jsx",
+    "types": ["vite/client", "vitest/globals"]
+  },
+  "include": ["src"]
+}

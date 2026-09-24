@@ -1,0 +1,19 @@
+{
+  "name": "@sms/e2e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "e2e": "playwright test",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'e2e has no unit tests; see pnpm e2e'"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "@sms/config": "workspace:*",
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2",
+    "eslint": "^9.11.1"
+  }
+}

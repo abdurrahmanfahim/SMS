@@ -1,0 +1,62 @@
+# Maps README §5 (Workstreams and ownership) to reviewers.
+# @sms-owner is a placeholder handle — the Owner should replace every entry
+# below with real GitHub usernames/teams once they exist.
+
+# WS-L — Leader
+/README.md                          @sms-owner
+/docs/tasks/                        @sms-owner
+/docs/spec/                         @sms-owner
+/docs/decisions/                    @sms-owner
+
+# WS-PLAT — Platform, infra, DB, auth
+/supabase/                          @sms-owner
+/packages/db/                       @sms-owner
+/packages/config/                   @sms-owner
+/.github/                           @sms-owner
+
+# WS-DOM — Domain engine
+/packages/domain/                   @sms-owner
+
+# WS-WEB — App shell, design system, offline infra
+/apps/web/src/app/                  @sms-owner
+/apps/web/src/shared/               @sms-owner
+/packages/ui/                       @sms-owner
+/spikes/offline/                    @sms-owner
+
+# WS-ACAD — Academic structure, students, attendance
+/apps/web/src/features/academic/    @sms-owner
+/apps/web/src/features/students/    @sms-owner
+/apps/web/src/features/attendance/  @sms-owner
+
+# WS-EXAM — Exams, results, printing, Munshi importer
+/apps/web/src/features/exams/       @sms-owner
+/apps/web/src/features/results/     @sms-owner
+/apps/web/src/features/print/       @sms-owner
+/apps/web/src/features/importers/   @sms-owner
+/packages/pdf/                      @sms-owner
+
+# WS-FIN — Fees and accounts
+/apps/web/src/features/fees/        @sms-owner
+
+# WS-COMM — Text alerts, notices, parent portal
+/apps/web/src/features/notices/     @sms-owner
+/apps/web/src/features/parent/      @sms-owner
+/apps/web/src/features/alerts/      @sms-owner
+
+# WS-QA — E2E, security and performance tests
+/e2e/                               @sms-owner
+
+# WS-GTM — Help docs, demo data, landing site
+/docs/help/                         @sms-owner
+/apps/landing/                      @sms-owner
+
+# WS-RES — Research (no product code)
+/docs/research/                     @sms-owner
+
+# WS-UX — UX research, flows, design system, prototypes
+/docs/spec/ux-flows.md              @sms-owner
+/docs/spec/design-system.md         @sms-owner
+/docs/spec/design-tokens.json       @sms-owner
+/docs/spec/content-guide.md         @sms-owner
+/docs/spec/screens/                 @sms-owner
+/prototypes/                        @sms-owner

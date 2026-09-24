@@ -1,0 +1,20 @@
+{
+  "name": "@sms/db",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json --emitDeclarationOnly false --noEmit false --outDir dist"
+  },
+  "devDependencies": {
+    "@sms/config": "workspace:*",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1",
+    "eslint": "^9.11.1"
+  }
+}
