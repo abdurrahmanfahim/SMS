@@ -1,0 +1,88 @@
+@import url('./fonts/fonts.css');
+
+:root {
+  --ink: #111827;
+  --line: #9ca3af;
+  --muted: #4b5563;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans Bengali', 'Noto Sans', sans-serif;
+  color: var(--ink);
+}
+
+@page {
+  size: A4;
+  margin: 14mm 12mm;
+}
+
+.sheet {
+  width: 186mm;
+  min-height: 265mm;
+  margin: 0 auto;
+  page-break-after: always;
+  break-after: page;
+  padding: 4mm 0;
+}
+.sheet:last-child { page-break-after: auto; }
+
+.header {
+  text-align: center;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 3mm;
+  margin-bottom: 4mm;
+}
+.header .institution { font-size: 15pt; font-weight: 700; }
+.header .meta { font-size: 9pt; color: var(--muted); margin-top: 1mm; }
+.header .title { font-size: 11pt; font-weight: 700; margin-top: 2mm; }
+
+.studentgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1mm 6mm;
+  font-size: 9.5pt;
+  margin-bottom: 4mm;
+}
+.studentgrid .label { color: var(--muted); }
+
+table.marks {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+}
+table.marks th, table.marks td {
+  border: 0.3mm solid var(--line);
+  padding: 1.6mm 2mm;
+  text-align: center;
+}
+table.marks th { background: #f3f4f6; font-weight: 700; }
+table.marks td.subject { text-align: left; }
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4mm;
+  font-size: 9.5pt;
+  border-top: 0.3mm solid var(--line);
+  padding-top: 2mm;
+}
+.summary .item b { display: block; font-size: 12pt; }
+
+.signatures {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14mm;
+  font-size: 9pt;
+}
+.signatures .sig { text-align: center; width: 40mm; }
+.signatures .sig .line { border-top: 0.3mm solid var(--ink); margin-bottom: 1mm; padding-top: 1mm; }
+
+.bn-num { font-variant-numeric: normal; }
+
+/* avoid a row splitting across a page break */
+table.marks tr { break-inside: avoid; }
+.signatures { break-inside: avoid; }
