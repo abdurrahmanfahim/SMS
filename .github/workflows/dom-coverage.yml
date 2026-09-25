@@ -1,0 +1,41 @@
+name: dom-coverage
+
+on:
+  pull_request:
+    paths:
+      - "packages/domain/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/dom-coverage.yml"
+  push:
+    branches: [main]
+    paths:
+      - "packages/domain/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/dom-coverage.yml"
+
+concurrency:
+  group: dom-coverage-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  coverage:
+    name: dom-coverage / @sms/domain coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Coverage (100% branches/functions/lines/statements — see packages/domain/vitest.config.ts)
+        run: pnpm --filter @sms/domain test:coverage
