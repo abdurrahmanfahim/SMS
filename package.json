@@ -20,7 +20,7 @@
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:test": "supabase test db",
-    "db:types": "supabase gen types typescript --local --schema public > packages/db/src/types.ts",
+    "db:types": "supabase gen types typescript --local --schema public | prettier --parser=typescript > packages/db/src/types.ts",
     "db:diff": "supabase db diff",
     "db:push:staging": "echo 'Requires SUPABASE_ACCESS_TOKEN, SUPABASE_PROJECT_REF, SUPABASE_DB_PASSWORD in your shell env; never run this in CI. See docs/runbooks/supabase-setup.md.' && supabase db push --linked"
   },
