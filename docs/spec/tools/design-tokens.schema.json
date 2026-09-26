@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SMS design tokens",
+  "type": "object",
+  "required": ["breakpoints", "color", "contrastPairs", "typeScale", "spacing", "radius", "elevation", "motion", "zIndex"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "meta": { "type": "object" },
+    "breakpoints": {
+      "type": "object",
+      "required": ["sm", "md", "lg"],
+      "properties": {
+        "sm": { "type": "string", "pattern": "^[0-9]+px$" },
+        "md": { "type": "string", "pattern": "^[0-9]+px$" },
+        "lg": { "type": "string", "pattern": "^[0-9]+px$" }
+      }
+    },
+    "color": {
+      "type": "object",
+      "required": ["light", "dark"],
+      "properties": {
+        "light": { "$ref": "#/definitions/colorSet" },
+        "dark": { "$ref": "#/definitions/colorSet" }
+      }
+    },
+    "contrastPairs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["fg", "bg", "kind"],
+        "properties": {
+          "fg": { "type": "string" },
+          "bg": { "type": "string" },
+          "kind": { "type": "string", "enum": ["text", "text-large", "ui"] },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "typeScale": { "type": "object" },
+    "spacing": { "type": "object" },
+    "radius": {
+      "type": "object",
+      "required": ["sm", "md", "lg", "full"]
+    },
+    "elevation": {
+      "type": "object",
+      "required": ["light", "dark"]
+    },
+    "motion": {
+      "type": "object",
+      "required": ["duration", "easing", "reducedMotion"],
+      "properties": {
+        "reducedMotion": {
+          "type": "object",
+          "required": ["rule", "policy"]
+        }
+      }
+    },
+    "zIndex": { "type": "object" }
+  },
+  "definitions": {
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "colorSet": {
+      "type": "object",
+      "required": ["surface", "text", "border", "primary", "accent", "success", "warning", "danger", "info", "link", "focusRing"],
+      "properties": {
+        "surface": { "type": "object" },
+        "text": { "type": "object" },
+        "border": { "type": "object" },
+        "primary": { "type": "object" },
+        "accent": { "type": "object" },
+        "success": { "type": "object" },
+        "warning": { "type": "object" },
+        "danger": { "type": "object" },
+        "info": { "type": "object" },
+        "link": { "type": "object" },
+        "focusRing": { "type": "object" }
+      }
+    }
+  }
+}
