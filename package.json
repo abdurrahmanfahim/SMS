@@ -15,10 +15,18 @@
     "test": "turbo run test",
     "e2e": "turbo run e2e",
     "format": "prettier --write \"apps/**/*.{ts,tsx,js,jsx,json}\" \"packages/**/*.{ts,tsx,js,jsx,json}\" \"e2e/**/*.{ts,tsx,js,jsx,json}\" \"docs/decisions/*.md\" \"package.json\" \"turbo.json\" \"pnpm-workspace.yaml\" \".prettierrc.json\" \"tsconfig*.json\"",
-    "format:check": "prettier --check \"apps/**/*.{ts,tsx,js,jsx,json}\" \"packages/**/*.{ts,tsx,js,jsx,json}\" \"e2e/**/*.{ts,tsx,js,jsx,json}\" \"docs/decisions/*.md\" \"package.json\" \"turbo.json\" \"pnpm-workspace.yaml\" \".prettierrc.json\" \"tsconfig*.json\""
+    "format:check": "prettier --check \"apps/**/*.{ts,tsx,js,jsx,json}\" \"packages/**/*.{ts,tsx,js,jsx,json}\" \"e2e/**/*.{ts,tsx,js,jsx,json}\" \"docs/decisions/*.md\" \"package.json\" \"turbo.json\" \"pnpm-workspace.yaml\" \".prettierrc.json\" \"tsconfig*.json\"",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:types": "supabase gen types typescript --local --schema public | prettier --parser=typescript > packages/db/src/types.ts",
+    "db:diff": "supabase db diff",
+    "db:push:staging": "echo 'Requires SUPABASE_ACCESS_TOKEN, SUPABASE_PROJECT_REF, SUPABASE_DB_PASSWORD in your shell env; never run this in CI. See docs/runbooks/supabase-setup.md.' && supabase db push --linked"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
+    "supabase": "2.117.0",
     "turbo": "^2.1.3"
   }
 }
