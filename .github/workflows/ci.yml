@@ -51,3 +51,46 @@ jobs:
         run: pnpm e2e
         env:
           CI: true
+
+  db:
+    name: ci / db
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      # ubuntu-latest runners ship Docker pre-installed; `supabase start` uses
+      # it to run Postgres + the rest of the local stack. No secrets needed —
+      # this is entirely local/ephemeral, never the staging or prod project.
+      - name: Start local Supabase
+        run: pnpm db:start
+
+      - name: Reset database (apply migrations + seed)
+        run: pnpm db:reset
+
+      - name: Run pgTAP tests (fails if any public table lacks RLS)
+        run: pnpm db:test
+
+      - name: Regenerate types and fail on drift
+        run: |
+          pnpm db:types
+          if ! git diff --exit-code -- packages/db/src/types.ts; then
+            echo "::error::packages/db/src/types.ts is out of date. Run 'pnpm db:types' locally and commit the result." >&2
+            exit 1
+          fi
+
+      - name: Stop local Supabase
+        if: always()
+        run: pnpm db:stop
