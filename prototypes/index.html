@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SMS প্রোটোটাইপ — M1-U3</title>
+<link rel="stylesheet" href="shared/tokens.css" />
+<style>
+  main { max-width: 480px; }
+  .flow-list a { text-decoration: none; color: inherit; display: block; }
+  .flow-list .card { display: flex; align-items: center; gap: var(--sp-3); }
+  .flow-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-base); color: var(--primary-fg); display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<header class="app-header"><h1>SMS ক্লিকযোগ্য প্রোটোটাইপ</h1></header>
+<main>
+  <p class="helper">M1-U3 · পাঁচটি গুরুত্বপূর্ণ প্রবাহ, পরীক্ষার জন্য। প্রতিটি পাতায় ওপরের ডান কোণে একটি "অফলাইন মোড" বোতাম আছে — সঞ্চালক এটি দিয়ে সংযোগ-বিচ্ছিন্ন অবস্থা দেখাতে পারবেন।</p>
+  <div class="flow-list">
+    <a href="attendance/index.html"><div class="card"><span class="flow-num">১</span><div><div class="card-title">শিক্ষক — আজকের হাজিরা</div><div class="card-meta">অফলাইন ও সিঙ্ক অবস্থাসহ</div></div></div></a>
+    <a href="marks/index.html"><div class="card"><span class="flow-num">২</span><div><div class="card-title">শিক্ষক — নম্বর এন্ট্রি (এক বিষয়, পুরো ক্লাস)</div><div class="card-meta">যাচাই, অনুপস্থিত কোড, সংরক্ষণ অবস্থা</div></div></div></a>
+    <a href="results/index.html"><div class="card"><span class="flow-num">৩</span><div><div class="card-title">প্রশাসক — ফলাফল পর্যালোচনা ও প্রকাশ</div><div class="card-meta">প্রিভিউ, প্রকাশ, মার্কশিট প্রিভিউ</div></div></div></a>
+    <a href="students/index.html"><div class="card"><span class="flow-num">৪</span><div><div class="card-title">প্রশাসক — শিক্ষার্থী যোগ করা</div><div class="card-meta">একজন করে, তালিকা পেস্ট, ফাইল থেকে</div></div></div></a>
+    <a href="guardian/index.html"><div class="card"><span class="flow-num">৫</span><div><div class="card-title">অভিভাবক — সন্তানের হাজিরা, ফলাফল, নোটিশ</div><div class="card-meta">শুধু পড়ার জন্য (read-only)</div></div></div></a>
+  </div>
+  <p class="helper">প্রতিটি পাতা কোনো সার্ভার ছাড়াই স্বয়ংসম্পূর্ণ HTML/CSS/JS — ৩৬০px ফোন স্ক্রিনের জন্য তৈরি।</p>
+</main>
+</body>
+</html>
