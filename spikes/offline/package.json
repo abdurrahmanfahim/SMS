@@ -1,0 +1,27 @@
+{
+  "name": "offline-spike",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "M0-S2 spike: offline queue for attendance and marks (not part of the pnpm workspace, matching spikes/pdf).",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "build:harness": "node build-harness.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "dexie": "^4.4.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.0",
+    "@types/node": "^22.7.4",
+    "esbuild": "^0.21.5",
+    "fake-indexeddb": "^6.2.5",
+    "fast-check": "^4.10.2",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.9"
+  }
+}
