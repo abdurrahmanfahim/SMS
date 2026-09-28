@@ -1,5 +1,6 @@
 import { Navigate, Outlet, type RouteObject } from "react-router-dom";
 
+import { features } from "./features";
 import { GroupGuard } from "./guards";
 import { Placeholder } from "./pages/Placeholder";
 
@@ -16,20 +17,57 @@ function group(
   };
 }
 
+type Group = "auth" | "app" | "platform" | "parent";
+const GROUP_RE = /^\/(auth|app|platform|parent)(?:\/(.*))?$/;
+
+/**
+ * Splits feature routes by the route group in their absolute `path` and makes each path
+ * relative to its group, so the group's guard and layout wrap it.
+ */
+export function partitionFeatureRoutes(
+  routes: readonly RouteObject[],
+): Record<Group, RouteObject[]> {
+  const out: Record<Group, RouteObject[]> = { auth: [], app: [], platform: [], parent: [] };
+  for (const route of routes) {
+    const match = typeof route.path === "string" ? GROUP_RE.exec(route.path) : null;
+    if (!match) {
+      throw new Error(
+        `Feature route path must start with /auth, /app, /platform or /parent (got ${JSON.stringify(route.path)})`,
+      );
+    }
+    const rest = match[2] ?? "";
+    const { path: _path, ...others } = route;
+    out[match[1] as Group].push(
+      (rest === "" ? { ...others, index: true } : { ...others, path: rest }) as RouteObject,
+    );
+  }
+  return out;
+}
+
 /**
  * The shell's route table. Groups: /auth/*, /app/* (staff), /platform/* (platform console),
  * /parent/* (guardian). Feature routes are merged in by step 2.
  */
-export function createShellRoutes(): RouteObject[] {
+export function createShellRoutes(
+  featureRoutes: readonly RouteObject[] = features.routes,
+): RouteObject[] {
+  const extra = partitionFeatureRoutes(featureRoutes);
   return [
     { path: "/", element: <Navigate to="/app" replace /> },
     group("/auth", "auth", [
       { index: true, element: <Navigate to="login" replace /> },
       { path: "login", element: <Placeholder name="SMS" /> },
+      ...extra.auth,
     ]),
-    group("/app", "app", [{ index: true, element: <Placeholder name="SMS" /> }]),
-    group("/platform", "platform", [{ index: true, element: <Placeholder name="SMS" /> }]),
-    group("/parent", "parent", [{ index: true, element: <Placeholder name="SMS" /> }]),
+    group("/app", "app", [{ index: true, element: <Placeholder name="SMS" /> }, ...extra.app]),
+    group("/platform", "platform", [
+      { index: true, element: <Placeholder name="SMS" /> },
+      ...extra.platform,
+    ]),
+    group("/parent", "parent", [
+      { index: true, element: <Placeholder name="SMS" /> },
+      ...extra.parent,
+    ]),
     { path: "*", element: <Navigate to="/" replace /> },
   ];
 }
