@@ -19,3 +19,4 @@ export * from "./names.js";
 export * from "./ids.js";
 export * from "./schemas.js";
 export * from "./fees/index.js";
+export * from "./alerts/index.js";
