@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Offline queue spike harness</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 40rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      #status {
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        display: inline-block;
+      }
+      /* Status is never colour-only: the text itself always states Synced / Pending n / Error
+         (docs/spec/ux-standard.md §3 -- "never use colour alone"). Colour here is a bonus cue. */
+      #status[data-state="synced"] {
+        background: #e6f4ea;
+      }
+      #status[data-state="pending"] {
+        background: #fff4e5;
+      }
+      #status[data-state="error"] {
+        background: #fdecea;
+      }
+      button {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem 0.25rem 0.25rem 0;
+      }
+      ul#errors li {
+        margin: 0.5rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Offline queue spike</h1>
+    <p id="status" data-state="synced" role="status">Synced</p>
+    <p>
+      <button id="enqueue-one" type="button">Queue 1 attendance write</button>
+      <button id="enqueue-many" type="button">Queue 200 attendance writes</button>
+      <button id="sync-now" type="button">Sync now</button>
+    </p>
+    <ul id="errors" aria-label="Ops needing attention"></ul>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
