@@ -169,11 +169,11 @@ test.describe("PWA", () => {
     expect(manifest.display).toBe("standalone");
     expect(manifest.lang).toBe("bn");
     expect(manifest.theme_color).toBe("#0F6E51");
-    const icons = manifest.icons as Array<{ sizes: string; purpose?: string }>;
+    const icons = manifest.icons as Array<{ src: string; sizes: string; purpose?: string }>;
     expect(icons.some((i) => i.sizes === "192x192")).toBe(true);
     expect(icons.some((i) => i.sizes === "512x512" && i.purpose === "any")).toBe(true);
     expect(icons.some((i) => i.purpose === "maskable")).toBe(true);
-    for (const icon of icons as Array<{ src: string }>) {
+    for (const icon of icons) {
       expect((await request.get(icon.src)).ok(), icon.src).toBe(true);
     }
   });
