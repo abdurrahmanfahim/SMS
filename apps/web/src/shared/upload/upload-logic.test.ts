@@ -123,7 +123,7 @@ describe("safeFileName", () => {
   it("removes folders and odd characters", () => {
     expect(safeFileName("../../etc/passwd")).toBe("passwd");
     expect(safeFileName("C:\\Users\\me\\logo..png")).toBe("logo.png");
-    expect(safeFileName("লোগো final (1).png")).toMatch(/^[\w.\-]+$/);
+    expect(safeFileName("লোগো final (1).png")).toMatch(/^[\w.-]+$/);
     expect(safeFileName("...")).toBe("file");
     expect(safeFileName("", "photo.jpg")).toBe("photo.jpg");
   });

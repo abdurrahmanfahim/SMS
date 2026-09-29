@@ -117,7 +117,7 @@ describe("FileUpload happy path", () => {
     await waitFor(() => expect(onUploaded).toHaveBeenCalledOnce());
     expect(image.compressImage).toHaveBeenCalledOnce();
     const [, context] = (upload as ReturnType<typeof vi.fn>).mock.calls[0]!;
-    expect(context.fileName).toMatch(/^[\w.\-]+$/);
+    expect(context.fileName).toMatch(/^[\w.-]+$/);
     expect(onUploaded.mock.calls[0]![0]).toEqual({ path: "t/photo.jpg" });
     expect(screen.getByText("আপলোড হয়েছে")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "বেছে নেওয়া ছবি" })).toBeInTheDocument();

@@ -22,7 +22,7 @@ export function safeFileName(name: string, fallback = "file"): string {
   const cleaned = base
     .normalize("NFKD")
     .replace(/\.{2,}/g, ".")
-    .replace(/[^\w.\-]+/g, "_")
+    .replace(/[^\w.-]+/g, "_")
     .replace(/^\.+/, "")
     .replace(/_+/g, "_")
     .slice(-80);
