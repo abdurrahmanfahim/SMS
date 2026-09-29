@@ -162,7 +162,7 @@ docs/
 ### 4.2 The loop
 
 1. Leader writes `docs/tasks/<ID>.md` and the task becomes `BRIEFED`.
-2. Owner tells the agent only `follow docs/tasks/<ID>.md`; the task becomes `IN PROGRESS`. The task file is a self-contained runbook.
+2. Owner tells the agent only `follow docs/tasks/<ID>.md`; the task file is a self-contained runbook. Its first action is the check-in (`bash scripts/checkin.sh <ID> "<agent name>"`): it creates and pushes branch `agent/<ID>` with a report stub (`Status: In progress`, start time, agent name) and refuses to start if another agent is active or the task is already done. That check-in makes the task `IN PROGRESS`. `bash scripts/board.sh` shows every task's state, last activity and agent.
 3. Agent works on its branch, opens a PR, writes `docs/reports/<ID>.md`; the task becomes `REVIEW`.
 4. Owner gives the report to the Leader, with the PR link or with `git diff --stat` and the key files if the Leader has no repo access.
 5. Leader returns a verdict: **Accepted** (Owner merges), **Changes requested** (numbered list) or **Blocked** (a decision is needed). Leader updates §6 and issues the next briefs.
@@ -459,6 +459,7 @@ What is left rough.
 
 ## Appendix B — Changelog
 
+- **v0.11:** agent check-in (hajira): `scripts/checkin.sh` (fresh, resume, already-done and duplicate-claim handling, tested) and `scripts/board.sh`; every agent runbook starts with a check-in step and pushes after every step; report stub carries Started, Agent and a Check-in log; D-10 under-review warning now reaches the runbooks.
 - **v0.8:** every agent task file is now a self-contained runbook started with only `follow docs/tasks/<ID>.md` (preflight, steps, boundaries, verification, self-review, pre-filled report, Bangla final message, BLOCKED procedure); shared `docs/AGENT-PROTOCOL.md`; agent codes removed (branch `agent/<ID>`, report `docs/reports/<ID>.md`); ownership gaps closed with explicit allowances; feature auto-discovery (`register.ts`, feature i18n) in `M0-W1`; extra dependencies for `M3-T1` and `M4-S2`.
 - **v0.7:** all remaining briefs: M3 (fees, alerts, guardian portal, pilot operations, production readiness) and M4 (launch) as tasks, M5 as a demand-gated backlog; spec `docs/spec/fees-and-alerts.md`; decisions D-18 and D-19; new tasks `M1-W5` (role homes and widget registry), `M3-D1`, `M3-U1`, `M3-O1`, `M3-U2`, `M3-O0`, `M3-P3`; consistency fixes (dependencies, phone and accessibility criteria).
 - **v0.6:** results engine spec (`docs/spec/results-engine.md`, grounded in verified Bangladeshi grading rules and a real marksheet), briefs for all M2 tasks, new task `M2-P4` (sync RPC), storage policies in `M1-P1`, decision D-17 (server-side official results), `M2-Q3` is an Owner task, Munshi source copy added to `M0-O0`.
