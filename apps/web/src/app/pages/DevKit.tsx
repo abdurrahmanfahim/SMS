@@ -7,6 +7,7 @@ import {
   EmptyState,
   ErrorState,
   Input,
+  ReorderList,
   Select,
   Sheet,
   Skeleton,
@@ -33,6 +34,11 @@ export function DevKit() {
   const [dialog, setDialog] = useState(false);
   const [sheet, setSheet] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const [subjects, setSubjects] = useState([
+    "devkit.kit.reorderItem1",
+    "devkit.kit.reorderItem2",
+    "devkit.kit.reorderItem3",
+  ]);
 
   return (
     <div className="flex max-w-2xl flex-col gap-6">
@@ -112,6 +118,17 @@ export function DevKit() {
           title={t("devkit.kit.errorTitle")}
           description={t("devkit.kit.errorDesc")}
           action={<Button variant="secondary">{t("devkit.kit.errorAction")}</Button>}
+        />
+      </Section>
+
+      <Section title={t("devkit.kit.reorder")}>
+        <ReorderList
+          items={subjects}
+          getKey={(key) => key}
+          renderItem={(key) => t(key)}
+          onChange={setSubjects}
+          moveUpLabel={(key) => t("devkit.kit.moveUp", { name: t(key) })}
+          moveDownLabel={(key) => t("devkit.kit.moveDown", { name: t(key) })}
         />
       </Section>
 

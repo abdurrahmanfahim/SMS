@@ -90,7 +90,13 @@
       "toast": "Show toast",
       "dialogBody": "This is a sample dialog.",
       "confirmTitle": "Publish results?",
-      "confirmDesc": "This will publish results for 120 students across 3 sections. This cannot be undone later."
+      "confirmDesc": "This will publish results for 120 students across 3 sections. This cannot be undone later.",
+      "reorder": "Reorder",
+      "reorderItem1": "First subject",
+      "reorderItem2": "Second subject",
+      "reorderItem3": "Third subject",
+      "moveUp": "Move {name} up",
+      "moveDown": "Move {name} down"
     }
   },
   "common": {

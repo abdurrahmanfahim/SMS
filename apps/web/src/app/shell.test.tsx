@@ -44,3 +44,45 @@ describe("shell", () => {
     expect(t("no.such.key")).toBe("no.such.key");
   });
 });
+
+describe("shell accessibility rules (ux-standard)", () => {
+  it("has a skip link that moves focus to the main area", () => {
+    mount();
+    const skip = screen.getByRole("link", { name: "মূল অংশে যান" });
+    expect(skip).toHaveAttribute("href", "#main");
+    fireEvent.click(skip);
+    expect(document.getElementById("main")).toHaveFocus();
+  });
+
+  it("puts the Help entry last in the header on every route group and opens help", () => {
+    for (const path of ["/app", "/platform", "/parent", "/auth/login"]) {
+      mount(path);
+      const header = screen.getByRole("banner");
+      const controls = within(header).getAllByRole("button");
+      expect(controls[controls.length - 1]).toHaveAttribute("data-testid", "help-button");
+      cleanup();
+    }
+    mount();
+    fireEvent.click(screen.getByTestId("help-button"));
+    expect(screen.getByRole("dialog", { name: "সহায়তা" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "হোম স্ক্রিনে যোগ করার নিয়ম" })).toHaveAttribute(
+      "href",
+      "/install",
+    );
+  });
+
+  it("gives the main area a focus target and the navs an accessible name", () => {
+    mount();
+    expect(document.getElementById("main")).toHaveAttribute("tabindex", "-1");
+    for (const nav of screen.getAllByRole("navigation")) {
+      expect(nav).toHaveAccessibleName("প্রধান মেনু");
+    }
+  });
+
+  it("renders the Bangla install guide for Android and iPhone", () => {
+    mount("/install");
+    expect(screen.getByRole("heading", { name: "অ্যান্ড্রয়েড (Chrome)" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "আইফোন (Safari)" })).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem").length).toBeGreaterThanOrEqual(8);
+  });
+});

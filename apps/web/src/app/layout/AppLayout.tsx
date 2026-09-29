@@ -33,7 +33,7 @@ export function AppLayout() {
           event.preventDefault();
           const main = document.getElementById("main");
           main?.focus();
-          main?.scrollIntoView();
+          main?.scrollIntoView?.();
         }}
         className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-tooltip focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg"
       >
