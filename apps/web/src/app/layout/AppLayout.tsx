@@ -39,11 +39,20 @@ export function AppLayout() {
       >
         {t("shell.a11y.skip")}
       </a>
-      <header className="sticky top-0 z-sticky flex flex-wrap items-center justify-between gap-2 border-b border-line bg-surface px-4 py-2">
-        <span className="text-lg font-semibold">{t("shell.brand.name")}</span>
-        <LanguageSwitcher />
-        {devToolsEnabled ? <RoleSwitcher /> : null}
-        <HelpButton />
+      <header className="sticky top-0 z-sticky border-b border-line bg-surface px-4 py-2">
+        {/* One fixed row: it must never wrap, or a font swap would push the whole page down (CLS). */}
+        <div className="flex flex-nowrap items-center justify-between gap-2">
+          <span className="shrink-0 text-lg font-semibold">{t("shell.brand.name")}</span>
+          <div className="flex min-w-0 items-center gap-2">
+            <LanguageSwitcher />
+            <HelpButton />
+          </div>
+        </div>
+        {devToolsEnabled ? (
+          <div className="mt-2">
+            <RoleSwitcher />
+          </div>
+        ) : null}
       </header>
       <OfflineNotice />
       <div className="flex flex-1">

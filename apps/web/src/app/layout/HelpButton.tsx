@@ -17,7 +17,8 @@ export function HelpButton() {
       <Button
         variant="secondary"
         aria-haspopup="dialog"
-        leadingIcon={<CircleHelp aria-hidden className="h-5 w-5" />}
+        leadingIcon={<CircleHelp aria-hidden className="hidden h-5 w-5 sm:block" />}
+        className="shrink-0 whitespace-nowrap px-3"
         onClick={() => setOpen(true)}
         data-testid="help-button"
       >

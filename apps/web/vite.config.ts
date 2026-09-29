@@ -1,10 +1,43 @@
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import { configDefaults, defineConfig } from "vitest/config";
+import { configDefaults, defineConfig, type Plugin } from "vitest/config";
+
+/**
+ * Preloads the fonts used on the first screen (Bangla 400, Latin 400). Without it the text
+ * first paints in the fallback font and reflows when Hind Siliguri arrives, which counts as layout
+ * shift. Font file names are hashed by the build, so the tags are added from the bundle.
+ */
+function preloadCriticalFonts(): Plugin {
+  const critical = [/hind-siliguri-bengali-400-normal/, /hind-siliguri-latin-400-normal/];
+  return {
+    name: "sms-preload-critical-fonts",
+    apply: "build",
+    transformIndexHtml: {
+      order: "post",
+      handler(_html, ctx) {
+        const files = Object.keys(ctx.bundle ?? {}).filter(
+          (name) => name.endsWith(".woff2") && critical.some((re) => re.test(name)),
+        );
+        return files.map((file) => ({
+          tag: "link",
+          attrs: {
+            rel: "preload",
+            as: "font",
+            type: "font/woff2",
+            crossorigin: "",
+            href: `/${file}`,
+          },
+          injectTo: "head" as const,
+        }));
+      },
+    },
+  };
+}
 
 export default defineConfig({
   plugins: [
     react(),
+    preloadCriticalFonts(),
     VitePWA({
       // "prompt": a new version waits until the person taps "update" (never reloads mid-entry).
       registerType: "prompt",

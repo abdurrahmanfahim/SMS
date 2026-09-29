@@ -16,7 +16,9 @@ async function axeViolations(page: Page) {
   const result = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
     .analyze();
-  return result.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(" | ")}`);
+  return result.violations.map(
+    (v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(" | ")}`,
+  );
 }
 
 test.describe("layout at phone and desktop widths", () => {
@@ -59,7 +61,9 @@ test.describe("layout at phone and desktop widths", () => {
           if (r.width <= 1 || r.height <= 1) continue; // visually hidden (skip link)
           if (el instanceof HTMLInputElement && ["checkbox", "radio"].includes(el.type)) continue;
           if (r.height < 43.5 || r.width < 43.5) {
-            out.push(`${el.tagName} "${(el.textContent ?? "").trim().slice(0, 20)}" ${Math.round(r.width)}x${Math.round(r.height)}`);
+            out.push(
+              `${el.tagName} "${(el.textContent ?? "").trim().slice(0, 20)}" ${Math.round(r.width)}x${Math.round(r.height)}`,
+            );
           }
         }
         return out;
@@ -115,9 +119,9 @@ test.describe("reduced motion", () => {
   test("only opacity transitions remain", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/dev/kit");
-    const props = await page.getByRole("button", { name: "প্রধান" }).evaluate(
-      (el) => getComputedStyle(el).transitionProperty,
-    );
+    const props = await page
+      .getByRole("button", { name: "প্রধান" })
+      .evaluate((el) => getComputedStyle(el).transitionProperty);
     expect(props).toBe("opacity");
   });
 });
@@ -230,6 +234,8 @@ test.describe("forms", () => {
     const bar = await page.getByRole("group", { name: "ফর্মের কাজ" }).boundingBox();
     expect(bar).not.toBeNull();
     expect((bar?.y ?? 0) + (bar?.height ?? 0)).toBeCloseTo(PHONE.height - 300, 0);
-    await expect(page.getByRole("navigation", { name: "প্রধান মেনু" }).filter({ visible: true })).toHaveCount(0);
+    await expect(
+      page.getByRole("navigation", { name: "প্রধান মেনু" }).filter({ visible: true }),
+    ).toHaveCount(0);
   });
 });

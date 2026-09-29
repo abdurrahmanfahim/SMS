@@ -9,7 +9,7 @@ export function LanguageSwitcher() {
   const locale = useLocale();
   const t = useT();
   return (
-    <div role="group" aria-label={t("shell.language.label")} className="flex gap-1">
+    <div role="group" aria-label={t("shell.language.label")} className="flex shrink-0 gap-1">
       {LOCALES.map((l) => (
         <button
           key={l}
@@ -17,7 +17,7 @@ export function LanguageSwitcher() {
           lang={l}
           aria-pressed={locale === l}
           onClick={() => setLocale(l)}
-          className={`min-h-tap min-w-tap rounded-md border px-3 text-sm ${
+          className={`min-h-tap min-w-tap whitespace-nowrap rounded-md border px-2 text-sm ${
             locale === l
               ? "border-primary bg-primary text-primary-fg"
               : "border-line-strong bg-surface text-content"
@@ -40,7 +40,7 @@ export function RoleSwitcher() {
       <select
         value={role ?? ""}
         onChange={(e) => setRole(e.target.value as Role)}
-        className="min-h-tap rounded-md border border-line-strong bg-surface px-2 text-content"
+        className="min-h-tap min-w-0 flex-1 rounded-md border border-line-strong bg-surface px-2 text-content"
       >
         {ROLES.map((r) => (
           <option key={r} value={r}>

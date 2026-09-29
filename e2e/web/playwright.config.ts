@@ -24,7 +24,8 @@ export default defineConfig({
       "pnpm --filter @sms/web build && pnpm --filter @sms/web preview --port 4174 --strictPort",
     env: { VITE_ENABLE_DEV_TOOLS: "true" },
     url: "http://127.0.0.1:4174",
-    reuseExistingServer: !process.env.CI,
+    // never reuse: a leftover server could serve a build without the dev tools this suite needs
+    reuseExistingServer: false,
     timeout: 120_000,
   },
 });
