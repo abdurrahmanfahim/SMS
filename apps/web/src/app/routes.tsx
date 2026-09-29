@@ -7,6 +7,7 @@ import { GroupGuard } from "./guards";
 import { AppLayout } from "./layout/AppLayout";
 import { DevKit } from "./pages/DevKit";
 import { Placeholder } from "./pages/Placeholder";
+import { SampleForm } from "./pages/SampleForm";
 
 /** Wraps a group's pages: guard first (stub until M1-P2), then the group layout. */
 function group(
@@ -73,7 +74,16 @@ export function createShellRoutes(
       ...extra.parent,
     ]),
     ...(devToolsEnabled
-      ? [{ path: "/dev", element: <AppLayout />, children: [{ path: "kit", element: <DevKit /> }] }]
+      ? [
+          {
+            path: "/dev",
+            element: <AppLayout />,
+            children: [
+              { path: "kit", element: <DevKit /> },
+              { path: "form", element: <SampleForm /> },
+            ],
+          },
+        ]
       : []),
     { path: "*", element: <Navigate to="/" replace /> },
   ];

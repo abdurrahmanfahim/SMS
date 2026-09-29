@@ -1,10 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Suspense } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 import { devToolsEnabled } from "../../shared/devtools";
 import { useT } from "../../shared/i18n";
 import { navItemsForRole } from "../../shared/nav";
 import { useRole } from "../../shared/role";
 import { allNavItems } from "../nav";
+import { ErrorBoundary } from "../patterns/ErrorBoundary";
+import { PageLoading } from "../patterns/PageLoading";
 import { OfflineNotice } from "../pwa/OfflineNotice";
 import { UpdatePrompt } from "../pwa/UpdatePrompt";
 
@@ -19,6 +22,7 @@ export function AppLayout() {
   const t = useT();
   const { role } = useRole();
   const items = navItemsForRole(allNavItems, role);
+  const { pathname } = useLocation();
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -31,7 +35,11 @@ export function AppLayout() {
       <div className="flex flex-1">
         <Sidebar items={items} />
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 p-4 pb-24 md:pb-4">
-          <Outlet />
+          <ErrorBoundary resetKey={pathname}>
+            <Suspense fallback={<PageLoading />}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
         </main>
       </div>
       <BottomTabBar items={items} />

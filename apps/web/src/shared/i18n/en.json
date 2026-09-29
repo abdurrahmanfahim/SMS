@@ -21,6 +21,21 @@
     },
     "language": {
       "label": "Language"
+    },
+    "error": {
+      "title": "Something went wrong.",
+      "description": "Please try loading the page again.",
+      "retry": "Try again"
+    },
+    "form": {
+      "title": "Sample form",
+      "name": "Student name",
+      "phone": "Guardian mobile number",
+      "phoneHelp": "Enter an 11-digit mobile number",
+      "class": "Class",
+      "nameRequired": "Enter a name.",
+      "phoneInvalid": "Enter a valid 11-digit mobile number.",
+      "classRequired": "Choose a class."
     }
   },
   "devkit": {
