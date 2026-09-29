@@ -214,5 +214,41 @@
     "field": {
       "optional": "(optional)"
     }
+  },
+  "upload": {
+    "action": {
+      "camera": "Take a photo",
+      "gallery": "Choose from gallery",
+      "file": "Choose a file",
+      "replace": "Choose another file",
+      "retry": "Try again",
+      "cancel": "Cancel"
+    },
+    "state": {
+      "preparing": "Making the photo smaller",
+      "uploading": "Uploading: {percent}",
+      "done": "Uploaded",
+      "cancelled": "Upload cancelled",
+      "selected": "Selected file: {name}",
+      "progress": "Upload progress"
+    },
+    "error": {
+      "type": "This type of file is not accepted. Use only {types}.",
+      "size": "The file is larger than {size}. Choose a smaller file.",
+      "empty": "The file is empty. Choose another file.",
+      "failed": "Could not upload. Check your internet and try again.",
+      "decode": "The photo could not be opened. Choose another photo."
+    },
+    "crop": {
+      "title": "Crop the photo",
+      "zoom": "Zoom",
+      "horizontal": "Move left or right",
+      "vertical": "Move up or down",
+      "confirm": "Use this part",
+      "preview": "Preview of the cropped part"
+    },
+    "preview": {
+      "alt": "Selected photo"
+    }
   }
 }
