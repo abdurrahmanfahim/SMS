@@ -12,7 +12,10 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "pnpm --filter @sms/web build && pnpm --filter @sms/web preview --port 4173",
+    // `exec` makes vite itself the process Playwright supervises. Going through
+    // `pnpm ... preview` left an orphan child that kept the run alive for hours
+    // (found by M0-S2). Do not put a pnpm wrapper back in front of vite here.
+    command: "pnpm --filter @sms/web build && cd ../apps/web && exec ./node_modules/.bin/vite preview --port 4173 --strictPort",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
