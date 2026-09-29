@@ -1,0 +1,149 @@
+{
+  "shell": {
+    "brand": {
+      "name": "SMS"
+    },
+    "nav": {
+      "label": "Main menu",
+      "home": "Home"
+    },
+    "home": {
+      "placeholder": "This screen will be added later."
+    },
+    "role": {
+      "label": "Role (developer)",
+      "platform_owner": "Platform owner",
+      "institution_admin": "Institution admin",
+      "teacher": "Teacher",
+      "accountant": "Accountant",
+      "guardian": "Guardian",
+      "student": "Student"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "error": {
+      "title": "Something went wrong.",
+      "description": "Please try loading the page again.",
+      "retry": "Try again"
+    },
+    "form": {
+      "title": "Sample form",
+      "name": "Student name",
+      "phone": "Guardian mobile number",
+      "phoneHelp": "Enter an 11-digit mobile number",
+      "class": "Class",
+      "nameRequired": "Enter a name.",
+      "phoneInvalid": "Enter a valid 11-digit mobile number.",
+      "classRequired": "Choose a class.",
+      "actions": "Form actions"
+    },
+    "a11y": {
+      "skip": "Skip to main content"
+    },
+    "help": {
+      "button": "Help",
+      "title": "Help",
+      "body": "If something goes wrong, tell your institution's admin. Adding the app to your phone's home screen makes it open faster.",
+      "install": "How to add to the home screen"
+    }
+  },
+  "devkit": {
+    "kit": {
+      "title": "Component kit (developer)",
+      "buttons": "Buttons",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "destructive": "Destructive",
+      "loading": "Loading",
+      "disabled": "Disabled",
+      "input": "Input",
+      "inputLabel": "Mobile number",
+      "inputHelp": "Enter an 11-digit mobile number",
+      "inputError": "This number is not valid",
+      "select": "Select",
+      "selectLabel": "Class",
+      "selectPlaceholder": "Choose a class",
+      "class6": "Class 6",
+      "class7": "Class 7",
+      "badges": "Badges",
+      "present": "Present",
+      "absent": "Absent",
+      "leave": "Leave",
+      "late": "Late",
+      "card": "Card",
+      "cardTitle": "Md. Abdur Rahman Fahim Chowdhury",
+      "cardMeta": "Roll 12 · Class 6",
+      "skeleton": "Skeleton",
+      "empty": "Empty state",
+      "emptyTitle": "No exam has been created yet.",
+      "emptyDesc": "Create a new exam.",
+      "emptyAction": "New exam",
+      "error": "Error state",
+      "errorTitle": "Could not save.",
+      "errorDesc": "Please try again.",
+      "errorAction": "Try again",
+      "overlays": "Dialog and sheet",
+      "openDialog": "Open dialog",
+      "openSheet": "Open sheet",
+      "openConfirm": "Open confirmation",
+      "toast": "Show toast",
+      "dialogBody": "This is a sample dialog.",
+      "confirmTitle": "Publish results?",
+      "confirmDesc": "This will publish results for 120 students across 3 sections. This cannot be undone later.",
+      "reorder": "Reorder",
+      "reorderItem1": "First subject",
+      "reorderItem2": "Second subject",
+      "reorderItem3": "Third subject",
+      "moveUp": "Move {name} up",
+      "moveDown": "Move {name} down"
+    }
+  },
+  "common": {
+    "action": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "close": "Close"
+    },
+    "state": {
+      "loading": "Loading",
+      "saved": "Saved",
+      "error": "Error"
+    },
+    "label": {
+      "notifications": "Notifications"
+    }
+  },
+  "pwa": {
+    "update": {
+      "message": "A new version is available.",
+      "action": "Update",
+      "later": "Later"
+    },
+    "offline": {
+      "message": "You are offline. Try again when the connection is back."
+    }
+  },
+  "install": {
+    "guide": {
+      "title": "Add to your phone's home screen",
+      "intro": "Once it is on your home screen, the app opens in one tap like any other app.",
+      "installNow": "Install now",
+      "android": {
+        "title": "Android (Chrome)",
+        "step1": "Open this site in the Chrome browser.",
+        "step2": "Tap the three-dot menu at the top right.",
+        "step3": "Tap “Install app” or “Add to Home screen”.",
+        "step4": "Tap “Install”. The icon appears on your home screen."
+      },
+      "iphone": {
+        "title": "iPhone (Safari)",
+        "step1": "Open this site in the Safari browser. Other browsers will not work.",
+        "step2": "Tap the Share button at the bottom (a square with an arrow pointing up).",
+        "step3": "Scroll down and tap “Add to Home Screen”.",
+        "step4": "Tap “Add” at the top right."
+      }
+    }
+  }
+}

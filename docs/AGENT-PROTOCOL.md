@@ -20,7 +20,7 @@ Every task file `docs/tasks/<ID>.md` is a self-contained runbook. The Owner tell
 
 - Layout: `apps/web`, `packages/{domain,db,ui,config}`, `supabase/{migrations,functions,tests,seed}`, `e2e/`, `spikes/`, `docs/`.
 - Scripts (from the root): `pnpm lint`, `pnpm format:check`, `pnpm typecheck`, `pnpm test`, `pnpm build`, `pnpm e2e`, `pnpm db:start|reset|test|types`.
-- Branch: `agent/<ID>`. Commit messages: `<ID>: <what changed>`. PR title: `<ID>: <title>`. Never push to `main`; never merge your own PR.
+- Branch: `agent/<ID>`, created and pushed by the check-in script (section 12). Commit messages: `<ID>: <what changed>`. PR title: `<ID>: <title>`. Never push to `main`; never merge your own PR. Push after every step.
 - Migrations: `YYYYMMDDHHMM_<ws>_<desc>.sql`, forward-only.
 
 ## 4. What "a dependency is done" means
@@ -64,3 +64,20 @@ Bangla, at most 8 lines, using exactly the template in the task file. No questio
 ## 11. Definition of Done (short form; README section 9 is the source)
 
 Acceptance criteria met with evidence; CI green (lint, typecheck, tests; RLS tests for schema changes; e2e where a flow changed); migrations apply from scratch; no secrets; i18n complete; works at 360 px with touch only and the on-screen keyboard open; axe has no serious or critical violations; docs updated; report submitted.
+
+## 12. Check-in (hajira)
+
+Every agent task starts with `bash scripts/checkin.sh <ID> "<agent name and model>"` (section 0 of the task file). It does five things:
+
+1. Refuses to start (exit 10) if `docs/reports/<ID>.md` on `main` already says Done.
+2. Refuses to start (exit 11) if `agent/<ID>` exists and is `In progress` (or has no report) with activity in the last 6 hours: another agent is working on it.
+3. Resumes (exit 0, prints `RESUME:`) if the branch exists but its report says Blocked or Partial, or it has been silent for more than 6 hours; the report's Check-in log records who took over.
+4. Otherwise creates branch `agent/<ID>` from up-to-date `main`.
+5. Writes and pushes a report stub (`**Status:** In progress`, `**Started:**`, `**Agent:**`, Check-in log) so the Owner and the Leader can see the task has started.
+
+Rules:
+- Keep the Started and Agent lines and the Check-in log when you write the final report. Add a log line when you finish.
+- Push after every step. The time of your last commit is your heartbeat; after 6 quiet hours anyone may take your task over.
+- If you are stopping for any reason, update the Status (Blocked or Partial) and push, so the next check-in can resume from your branch.
+- `bash scripts/board.sh` prints every task's state, last activity, commits ahead of `main` and agent name. The Owner and the Leader use it to see who is doing what.
+- Chat-only mode (no repository access): skip the check-in and say so in the report.

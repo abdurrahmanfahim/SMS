@@ -4,16 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "e2e": "playwright test",
+    "e2e": "playwright test && playwright test -c web/playwright.config.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "echo 'e2e has no unit tests; see pnpm e2e'"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.47.2",
     "@sms/config": "workspace:*",
     "@types/node": "^22.7.4",
-    "typescript": "^5.6.2",
-    "eslint": "^9.11.1"
+    "eslint": "^9.11.1",
+    "typescript": "^5.6.2"
   }
 }

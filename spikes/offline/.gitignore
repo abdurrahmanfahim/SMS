@@ -1,0 +1,8 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+# Built by build-harness.mjs (run automatically by `pnpm e2e`); not source.
+harness/app.js
+harness/app.js.map

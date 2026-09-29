@@ -1,0 +1,116 @@
+{
+  "id": "C-001",
+  "source": "All A+ with optional bonus above the cap (spec §5, §10): (5x5.00 + 3.00) / 5 = 5.60, capped at 5.00.",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "c1",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "c5",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "opt",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "all-a-plus",
+      "optional_subject_id": "opt",
+      "marks": {
+        "c1": {
+          "written": 10000
+        },
+        "c2": {
+          "written": 10000
+        },
+        "c3": {
+          "written": 10000
+        },
+        "c4": {
+          "written": 10000
+        },
+        "c5": {
+          "written": 10000
+        },
+        "opt": {
+          "written": 10000
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "all-a-plus": {
+        "status": "ok",
+        "totals": {
+          "outcome": "passed",
+          "gpa": 500,
+          "grade": "A+",
+          "total": 60000,
+          "full": 60000,
+          "average_percent_bp": 10000
+        }
+      }
+    }
+  }
+}

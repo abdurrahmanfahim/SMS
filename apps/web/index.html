@@ -2,7 +2,16 @@
 <html lang="bn">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- interactive-widget=resizes-content: the on-screen keyboard resizes the layout viewport
+         (Chrome 108+), so sticky bars stay above it. A visual-viewport fallback covers the rest
+         (src/shared/viewport.ts). viewport-fit=cover enables safe-area insets. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+    />
+    <meta name="theme-color" content="#0F6E51" />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <title>SMS</title>
   </head>
   <body>

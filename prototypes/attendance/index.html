@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+<title>আজকের হাজিরা — ৬ক শ্রেণি</title>
+<link rel="stylesheet" href="../shared/tokens.css" />
+<style>
+  .roster-item { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3); border-bottom: 1px solid var(--border-default); }
+  .roster-item:last-child { border-bottom: none; }
+  .roll { width: 28px; color: var(--text-secondary); font-size: 0.85rem; flex-shrink: 0; }
+  .stu-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .seg { display: inline-flex; border: 1px solid var(--border-default); border-radius: var(--radius); overflow: hidden; flex-shrink: 0; }
+  .seg button { min-height: 44px; min-width: 32px; border-radius: 0; background: var(--surface-raised); color: var(--text-secondary); font-size: 0.78rem; padding: 0 6px; border-right: 1px solid var(--border-default); }
+  .seg button:last-child { border-right: none; }
+  .seg button[aria-pressed="true"].p { background: var(--success-base); color: var(--success-fg); }
+  .seg button[aria-pressed="true"].a { background: var(--danger-base); color: var(--danger-fg); }
+  .seg button[aria-pressed="true"].l { background: var(--warning-base); color: var(--warning-fg); }
+  .seg button[aria-pressed="true"].v { background: var(--info-base); color: var(--info-fg); }
+  .sync-status { font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+  .top-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-2); flex-wrap: wrap; gap: var(--sp-2); }
+  #offline-toggle { position: fixed; top: 8px; right: 8px; z-index: 30; font-size: 0.72rem; padding: 0 var(--sp-2); min-height: 36px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; color: var(--text-secondary); }
+  main { padding-bottom: 96px; }
+</style>
+</head>
+<body>
+<button id="offline-toggle" class="btn" aria-pressed="false" aria-label="পরীক্ষার জন্য অফলাইন মোড টগল করুন">🔌 অফলাইন মোড: বন্ধ</button>
+<header class="app-header">
+  <a class="back" href="../index.html" aria-label="পেছনে যান">←</a>
+  <h1>আজকের হাজিরা</h1>
+  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: এখানে প্রতিদিনের হাজিরা নেওয়া হয়।'); return false;">❓</a>
+</header>
+<main>
+  <p class="helper">৬ক শ্রেণি · ২৬ সেপ্টেম্বর, ২০২৬</p>
+
+  <div id="offline-banner" class="banner banner-offline" style="display:none;" role="status">
+    📶 অফলাইন — উত্তরগুলো ডিভাইসে জমা থাকছে, সংযোগ ফিরলে সয়ংক্রিয়ভাবে সিঙ্ক হবে।
+  </div>
+
+  <div class="top-controls">
+    <button class="btn btn-secondary" id="mark-all-present">সবাইকে উপস্থিত দিন</button>
+    <span class="sync-status" id="sync-status"><span class="pill pill-success" id="sync-pill">সিঙ্ক করা আছে</span></span>
+  </div>
+
+  <div class="card" style="padding:0;" id="roster-card">
+    <div id="roster-loading" style="padding: var(--sp-4);">
+      <div class="skeleton" style="height:44px; margin-bottom:8px;"></div>
+      <div class="skeleton" style="height:44px; margin-bottom:8px;"></div>
+      <div class="skeleton" style="height:44px;"></div>
+    </div>
+    <div id="roster-list" style="display:none;"></div>
+  </div>
+
+  <div id="grid-empty" class="empty-state" style="display:none;">
+    <p>এই শ্রেণিতে এখনো কোনো শিক্ষার্থী যোগ করা হয়নি।</p>
+    <button class="btn btn-primary">শিক্ষার্থী যোগ করুন</button>
+  </div>
+</main>
+
+<div class="action-bar">
+  <button class="btn btn-secondary btn-block" onclick="history.back()">বাতিল</button>
+  <button class="btn btn-primary btn-block" id="save-btn">সংরক্ষণ করুন</button>
+</div>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<nav class="bottom-nav" aria-label="প্রধান ন্যাভিগেশন">
+  <a href="#" aria-current="page">হোম</a>
+  <a href="../attendance/index.html">হাজিরা</a>
+  <a href="../marks/index.html">পরীক্ষা</a>
+  <a href="../students/index.html">শিক্ষার্থী</a>
+</nav>
+
+<script src="../shared/app.js"></script>
+<script>
+  var roster = bnRoster(40);
+  var state = {}; // id -> status: 'present' | 'absent' | 'late' | 'leave'
+  roster.forEach(function (s) { state[s.id] = "present"; });
+  var pendingQueue = 0;
+  var lastSyncFailed = false;
+
+  function renderRoster() {
+    var list = document.getElementById("roster-list");
+    if (roster.length === 0) {
+      document.getElementById("roster-card").style.display = "none";
+      document.getElementById("grid-empty").style.display = "block";
+      return;
+    }
+    list.innerHTML = roster.map(function (s) {
+      var st = state[s.id];
+      return (
+        '<div class="roster-item">' +
+        '<span class="roll">' + s.roll + '</span>' +
+        '<span class="stu-name" title="' + s.name + '">' + s.name + '</span>' +
+        '<div class="seg" role="group" aria-label="' + s.name + '-এর হাজিরা">' +
+        segBtn(s.id, "present", "p", "উ", "উপস্থিত") +
+        segBtn(s.id, "absent", "a", "অ", "অনুপস্থিত") +
+        segBtn(s.id, "late", "l", "বি", "বিলম্বে") +
+        segBtn(s.id, "leave", "v", "ছ", "ছুটি") +
+        "</div></div>"
+      );
+    }).join("");
+    document.getElementById("roster-loading").style.display = "none";
+    list.style.display = "block";
+  }
+
+  function segBtn(id, val, cls, short, full) {
+    var pressed = state[id] === val;
+    return '<button type="button" class="' + cls + '" aria-pressed="' + pressed + '" aria-label="' + full + '" data-id="' + id + '" data-val="' + val + '" onclick="setStatus(\'' + id + '\',\'' + val + '\')">' + short + "</button>";
+  }
+
+  function setStatus(id, val) {
+    state[id] = val;
+    renderRoster();
+  }
+
+  window.setStatus = setStatus;
+
+  document.getElementById("mark-all-present").addEventListener("click", function () {
+    roster.forEach(function (s) { state[s.id] = "present"; });
+    renderRoster();
+    showToast("সবাইকে উপস্থিত হিসেবে চিহ্নিত করা হয়েছে — ব্যতিক্রমগুলো ঠিক করুন");
+  });
+
+  function updateSyncPill() {
+    var pill = document.getElementById("sync-pill");
+    if (lastSyncFailed) {
+      pill.className = "pill pill-danger";
+      pill.textContent = "সিঙ্ক ব্যর্থ — আবার চেষ্টা করুন";
+    } else if (pendingQueue > 0) {
+      pill.className = "pill pill-warning";
+      pill.textContent = "অপেক্ষমাণ " + pendingQueue + "টি";
+    } else {
+      pill.className = "pill pill-success";
+      pill.textContent = "সিঙ্ক করা আছে";
+    }
+  }
+
+  document.getElementById("save-btn").addEventListener("click", function () {
+    if (isOffline()) {
+      pendingQueue += 1;
+      updateSyncPill();
+      showToast("সংযোগ নেই — হাজিরা ডিভাইসে জমা থাকলো, সংযোগ ফিরলে সিঙ্ক হবে");
+      return;
+    }
+    // Simulate an occasional server failure so the error/failure path is
+    // reachable without needing the facilitator to toggle offline mode.
+    if (Math.random() < 0.12) {
+      lastSyncFailed = true;
+      updateSyncPill();
+      showToast("সংরক্ষণ করা যায়নি, আবার চেষ্টা করুন", true);
+      return;
+    }
+    lastSyncFailed = false;
+    pendingQueue = 0;
+    updateSyncPill();
+    showToast("হাজিরা সংরক্ষণ হয়েছে");
+  });
+
+  document.addEventListener("connectivitychange", function (e) {
+    document.getElementById("offline-banner").style.display = e.detail.offline ? "flex" : "none";
+    if (!e.detail.offline && pendingQueue > 0) {
+      // connection returned: auto-sync the queue
+      setTimeout(function () {
+        pendingQueue = 0;
+        lastSyncFailed = false;
+        updateSyncPill();
+        showToast("সংযোগ ফিরেছে — জমাকৃত হাজিরা সিঙ্ক হয়েছে");
+      }, 900);
+    }
+  });
+
+  setTimeout(renderRoster, 350); // simulated initial load
+</script>
+</body>
+</html>

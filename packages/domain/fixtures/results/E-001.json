@@ -1,0 +1,66 @@
+{
+  "id": "E-001",
+  "source": "Exempt subject is excluded from totals and the denominator (spec §4).",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "s1",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "exempt-s2",
+      "marks": {
+        "s1": {
+          "written": 8000
+        },
+        "s2": {
+          "written": "exempt"
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "exempt-s2": {
+        "status": "ok",
+        "subjects": {
+          "s2": {
+            "status": "exempt",
+            "total": null,
+            "grade": null
+          }
+        },
+        "totals": {
+          "outcome": "passed",
+          "gpa": 500,
+          "grade": "A+",
+          "total": 8000,
+          "full": 10000,
+          "counted_subject_ids": ["s1"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+<title>নম্বর এন্ট্রি — গণিত, ৬ক</title>
+<link rel="stylesheet" href="../shared/tokens.css" />
+<style>
+  #offline-toggle { position: fixed; top: 8px; right: 8px; z-index: 30; font-size: 0.72rem; padding: 0 var(--sp-2); min-height: 36px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; color: var(--text-secondary); }
+  main { max-width: 520px; padding-bottom: 100px; }
+  .counter-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-2); flex-wrap: wrap; gap: var(--sp-2); }
+  .counter-pill { font-weight: 600; }
+  .lock-toggle { font-size: 0.75rem; }
+  .cell-note { font-size: 0.7rem; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<button id="offline-toggle" class="btn" aria-pressed="false" aria-label="পরীক্ষার জন্য অফলাইন মোড টগল করুন">🔌 অফলাইন মোড: বন্ধ</button>
+<header class="app-header">
+  <a class="back" href="../index.html" aria-label="পেছনে যান">←</a>
+  <h1>নম্বর এন্ট্রি</h1>
+  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: প্রতি ঘরে নম্বর লিখুন, ট্যাব বা এন্টারে পরের ঘরে যাবে।'); return false;">❓</a>
+</header>
+<main>
+  <p class="helper">অর্ধবার্ষিক পরীক্ষা ২০২৬ · গণিত · ৬ক শ্রেণি · পূর্ণমান ১০০</p>
+
+  <div id="offline-banner" class="banner banner-offline" style="display:none;" role="status">
+    📶 অফলাইন — লেখা নম্বরগুলো ডিভাইসে জমা থাকছে, সংযোগ ফিরলে সিঙ্ক হবে।
+  </div>
+
+  <div id="locked-banner" class="banner banner-locked" style="display:none;" role="status">
+    🔒 এই বিষয়ের নম্বর এন্ট্রি এখন বন্ধ (locked) — প্রশাসক আবার খুললে লেখা যাবে।
+  </div>
+
+  <div class="counter-row">
+    <label class="lock-toggle"><input type="checkbox" id="lock-sim" style="min-height:auto; width:auto;"/> পরীক্ষার জন্য: লক অবস্থা দেখান</label>
+    <span class="pill pill-info counter-pill" id="entered-counter">০ জনের মধ্যে ০ জনের নম্বর দেওয়া হয়েছে</span>
+  </div>
+
+  <div class="grid-wrap" id="grid-wrap">
+    <table class="entry-grid" role="grid" aria-label="গণিত নম্বর এন্ট্রি গ্রিড">
+      <thead><tr><th scope="col">নাম</th><th scope="col">রোল</th><th scope="col">নম্বর</th></tr></thead>
+      <tbody id="grid-body"></tbody>
+    </table>
+  </div>
+  <p class="helper">অনুপস্থিত শিক্ষার্থীর জন্য ঘরে <strong>অ</strong> লিখুন — এটি অনুপস্থিত কোড হিসেবে সংরক্ষিত হবে।</p>
+</main>
+
+<div class="action-bar">
+  <button class="btn btn-secondary btn-block" onclick="history.back()">পরে করব</button>
+  <button class="btn btn-primary btn-block" id="save-all">সংরক্ষণ করুন</button>
+</div>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<nav class="bottom-nav" aria-label="প্রধান ন্যাভিগেশন">
+  <a href="#">হোম</a>
+  <a href="../attendance/index.html">হাজিরা</a>
+  <a href="#" aria-current="page">পরীক্ষা</a>
+  <a href="../students/index.html">শিক্ষার্থী</a>
+</nav>
+
+<script src="../shared/app.js"></script>
+<script>
+  var FULL_MARKS = 100;
+  var roster = bnRoster(40);
+  var marks = {}; // id -> { value: string, status: 'empty'|'saved'|'error', absent: bool }
+  roster.forEach(function (s) { marks[s.id] = { value: "", status: "empty", absent: false }; });
+
+  function updateCounter() {
+    var n = roster.filter(function (s) { return marks[s.id].status === "saved"; }).length;
+    document.getElementById("entered-counter").textContent = toBnDigits(roster.length) + " জনের মধ্যে " + toBnDigits(n) + " জনের নম্বর দেওয়া হয়েছে";
+  }
+  function toBnDigits(num) {
+    var map = ["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
+    return String(num).split("").map(function (d) { return /[0-9]/.test(d) ? map[d] : d; }).join("");
+  }
+
+  function renderGrid() {
+    var body = document.getElementById("grid-body");
+    body.innerHTML = roster.map(function (s, idx) {
+      var m = marks[s.id];
+      var errCls = m.status === "error" ? " cell-error" : "";
+      return (
+        '<tr>' +
+        '<td title="' + s.name + '">' + s.name + '</td>' +
+        '<td>' + toBnDigits(s.roll) + '</td>' +
+        '<td class="' + errCls.trim() + '">' +
+        '<input type="text" inputmode="numeric" aria-label="' + s.name + '-এর গণিত নম্বর, পূর্ণমান ১০০"' +
+        ' value="' + m.value + '" data-idx="' + idx + '" data-id="' + s.id + '"' +
+        ' onkeydown="handleKey(event,' + idx + ')" oninput="handleInput(event,\'' + s.id + '\')" onblur="commitCell(\'' + s.id + '\')" />' +
+        (m.status === "error" ? '<div class="cell-note">১০০-এর বেশি নয়</div>' : '') +
+        '</td></tr>'
+      );
+    }).join("");
+  }
+
+  function handleInput(e, id) {
+    marks[id].value = e.target.value;
+    marks[id].status = "empty";
+  }
+
+  function commitCell(id) {
+    var m = marks[id];
+    var raw = m.value.trim();
+    if (raw === "") return;
+    if (raw === "অ" || raw.toLowerCase() === "a") {
+      m.absent = true;
+      m.status = "saved";
+      m.value = "অনুপস্থিত";
+      updateCounter();
+      renderGrid();
+      return;
+    }
+    var num = Number(raw);
+    if (isNaN(num) || num < 0 || num > FULL_MARKS) {
+      m.status = "error";
+      renderGrid();
+      // keep typed value on validation error, per ux-standard.md §7
+      var input = document.querySelector('input[data-id="' + id + '"]');
+      if (input) { input.focus(); input.select(); }
+      return;
+    }
+    m.status = "saved";
+    m.absent = false;
+    updateCounter();
+    renderGrid();
+    var input2 = document.querySelector('input[data-id="' + id + '"]');
+    if (input2) input2.focus();
+  }
+
+  function handleKey(e, idx) {
+    if (e.key === "Enter" || e.key === "Tab") {
+      if (e.key === "Enter") e.preventDefault();
+      var id = roster[idx].id;
+      commitCell(id);
+      var next = document.querySelector('input[data-idx="' + (idx + 1) + '"]');
+      if (next && e.key === "Enter") { e.preventDefault(); next.focus(); }
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      var d = document.querySelector('input[data-idx="' + (idx + 1) + '"]');
+      if (d) d.focus();
+    }
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      var u = document.querySelector('input[data-idx="' + (idx - 1) + '"]');
+      if (u) u.focus();
+    }
+  }
+  window.handleKey = handleKey;
+  window.handleInput = handleInput;
+  window.commitCell = commitCell;
+
+  document.getElementById("save-all").addEventListener("click", function () {
+    var lockedNow = document.getElementById("lock-sim").checked;
+    if (lockedNow) {
+      showToast("এই বিষয় লক করা আছে — এখন সংরক্ষণ করা যাবে না", true);
+      return;
+    }
+    var errCount = roster.filter(function (s) { return marks[s.id].status === "error"; }).length;
+    if (errCount > 0) {
+      showToast(toBnDigits(errCount) + "টি ঘরে ভুল আছে — ঠিক করে আবার চেষ্টা করুন", true);
+      return;
+    }
+    if (isOffline()) {
+      showToast("সংযোগ নেই — নম্বরগুলো ডিভাইসে জমা থাকলো, সংযোগ ফিরলে সিঙ্ক হবে");
+      return;
+    }
+    showToast("নম্বর সংরক্ষণ হয়েছে");
+  });
+
+  document.getElementById("lock-sim").addEventListener("change", function (e) {
+    document.getElementById("locked-banner").style.display = e.target.checked ? "flex" : "none";
+    document.querySelectorAll("#grid-body input").forEach(function (i) { i.disabled = e.target.checked; });
+    document.getElementById("save-all").disabled = e.target.checked;
+  });
+
+  document.addEventListener("connectivitychange", function (e) {
+    document.getElementById("offline-banner").style.display = e.detail.offline ? "flex" : "none";
+  });
+
+  renderGrid();
+  updateCounter();
+</script>
+</body>
+</html>
