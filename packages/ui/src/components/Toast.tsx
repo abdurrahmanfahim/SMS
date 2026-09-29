@@ -43,7 +43,7 @@ export function ToastProvider({
 
   return (
     <ToastContext.Provider value={value}>
-      <RadixToast.Provider swipeDirection="right">
+      <RadixToast.Provider swipeDirection="right" label={viewportLabel}>
         {children}
         {items.map((item) => {
           const tone = item.tone ?? "info";
