@@ -191,5 +191,28 @@
       "ascending": "Sorted ascending",
       "descending": "Sorted descending"
     }
+  },
+  "forms": {
+    "error": {
+      "required": "This field is required.",
+      "invalidNumber": "Enter a number.",
+      "integer": "Enter a whole number without decimals.",
+      "min": "Must be {min} or more.",
+      "max": "Must not be more than {max}.",
+      "tooLong": "At most {max} characters are allowed.",
+      "phone": "Enter a valid 11-digit mobile number (for example 017XXXXXXXX).",
+      "date": "Enter a valid date.",
+      "dateMin": "Enter {min} or a later date.",
+      "dateMax": "Enter {max} or an earlier date.",
+      "choose": "Choose one.",
+      "invalid": "Please fill this field correctly.",
+      "saveFailed": "Could not save. Please try again."
+    },
+    "summary": {
+      "errors": "{count} fields need attention. Please fix them and try again."
+    },
+    "field": {
+      "optional": "(optional)"
+    }
   }
 }

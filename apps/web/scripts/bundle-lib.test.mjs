@@ -17,8 +17,14 @@ test("initialAssets finds scripts, modulepreloads and stylesheets only", () => {
 });
 
 test("checkBudget passes at the limit and fails just over it", () => {
-  assert.deepEqual(checkBudget({ jsGzip: BUDGETS.initialJsGzip, cssGzip: BUDGETS.initialCssGzip }), []);
-  const over = checkBudget({ jsGzip: BUDGETS.initialJsGzip + 1, cssGzip: BUDGETS.initialCssGzip + 1 });
+  assert.deepEqual(
+    checkBudget({ jsGzip: BUDGETS.initialJsGzip, cssGzip: BUDGETS.initialCssGzip }),
+    [],
+  );
+  const over = checkBudget({
+    jsGzip: BUDGETS.initialJsGzip + 1,
+    cssGzip: BUDGETS.initialCssGzip + 1,
+  });
   assert.equal(over.length, 2);
   assert.match(over[0], /initial JS/);
   assert.match(over[1], /initial CSS/);
