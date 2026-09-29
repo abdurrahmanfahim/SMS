@@ -49,8 +49,6 @@ test("shell route meets the lab LCP and CLS budgets on slow 4G with 4x CPU", asy
     type: "metrics",
     description: `LCP ${Math.round(lcp)} ms, CLS ${cls.toFixed(3)}`,
   });
-
-  console.log(`lab metrics: LCP ${Math.round(lcp)} ms, CLS ${cls.toFixed(3)}`);
   expect(lcp).toBeGreaterThan(0);
   expect(lcp).toBeLessThanOrEqual(2500);
   expect(cls).toBeLessThanOrEqual(0.1);

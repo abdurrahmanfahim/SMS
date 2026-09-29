@@ -201,6 +201,22 @@ test.describe("PWA", () => {
     await expect(page.getByTestId("offline-notice")).toBeHidden();
   });
 
+  test("Chrome reports no installability errors for the manifest and service worker", async ({
+    page,
+    context,
+  }) => {
+    // Lighthouse 12+ dropped its PWA category; Chrome's own installability check (the one behind
+    // the install prompt) is available over CDP and is the authoritative source.
+    await page.goto("/app");
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    await page.reload();
+    const client = await context.newCDPSession(page);
+    const { installabilityErrors } = await client.send("Page.getInstallabilityErrors");
+    expect(installabilityErrors).toEqual([]);
+  });
+
   test("the static offline page is precached and readable", async ({ request }) => {
     const res = await request.get("/offline.html");
     expect(res.ok()).toBe(true);
