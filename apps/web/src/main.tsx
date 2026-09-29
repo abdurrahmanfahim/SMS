@@ -8,7 +8,7 @@ import { createShellRoutes } from "./app/routes";
 import { registerMessages, t } from "./shared/i18n";
 import { RoleProvider } from "./shared/role";
 
-import "./index.css";
+import "./app/index.css";
 
 const container = document.getElementById("root");
 if (!container) {

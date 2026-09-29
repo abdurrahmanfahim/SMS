@@ -2,9 +2,10 @@ import { cleanup, fireEvent, render, screen, within } from "@testing-library/rea
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { createShellRoutes } from "./app/routes";
-import { setLocale, t } from "./shared/i18n";
-import { RoleProvider } from "./shared/role";
+import { setLocale, t } from "../shared/i18n";
+import { RoleProvider } from "../shared/role";
+
+import { createShellRoutes } from "./routes";
 
 afterEach(() => {
   cleanup();
