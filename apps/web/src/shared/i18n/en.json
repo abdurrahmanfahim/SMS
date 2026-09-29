@@ -83,5 +83,15 @@
     "label": {
       "notifications": "Notifications"
     }
+  },
+  "pwa": {
+    "update": {
+      "message": "A new version is available.",
+      "action": "Update",
+      "later": "Later"
+    },
+    "offline": {
+      "message": "You are offline. Try again when the connection is back."
+    }
   }
 }

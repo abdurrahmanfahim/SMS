@@ -5,6 +5,8 @@ import { useT } from "../../shared/i18n";
 import { navItemsForRole } from "../../shared/nav";
 import { useRole } from "../../shared/role";
 import { allNavItems } from "../nav";
+import { OfflineNotice } from "../pwa/OfflineNotice";
+import { UpdatePrompt } from "../pwa/UpdatePrompt";
 
 import { BottomTabBar, Sidebar } from "./NavLinks";
 import { LanguageSwitcher, RoleSwitcher } from "./Switchers";
@@ -25,6 +27,7 @@ export function AppLayout() {
         <LanguageSwitcher />
         {devToolsEnabled ? <RoleSwitcher /> : null}
       </header>
+      <OfflineNotice />
       <div className="flex flex-1">
         <Sidebar items={items} />
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 p-4 pb-24 md:pb-4">
@@ -32,6 +35,7 @@ export function AppLayout() {
         </main>
       </div>
       <BottomTabBar items={items} />
+      <UpdatePrompt />
     </div>
   );
 }
