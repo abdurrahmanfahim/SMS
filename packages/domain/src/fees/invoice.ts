@@ -1,6 +1,7 @@
 import type { IsoDate } from "../dates.js";
 import type { Poisha } from "../money.js";
 
+import { compareIds } from "./order.js";
 import { type Waiver, applyWaivers } from "./waivers.js";
 
 /** How often a plan item is billed (`fee_plan_items.frequency`). */
@@ -150,7 +151,7 @@ export function calculateInvoiceLines(input: InvoiceLinesInput): InvoiceLinesRes
 
   const chosen = input.items
     .filter((item) => matchesPeriod(item, input.period) || forced.has(item.id))
-    .sort((a, b) => a.sortOrder - b.sortOrder || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    .sort((a, b) => a.sortOrder - b.sortOrder || compareIds(a.id, b.id));
 
   const lines: InvoiceLine[] = [];
   let gross = 0;

@@ -1,0 +1,165 @@
+{
+  "source": "Worked out by hand: Asia/Dhaka is UTC+06:00 all year; 21:00 is quiet, 07:00 is allowed again.",
+  "windows": [
+    {
+      "name": "default 21:00-07:00 (D-18)",
+      "start": null,
+      "end": null,
+      "cases": [
+        {
+          "nowUtc": "2026-09-29T00:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-29T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T00:59:59.999Z",
+          "quiet": true,
+          "atUtc": "2026-09-29T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T01:00:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T01:00:00.000Z",
+          "delayed": false
+        },
+        {
+          "nowUtc": "2026-09-29T14:59:59.999Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T14:59:59.999Z",
+          "delayed": false
+        },
+        {
+          "nowUtc": "2026-09-29T15:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-30T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T17:30:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-30T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T18:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-30T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T23:59:59.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-30T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-12-31T16:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2027-01-01T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-02-28T20:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-03-01T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-03-29T00:30:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-03-29T01:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-10-25T12:00:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-10-25T12:00:00.000Z",
+          "delayed": false
+        }
+      ]
+    },
+    {
+      "name": "non-wrapping 13:00-15:00",
+      "start": "13:00",
+      "end": "15:00",
+      "cases": [
+        {
+          "nowUtc": "2026-09-29T06:59:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T06:59:00.000Z",
+          "delayed": false
+        },
+        {
+          "nowUtc": "2026-09-29T07:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-29T09:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T08:00:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-29T09:00:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T09:00:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T09:00:00.000Z",
+          "delayed": false
+        }
+      ]
+    },
+    {
+      "name": "wrapping 22:30-06:15",
+      "start": "22:30",
+      "end": "06:15",
+      "cases": [
+        {
+          "nowUtc": "2026-09-29T16:29:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T16:29:00.000Z",
+          "delayed": false
+        },
+        {
+          "nowUtc": "2026-09-29T16:30:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-30T00:15:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T00:14:00.000Z",
+          "quiet": true,
+          "atUtc": "2026-09-29T00:15:00.000Z",
+          "delayed": true
+        },
+        {
+          "nowUtc": "2026-09-29T00:15:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T00:15:00.000Z",
+          "delayed": false
+        }
+      ]
+    },
+    {
+      "name": "equal start and end means no quiet hours",
+      "start": "00:00",
+      "end": "00:00",
+      "cases": [
+        {
+          "nowUtc": "2026-09-29T18:00:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T18:00:00.000Z",
+          "delayed": false
+        },
+        {
+          "nowUtc": "2026-09-29T00:00:00.000Z",
+          "quiet": false,
+          "atUtc": "2026-09-29T00:00:00.000Z",
+          "delayed": false
+        }
+      ]
+    }
+  ]
+}

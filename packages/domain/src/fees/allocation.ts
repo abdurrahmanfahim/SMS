@@ -1,6 +1,8 @@
 import type { IsoDate } from "../dates.js";
 import type { Poisha } from "../money.js";
 
+import { compareIds } from "./order.js";
+
 /** An invoice that can receive money: `openAmount` is `total - paid_total` (never for a void one). */
 export type OpenInvoice = {
   readonly id: string;
@@ -51,7 +53,7 @@ export type AllocationResult =
 const byAge = (a: OpenInvoice, b: OpenInvoice): number => {
   if (a.dueDate !== b.dueDate) return a.dueDate < b.dueDate ? -1 : 1;
   if (a.number !== b.number) return a.number < b.number ? -1 : 1;
-  return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+  return compareIds(a.id, b.id);
 };
 
 /**
