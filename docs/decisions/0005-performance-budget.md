@@ -25,7 +25,12 @@ Measured at the end of this task on the production build:
 
 - Initial JS: 127.9 KB gzip (budget 200 KB), one file.
 - Initial CSS: 5.0 KB gzip (budget 40 KB), one file.
-- Lab LCP 1560 ms and CLS 0.001 (budgets 2500 ms and 0.1), slow 4G, 4x CPU, 360 px.
+- Lab LCP (Playwright, slow 4G, 4x CPU, 360 px): 2112 to 2388 ms across three runs after the font preload was added (1560 ms before it, when CLS was 0.28), CLS 0.000. Budgets 2500 ms and 0.1. Headroom is thin.
+- Lighthouse 13.5.0, default mobile simulation: performance 92, accessibility 100, best practices 100, LCP 2.9 s, CLS 0, TBT 80 ms. Lighthouse's simulated LCP is above the 2.5 s target; it is recorded here as debt, not enforced in CI (the Playwright test is the enforced proxy).
+
+## Font preload and layout shift
+
+`apps/web/vite.config.ts` preloads the Bangla 400 and Latin 400 font files. Without it the header text first painted in the fallback font and reflowed when Hind Siliguri arrived, giving CLS 0.28 (above the 0.1 budget). The 600 weight is not preloaded to save bandwidth on slow networks.
 
 ## Rules for later tasks
 
