@@ -1,0 +1,215 @@
+{
+  "source": "English and Bangla sample messages. Bangla lengths are counted with Python len() (all BMP, one UTF-16 unit each) and limits from spec §5 (GSM-7 160/153, UCS-2 70/67) or the provider limits given per case.",
+  "cases": [
+    {
+      "name": "empty",
+      "text": "",
+      "encoding": "gsm7",
+      "characters": 0,
+      "units": 0,
+      "segments": 0,
+      "charsLeft": 160
+    },
+    {
+      "name": "short english",
+      "text": "Hello",
+      "encoding": "gsm7",
+      "characters": 5,
+      "units": 5,
+      "segments": 1,
+      "charsLeft": 155
+    },
+    {
+      "name": "english exactly one segment",
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "encoding": "gsm7",
+      "characters": 160,
+      "units": 160,
+      "segments": 1,
+      "charsLeft": 0
+    },
+    {
+      "name": "english just over one segment",
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "encoding": "gsm7",
+      "characters": 161,
+      "units": 161,
+      "segments": 2,
+      "charsLeft": 145
+    },
+    {
+      "name": "english exactly two segments",
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "encoding": "gsm7",
+      "characters": 306,
+      "units": 306,
+      "segments": 2,
+      "charsLeft": 0
+    },
+    {
+      "name": "english just over two segments",
+      "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "encoding": "gsm7",
+      "characters": 307,
+      "units": 307,
+      "segments": 3,
+      "charsLeft": 152
+    },
+    {
+      "name": "digits and punctuation",
+      "text": "Fee Tk 1,500 due on 10/10: pay now!",
+      "encoding": "gsm7",
+      "characters": 35,
+      "units": 35,
+      "segments": 1,
+      "charsLeft": 125
+    },
+    {
+      "name": "gsm extension chars count double, one segment",
+      "text": "{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{",
+      "encoding": "gsm7",
+      "characters": 80,
+      "units": 160,
+      "segments": 1,
+      "charsLeft": 0
+    },
+    {
+      "name": "gsm extension chars are not split across segments",
+      "text": "{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{",
+      "encoding": "gsm7",
+      "characters": 81,
+      "units": 162,
+      "segments": 2,
+      "charsLeft": 143
+    },
+    {
+      "name": "euro sign is an extension char",
+      "text": "€",
+      "encoding": "gsm7",
+      "characters": 1,
+      "units": 2,
+      "segments": 1,
+      "charsLeft": 158
+    },
+    {
+      "name": "bangla exactly one segment",
+      "text": "কককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক",
+      "encoding": "ucs2",
+      "characters": 70,
+      "units": 70,
+      "segments": 1,
+      "charsLeft": 0
+    },
+    {
+      "name": "bangla just over one segment",
+      "text": "ককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক",
+      "encoding": "ucs2",
+      "characters": 71,
+      "units": 71,
+      "segments": 2,
+      "charsLeft": 63
+    },
+    {
+      "name": "bangla exactly two segments",
+      "text": "কককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক",
+      "encoding": "ucs2",
+      "characters": 134,
+      "units": 134,
+      "segments": 2,
+      "charsLeft": 0
+    },
+    {
+      "name": "bangla just over two segments",
+      "text": "ককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক",
+      "encoding": "ucs2",
+      "characters": 135,
+      "units": 135,
+      "segments": 3,
+      "charsLeft": 66
+    },
+    {
+      "name": "bangla absent alert sentence",
+      "text": "প্রিয় অভিভাবক, আপনার সন্তান আজ স্কুলে অনুপস্থিত ছিল।",
+      "encoding": "ucs2",
+      "characters": 53,
+      "units": 53,
+      "segments": 1,
+      "charsLeft": 17
+    },
+    {
+      "name": "bangla longer notice",
+      "text": "প্রিয় অভিভাবক, আপনার সন্তান আজ স্কুলে অনুপস্থিত ছিল। অনুগ্রহ করে প্রধান শিক্ষকের সাথে যোগাযোগ করুন।",
+      "encoding": "ucs2",
+      "characters": 100,
+      "units": 100,
+      "segments": 2,
+      "charsLeft": 34
+    },
+    {
+      "name": "mixed english and bangla is ucs2",
+      "text": "Fee due: আজ",
+      "encoding": "ucs2",
+      "characters": 11,
+      "units": 11,
+      "segments": 1,
+      "charsLeft": 59
+    },
+    {
+      "name": "emoji: 35 emoji fill one ucs2 segment",
+      "text": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+      "encoding": "ucs2",
+      "characters": 35,
+      "units": 70,
+      "segments": 1,
+      "charsLeft": 0
+    },
+    {
+      "name": "emoji: surrogate pairs are not split",
+      "text": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+      "encoding": "ucs2",
+      "characters": 36,
+      "units": 72,
+      "segments": 2,
+      "charsLeft": 61
+    },
+    {
+      "name": "emoji at a segment boundary moves to the next segment",
+      "text": "কককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক😀ককক",
+      "encoding": "ucs2",
+      "characters": 70,
+      "units": 71,
+      "segments": 2,
+      "charsLeft": 62
+    },
+    {
+      "name": "provider with 63-unit concatenated segments",
+      "text": "ককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক",
+      "encoding": "ucs2",
+      "characters": 71,
+      "units": 71,
+      "segments": 2,
+      "charsLeft": 55,
+      "limits": {
+        "gsm7Single": 160,
+        "gsm7Multi": 153,
+        "ucs2Single": 70,
+        "ucs2Multi": 63
+      }
+    },
+    {
+      "name": "provider with 63-unit segments, exact fit",
+      "text": "কককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককককক",
+      "encoding": "ucs2",
+      "characters": 126,
+      "units": 126,
+      "segments": 2,
+      "charsLeft": 0,
+      "limits": {
+        "gsm7Single": 160,
+        "gsm7Multi": 153,
+        "ucs2Single": 70,
+        "ucs2Multi": 63
+      }
+    }
+  ]
+}

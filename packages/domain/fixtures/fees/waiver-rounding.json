@@ -1,0 +1,125 @@
+{
+  "source": "Hand-picked boundaries around .5 of a poisha (spec §3: basis points, half up). Expected = floor(amount x bp / 10000 + 1/2), computed with exact fractions outside the engine.",
+  "cases": [
+    {
+      "amount": 0,
+      "basisPoints": 5000,
+      "waiver": 0
+    },
+    {
+      "amount": 1,
+      "basisPoints": 0,
+      "waiver": 0
+    },
+    {
+      "amount": 1,
+      "basisPoints": 1,
+      "waiver": 0
+    },
+    {
+      "amount": 1,
+      "basisPoints": 4999,
+      "waiver": 0
+    },
+    {
+      "amount": 1,
+      "basisPoints": 5000,
+      "waiver": 1
+    },
+    {
+      "amount": 1,
+      "basisPoints": 5001,
+      "waiver": 1
+    },
+    {
+      "amount": 1,
+      "basisPoints": 10000,
+      "waiver": 1
+    },
+    {
+      "amount": 2,
+      "basisPoints": 2499,
+      "waiver": 0
+    },
+    {
+      "amount": 2,
+      "basisPoints": 2500,
+      "waiver": 1
+    },
+    {
+      "amount": 3,
+      "basisPoints": 1666,
+      "waiver": 0
+    },
+    {
+      "amount": 3,
+      "basisPoints": 1667,
+      "waiver": 1
+    },
+    {
+      "amount": 3,
+      "basisPoints": 5000,
+      "waiver": 2
+    },
+    {
+      "amount": 4999,
+      "basisPoints": 1,
+      "waiver": 0
+    },
+    {
+      "amount": 5000,
+      "basisPoints": 1,
+      "waiver": 1
+    },
+    {
+      "amount": 5001,
+      "basisPoints": 1,
+      "waiver": 1
+    },
+    {
+      "amount": 7,
+      "basisPoints": 3571,
+      "waiver": 2
+    },
+    {
+      "amount": 7,
+      "basisPoints": 3572,
+      "waiver": 3
+    },
+    {
+      "amount": 9999,
+      "basisPoints": 5000,
+      "waiver": 5000
+    },
+    {
+      "amount": 10000,
+      "basisPoints": 5000,
+      "waiver": 5000
+    },
+    {
+      "amount": 10001,
+      "basisPoints": 5000,
+      "waiver": 5001
+    },
+    {
+      "amount": 100,
+      "basisPoints": 10000,
+      "waiver": 100
+    },
+    {
+      "amount": 12345,
+      "basisPoints": 3333,
+      "waiver": 4115
+    },
+    {
+      "amount": 99999,
+      "basisPoints": 3333,
+      "waiver": 33330
+    },
+    {
+      "amount": 250000,
+      "basisPoints": 1250,
+      "waiver": 31250
+    }
+  ]
+}

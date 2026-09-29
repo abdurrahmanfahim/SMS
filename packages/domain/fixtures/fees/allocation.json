@@ -1,0 +1,127 @@
+{
+  "source": "Scenarios worked out by hand from spec §3 (oldest first unless the collector picks invoices; remainder is advance credit).",
+  "invoices": [
+    {
+      "id": "A",
+      "number": "INV-2026-000001",
+      "dueDate": "2026-08-10",
+      "openAmount": 50000
+    },
+    {
+      "id": "B",
+      "number": "INV-2026-000002",
+      "dueDate": "2026-09-10",
+      "openAmount": 30000
+    },
+    {
+      "id": "C",
+      "number": "INV-2026-000003",
+      "dueDate": "2026-10-10",
+      "openAmount": 20000
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "partial across two invoices",
+      "amount": 60000,
+      "mode": {
+        "kind": "oldest_first"
+      },
+      "allocations": [
+        {
+          "invoiceId": "A",
+          "amount": 50000
+        },
+        {
+          "invoiceId": "B",
+          "amount": 10000
+        }
+      ],
+      "advance": 0
+    },
+    {
+      "name": "pays everything and leaves advance",
+      "amount": 120000,
+      "mode": {
+        "kind": "oldest_first"
+      },
+      "allocations": [
+        {
+          "invoiceId": "A",
+          "amount": 50000
+        },
+        {
+          "invoiceId": "B",
+          "amount": 30000
+        },
+        {
+          "invoiceId": "C",
+          "amount": 20000
+        }
+      ],
+      "advance": 20000
+    },
+    {
+      "name": "exactly the oldest invoice",
+      "amount": 50000,
+      "mode": {
+        "kind": "oldest_first"
+      },
+      "allocations": [
+        {
+          "invoiceId": "A",
+          "amount": 50000
+        }
+      ],
+      "advance": 0
+    },
+    {
+      "name": "one poisha",
+      "amount": 1,
+      "mode": {
+        "kind": "oldest_first"
+      },
+      "allocations": [
+        {
+          "invoiceId": "A",
+          "amount": 1
+        }
+      ],
+      "advance": 0
+    },
+    {
+      "name": "chosen newest only",
+      "amount": 15000,
+      "mode": {
+        "kind": "chosen",
+        "invoiceIds": ["C"]
+      },
+      "allocations": [
+        {
+          "invoiceId": "C",
+          "amount": 15000
+        }
+      ],
+      "advance": 0
+    },
+    {
+      "name": "chosen two, still oldest first among them",
+      "amount": 80000,
+      "mode": {
+        "kind": "chosen",
+        "invoiceIds": ["C", "A"]
+      },
+      "allocations": [
+        {
+          "invoiceId": "A",
+          "amount": 50000
+        },
+        {
+          "invoiceId": "C",
+          "amount": 20000
+        }
+      ],
+      "advance": 10000
+    }
+  ]
+}
