@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+<title>শিক্ষার্থী যোগ করুন</title>
+<link rel="stylesheet" href="../shared/tokens.css" />
+<style>
+  #offline-toggle { position: fixed; top: 8px; right: 8px; z-index: 30; font-size: 0.72rem; padding: 0 var(--sp-2); min-height: 36px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; color: var(--text-secondary); }
+  main { padding-bottom: 96px; }
+  .tabs { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3); }
+  .tabs button { flex:1; background: var(--surface-raised); border: 1px solid var(--border-default); color: var(--text-secondary); font-size: 0.85rem; }
+  .tabs button[aria-selected="true"] { background: var(--primary-base); color: var(--primary-fg); border-color: var(--primary-base); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  textarea#paste-input { min-height: 120px; resize: vertical; font-family: monospace; }
+  .row-preview { font-size: 0.85rem; border-bottom: 1px solid var(--border-default); padding: var(--sp-2) 0; }
+  .row-preview.err { color: var(--danger-base); }
+  .map-row { display:flex; align-items:center; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+  .map-row span { flex:1; font-size:0.85rem; }
+  .map-row select { flex:1; }
+  .file-drop { border: 2px dashed var(--border-default); border-radius: var(--radius); padding: var(--sp-6); text-align:center; color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<button id="offline-toggle" class="btn" aria-pressed="false" aria-label="পরীক্ষার জন্য অফলাইন মোড টগল করুন">🔌 অফলাইন মোড: বন্ধ</button>
+<header class="app-header">
+  <a class="back" href="../index.html" aria-label="পেছনে যান">←</a>
+  <h1>শিক্ষার্থী যোগ করুন</h1>
+  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: একজন করে, তালিকা পেস্ট করে, বা ফাইল থেকে শিক্ষার্থী যোগ করুন।'); return false;">❓</a>
+</header>
+<main>
+  <div id="offline-banner" class="banner banner-offline" style="display:none;" role="status">📶 অফলাইন — যোগ করা শিক্ষার্থীরা ডিভাইসে জমা থাকবে, সংযোগ ফিরলে সিঙ্ক হবে।</div>
+
+  <div class="tabs" role="tablist" aria-label="যোগ করার পদ্ধতি">
+    <button role="tab" aria-selected="true" id="tab-quick" onclick="switchTab('quick')">একজন করে</button>
+    <button role="tab" aria-selected="false" id="tab-paste" onclick="switchTab('paste')">তালিকা পেস্ট</button>
+    <button role="tab" aria-selected="false" id="tab-file" onclick="switchTab('file')">ফাইল থেকে</button>
+  </div>
+
+  <!-- Quick add -->
+  <section id="panel-quick" class="panel active" role="tabpanel" aria-labelledby="tab-quick">
+    <div class="field">
+      <label for="q-name">শিক্ষার্থীর নাম</label>
+      <input type="text" id="q-name" />
+      <div class="error-text" id="q-name-err" style="display:none;">⚠ নাম আবশ্যক</div>
+    </div>
+    <div class="field">
+      <label for="q-class">শ্রেণি</label>
+      <select id="q-class"><option>৬ক</option><option>৬খ</option><option>৭ক</option></select>
+    </div>
+    <div class="field">
+      <label for="q-phone">অভিভাবকের মোবাইল নম্বর</label>
+      <input type="tel" id="q-phone" inputmode="tel" />
+      <div class="helper">১১ সংখ্যার মোবাইল নম্বর দিন</div>
+      <div class="error-text" id="q-phone-err" style="display:none;">⚠ ১১ সংখ্যার সঠিক নম্বর দিন</div>
+    </div>
+    <button class="btn btn-primary btn-block" id="q-save-next">সংরক্ষণ করুন ও পরেরজন যোগ করুন</button>
+    <p class="helper" id="q-added-count">এখন পর্যন্ত যোগ হয়েছে: ০ জন</p>
+  </section>
+
+  <!-- Paste list -->
+  <section id="panel-paste" class="panel" role="tabpanel" aria-labelledby="tab-paste">
+    <div class="field">
+      <label for="paste-input">তালিকা পেস্ট করুন (এক লাইনে একজন: নাম, শ্রেণি, ফোন)</label>
+      <textarea id="paste-input" placeholder="রাকিবুল ইসলাম, ৬ক, 01711000001
+সৈয়দা তানজিলা, ৬ক, 01711000002
+মোঃ আব্দুর রহমান ফাহিম চৌধুরী, ৬ক, 01711000003"></textarea>
+    </div>
+    <button class="btn btn-secondary" id="paste-parse">তালিকা পরীক্ষা করুন</button>
+    <div id="paste-preview" style="margin-top: var(--sp-3);"></div>
+  </section>
+
+  <!-- File import -->
+  <section id="panel-file" class="panel" role="tabpanel" aria-labelledby="tab-file">
+    <div class="field">
+      <div class="file-drop">
+        <p>CSV বা XLSX ফাইল বাছাই করুন</p>
+        <button class="btn btn-secondary" id="file-pick-ok">ফাইল বাছাই করুন (নমুনা: সঠিক ফাইল)</button><br/><br/>
+        <button class="btn btn-secondary" id="file-pick-bad">ফাইল বাছাই করুন (নমুনা: হেডার নেই)</button>
+      </div>
+    </div>
+    <div id="file-error" class="banner banner-error" style="display:none;">⚠ ফাইলে হেডার সারি পাওয়া যায়নি — প্রথম সারিতে কলামের নাম থাকা দরকার (যেমন নাম, শ্রেণি, ফোন)।</div>
+    <div id="file-mapping" style="display:none;">
+      <h2>কলাম মেলান</h2>
+      <div class="map-row"><span>কলাম ১ (নমুনা: "রাকিবুল ইসলাম")</span><select><option>নাম</option><option>শ্রেণি</option><option>ফোন</option><option>— বাদ দিন —</option></select></div>
+      <div class="map-row"><span>কলাম ২ (নমুনা: "৬ক")</span><select><option>শ্রেণি</option><option>নাম</option><option>ফোন</option><option>— বাদ দিন —</option></select></div>
+      <div class="map-row"><span>কলাম ৩ (নমুনা: "01711000001")</span><select><option>ফোন</option><option>নাম</option><option>শ্রেণি</option><option>— বাদ দিন —</option></select></div>
+      <button class="btn btn-secondary" id="file-preview-btn">প্রিভিউ দেখুন</button>
+      <div id="file-preview"></div>
+    </div>
+  </section>
+</main>
+
+<div class="action-bar" id="commit-bar" style="display:none;">
+  <button class="btn btn-secondary btn-block" id="commit-cancel">বাতিল</button>
+  <button class="btn btn-primary btn-block" id="commit-import">নিশ্চিত করে যোগ করুন</button>
+</div>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<nav class="bottom-nav" aria-label="প্রধান ন্যাভিগেশন">
+  <a href="#">হোম</a>
+  <a href="../attendance/index.html">হাজিরা</a>
+  <a href="../marks/index.html">পরীক্ষা</a>
+  <a href="#" aria-current="page">শিক্ষার্থী</a>
+</nav>
+
+<script src="../shared/app.js"></script>
+<script>
+  function switchTab(name) {
+    ["quick", "paste", "file"].forEach(function (t) {
+      document.getElementById("tab-" + t).setAttribute("aria-selected", String(t === name));
+      document.getElementById("panel-" + t).classList.toggle("active", t === name);
+    });
+    document.getElementById("commit-bar").style.display = "none";
+  }
+  window.switchTab = switchTab;
+
+  var addedCount = 0;
+  document.getElementById("q-save-next").addEventListener("click", function () {
+    var name = document.getElementById("q-name").value.trim();
+    var phone = document.getElementById("q-phone").value.trim();
+    var nameErr = document.getElementById("q-name-err");
+    var phoneErr = document.getElementById("q-phone-err");
+    var ok = true;
+    if (!name) { nameErr.style.display = "flex"; ok = false; } else { nameErr.style.display = "none"; }
+    if (!/^0\d{10}$/.test(phone)) { phoneErr.style.display = "flex"; ok = false; } else { phoneErr.style.display = "none"; }
+    if (!ok) { showToast("ফর্মে ভুল আছে — লাল চিহ্নিত ঘরগুলো ঠিক করুন", true); return; }
+    addedCount += 1;
+    document.getElementById("q-added-count").textContent = "এখন পর্যন্ত যোগ হয়েছে: " + addedCount + " জন";
+    document.getElementById("q-name").value = "";
+    document.getElementById("q-phone").value = "";
+    document.getElementById("q-name").focus();
+    if (isOffline()) { showToast(name + " ডিভাইসে জমা থাকলো (অফলাইন) — পরেরজন যোগ করুন"); }
+    else { showToast(name + " যোগ হয়েছে — পরেরজন যোগ করুন"); }
+  });
+
+  document.getElementById("paste-parse").addEventListener("click", function () {
+    var lines = document.getElementById("paste-input").value.split("\n").map(function (l) { return l.trim(); }).filter(Boolean);
+    var rows = lines.map(function (l) {
+      var parts = l.split(",").map(function (p) { return p.trim(); });
+      var name = parts[0], klass = parts[1], phone = parts[2];
+      var errs = [];
+      if (!name) errs.push("নাম নেই");
+      if (!phone || !/^0\d{10}$/.test(phone)) errs.push("ফোন নম্বর সঠিক নয়");
+      return { name: name, klass: klass, phone: phone, errs: errs };
+    });
+    var validCount = rows.filter(function (r) { return r.errs.length === 0; }).length;
+    document.getElementById("paste-preview").innerHTML =
+      rows.map(function (r) {
+        return '<div class="row-preview' + (r.errs.length ? " err" : "") + '">' +
+          (r.name || "(নাম নেই)") + " · " + (r.klass || "?") + " · " + (r.phone || "(ফোন নেই)") +
+          (r.errs.length ? " — " + r.errs.join(", ") : " ✓") + "</div>";
+      }).join("") +
+      '<p class="helper">' + validCount + "/" + rows.length + " সারি সঠিক, বাকিগুলো যোগ হবে না।</p>";
+    document.getElementById("commit-bar").style.display = rows.length ? "flex" : "none";
+    window.__pendingCommitCount = validCount;
+  });
+
+  document.getElementById("file-pick-ok").addEventListener("click", function () {
+    document.getElementById("file-error").style.display = "none";
+    document.getElementById("file-mapping").style.display = "block";
+    document.getElementById("file-preview").innerHTML = "";
+    showToast("ফাইল পড়া হয়েছে — কলাম মেলান");
+  });
+  document.getElementById("file-pick-bad").addEventListener("click", function () {
+    document.getElementById("file-mapping").style.display = "none";
+    document.getElementById("file-error").style.display = "flex";
+    document.getElementById("commit-bar").style.display = "none";
+  });
+  document.getElementById("file-preview-btn").addEventListener("click", function () {
+    var sample = [
+      ["রাকিবুল ইসলাম", "৬ক", "01711000001"],
+      ["সৈয়দা তানজিলা", "৬ক", "01711000002"],
+      ["মোঃ আব্দুর রহমান ফাহিম চৌধুরী", "৬ক", "০১৭১১০০০০০৩ (ভুল বিন্যাস)"],
+    ];
+    document.getElementById("file-preview").innerHTML =
+      "<table class='tabulation' style='width:100%; margin-top:8px;'><thead><tr><th>নাম</th><th>শ্রেণি</th><th>ফোন</th></tr></thead><tbody>" +
+      sample.map(function (r, i) {
+        var err = i === 2;
+        return "<tr" + (err ? " style='color:var(--danger-base)'" : "") + "><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + (err ? " ⚠" : "") + "</td></tr>";
+      }).join("") + "</tbody></table><p class='helper'>২/৩ সারি সঠিক — লাল সারিটি বাদ দিয়ে বাকিগুলো যোগ করা যাবে।</p>";
+    document.getElementById("commit-bar").style.display = "flex";
+    window.__pendingCommitCount = 2;
+  });
+
+  document.getElementById("commit-cancel").addEventListener("click", function () {
+    document.getElementById("commit-bar").style.display = "none";
+  });
+  document.getElementById("commit-import").addEventListener("click", function () {
+    var n = window.__pendingCommitCount || 0;
+    if (isOffline()) { showToast(n + " জন ডিভাইসে জমা থাকলো — সংযোগ ফিরলে সিঙ্ক হবে"); }
+    else { showToast(n + " জন শিক্ষার্থী যোগ হয়েছে"); }
+    document.getElementById("commit-bar").style.display = "none";
+  });
+
+  document.addEventListener("connectivitychange", function (e) {
+    document.getElementById("offline-banner").style.display = e.detail.offline ? "flex" : "none";
+  });
+</script>
+</body>
+</html>

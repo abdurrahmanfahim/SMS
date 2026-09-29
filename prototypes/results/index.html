@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ফলাফল পর্যালোচনা — অর্ধবার্ষিক ২০২৬</title>
+<link rel="stylesheet" href="../shared/tokens.css" />
+<style>
+  #offline-toggle { position: fixed; top: 8px; right: 8px; z-index: 30; font-size: 0.72rem; padding: 0 var(--sp-2); min-height: 36px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; color: var(--text-secondary); }
+  main { padding-bottom: 96px; }
+  .rank-badge { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; background: var(--accent-base); color: var(--accent-fg); font-weight:700; font-size:0.82rem; flex-shrink:0; }
+  .result-row { display:flex; align-items:center; gap: var(--sp-3); }
+  .result-row .info { flex:1; min-width:0; }
+  .result-row .name { font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  table.tabulation { width:100%; border-collapse:collapse; }
+  table.tabulation th, table.tabulation td { padding:6px 8px; border-bottom:1px solid var(--border-default); text-align:left; font-size:0.85rem; }
+  table.tabulation thead th { position:sticky; top:0; background:var(--surface-subtle); }
+  /* dialog */
+  dialog#publish-dialog { border:none; border-radius: var(--radius); padding:0; width: calc(100% - 32px); max-width: 420px; background: var(--surface-raised); color: var(--text-primary); }
+  dialog#publish-dialog::backdrop { background: rgba(0,0,0,0.5); }
+  .dialog-body { padding: var(--sp-4); }
+  .dialog-actions { display:flex; gap: var(--sp-2); padding: var(--sp-4); padding-top:0; }
+  .marksheet-preview { background:#fff; color:#111; border-radius: var(--radius); padding: var(--sp-4); font-family: var(--font-bangla); }
+</style>
+</head>
+<body>
+<button id="offline-toggle" class="btn" aria-pressed="false" aria-label="পরীক্ষার জন্য অফলাইন মোড টগল করুন">🔌 অফলাইন মোড: বন্ধ</button>
+<header class="app-header">
+  <a class="back" href="../index.html" aria-label="পেছনে যান">←</a>
+  <h1>ফলাফল পর্যালোচনা</h1>
+  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: এখানে ফলাফল দেখে প্রকাশ করা যায়।'); return false;">❓</a>
+</header>
+<main>
+  <p class="helper">অর্ধবার্ষিক পরীক্ষা ২০২৬ · ৬ক শ্রেণি · অবস্থা: <span id="status-pill" class="pill pill-warning">খসড়া</span></p>
+
+  <div id="offline-banner" class="banner banner-offline" style="display:none;" role="status">📶 অফলাইন — প্রকাশ করা যাবে না, সংযোগ ফিরলে আবার চেষ্টা করুন।</div>
+
+  <div class="toolbar">
+    <button class="btn btn-secondary" id="view-toggle" aria-pressed="false">টেবিল হিসেবে দেখুন</button>
+    <input type="text" placeholder="নাম বা রোল খুঁজুন" aria-label="শিক্ষার্থী খুঁজুন" id="search" style="flex:1; min-width:140px;" />
+  </div>
+
+  <div id="cards-view"></div>
+
+  <div id="table-view" class="grid-wrap" style="display:none;">
+    <table class="tabulation">
+      <thead><tr><th>মেধাক্রম</th><th>নাম</th><th>রোল</th><th>মোট</th><th>গ্রেড</th></tr></thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+</main>
+
+<div class="action-bar">
+  <button class="btn btn-secondary btn-block" id="preview-marksheet">মার্কশিট প্রিভিউ</button>
+  <button class="btn btn-primary btn-block" id="open-publish">প্রকাশ করুন</button>
+</div>
+
+<dialog id="publish-dialog" role="alertdialog" aria-labelledby="pub-title">
+  <div class="dialog-body">
+    <h2 id="pub-title">ফলাফল প্রকাশ করবেন?</h2>
+    <p id="pub-body"></p>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn btn-secondary btn-block" id="pub-cancel">বাতিল</button>
+    <button class="btn btn-primary btn-block" id="pub-confirm">প্রকাশ করুন</button>
+  </div>
+</dialog>
+
+<dialog id="marksheet-dialog" aria-labelledby="ms-title">
+  <div class="dialog-body">
+    <h2 id="ms-title" style="display:none;">মার্কশিট প্রিভিউ</h2>
+    <div class="marksheet-preview" id="ms-content"></div>
+  </div>
+  <div class="dialog-actions">
+    <button class="btn btn-secondary btn-block" id="ms-close">বন্ধ করুন</button>
+    <button class="btn btn-primary btn-block" id="ms-share">শেয়ার / ডাউনলোড</button>
+  </div>
+</dialog>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<nav class="bottom-nav" aria-label="প্রধান ন্যাভিগেশন">
+  <a href="#">হোম</a>
+  <a href="../attendance/index.html">হাজিরা</a>
+  <a href="#" aria-current="page">পরীক্ষা</a>
+  <a href="../students/index.html">শিক্ষার্থী</a>
+</nav>
+
+<script src="../shared/app.js"></script>
+<script>
+  var roster = bnRoster(40).map(function (s, i) {
+    var total = 40 + ((s.roll * 37) % 61); // 40..100 synthetic total
+    return { roll: s.roll, name: s.name, total: total, id: s.id };
+  }).sort(function (a, b) { return b.total - a.total; });
+  roster.forEach(function (s, i) { s.rank = i + 1; s.grade = total2grade(s.total); });
+
+  function total2grade(t) {
+    if (t >= 80) return "A+"; if (t >= 70) return "A"; if (t >= 60) return "A-"; if (t >= 50) return "B"; if (t >= 33) return "C"; return "F";
+  }
+
+  var published = false;
+
+  function toBnDigits(num) {
+    var map = ["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
+    return String(num).split("").map(function (d) { return /[0-9]/.test(d) ? map[d] : d; }).join("");
+  }
+
+  function renderCards(filter) {
+    var q = (filter || "").trim();
+    var rows = roster.filter(function (s) { return !q || s.name.indexOf(q) !== -1 || String(s.roll).indexOf(q) !== -1; });
+    document.getElementById("cards-view").innerHTML = rows.map(function (s) {
+      return '<div class="card result-row"><span class="rank-badge">' + toBnDigits(s.rank) + '</span>' +
+        '<div class="info"><div class="name" title="' + s.name + '">' + s.name + '</div>' +
+        '<div class="card-meta">রোল ' + toBnDigits(s.roll) + ' · মোট ' + toBnDigits(s.total) + '</div></div>' +
+        '<span class="pill pill-info">' + s.grade + '</span></div>';
+    }).join("") || '<div class="empty-state">কোনো ফলাফল মেলেনি</div>';
+  }
+
+  function renderTable() {
+    document.getElementById("table-body").innerHTML = roster.map(function (s) {
+      return '<tr><td>' + toBnDigits(s.rank) + '</td><td>' + s.name + '</td><td>' + toBnDigits(s.roll) + '</td><td>' + toBnDigits(s.total) + '</td><td>' + s.grade + '</td></tr>';
+    }).join("");
+  }
+
+  document.getElementById("search").addEventListener("input", function (e) { renderCards(e.target.value); });
+  document.getElementById("view-toggle").addEventListener("click", function () {
+    var toTable = document.getElementById("cards-view").style.display !== "none";
+    document.getElementById("cards-view").style.display = toTable ? "none" : "block";
+    document.getElementById("table-view").style.display = toTable ? "block" : "none";
+    this.setAttribute("aria-pressed", String(toTable));
+    this.textContent = toTable ? "কার্ড হিসেবে দেখুন" : "টেবিল হিসেবে দেখুন";
+  });
+
+  document.getElementById("open-publish").addEventListener("click", function () {
+    if (published) { showToast("ইতিমধ্যে প্রকাশিত হয়েছে"); return; }
+    if (isOffline()) { showToast("সংযোগ নেই — প্রকাশ করা যাবে না", true); return; }
+    var sections = 1;
+    document.getElementById("pub-body").textContent =
+      "এটি " + toBnDigits(roster.length) + " জন শিক্ষার্থীর ফলাফল, " + toBnDigits(sections) + "টি শাখায়, প্রকাশ করবে। এই কাজ পরে বাতিল করা যাবে না।";
+    document.getElementById("publish-dialog").showModal();
+  });
+  document.getElementById("pub-cancel").addEventListener("click", function () { document.getElementById("publish-dialog").close(); });
+  document.getElementById("pub-confirm").addEventListener("click", function () {
+    var btn = this;
+    btn.setAttribute("aria-busy", "true");
+    btn.disabled = true;
+    setTimeout(function () {
+      published = true;
+      var pill = document.getElementById("status-pill");
+      pill.className = "pill pill-success";
+      pill.textContent = "প্রকাশিত";
+      document.getElementById("publish-dialog").close();
+      btn.removeAttribute("aria-busy");
+      btn.disabled = false;
+      showToast("ফলাফল প্রকাশ হয়েছে — " + toBnDigits(roster.length) + " জন শিক্ষার্থীর জন্য");
+    }, 500);
+  });
+
+  document.getElementById("preview-marksheet").addEventListener("click", function () {
+    var top = roster[0];
+    document.getElementById("ms-content").innerHTML =
+      '<p style="text-align:center; font-weight:700; margin-bottom:4px;">আদর্শ বিদ্যালয়</p>' +
+      '<p style="text-align:center; margin-bottom:12px;">মার্কশিট — অর্ধবার্ষিক পরীক্ষা ২০২৬</p>' +
+      '<p>নাম: ' + top.name + '<br>রোল: ' + toBnDigits(top.roll) + '<br>মোট নম্বর: ' + toBnDigits(top.total) + '<br>গ্রেড: ' + top.grade + '<br>মেধাস্থান: ' + toBnDigits(top.rank) + '</p>';
+    document.getElementById("marksheet-dialog").showModal();
+  });
+  document.getElementById("ms-close").addEventListener("click", function () { document.getElementById("marksheet-dialog").close(); });
+  document.getElementById("ms-share").addEventListener("click", function () {
+    if (navigator.canShare) { showToast("শেয়ার শিট খোলা হচ্ছে…"); } else { showToast("ডাউনলোড শুরু হয়েছে (ফলব্যাক)"); }
+  });
+
+  document.addEventListener("connectivitychange", function (e) {
+    document.getElementById("offline-banner").style.display = e.detail.offline ? "flex" : "none";
+  });
+
+  renderCards("");
+  renderTable();
+</script>
+</body>
+</html>

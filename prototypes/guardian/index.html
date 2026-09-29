@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>অভিভাবক — সন্তানের অবস্থা</title>
+<link rel="stylesheet" href="../shared/tokens.css" />
+<style>
+  #offline-toggle { position: fixed; top: 8px; right: 8px; z-index: 30; font-size: 0.72rem; padding: 0 var(--sp-2); min-height: 36px; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; color: var(--text-secondary); }
+  .child-switcher { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3); overflow-x: auto; }
+  .child-chip { flex-shrink:0; background: var(--surface-raised); border: 1px solid var(--border-default); border-radius: 999px; padding: 0 var(--sp-4); font-size: 0.9rem; color: var(--text-secondary); }
+  .child-chip[aria-pressed="true"] { background: var(--primary-base); color: var(--primary-fg); border-color: var(--primary-base); }
+  .attendance-dots { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+  .dot { width: 100%; aspect-ratio: 1; border-radius: 4px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; }
+  .dot.present { background: color-mix(in srgb, var(--success-base) 22%, transparent); color: var(--success-base); }
+  .dot.absent { background: color-mix(in srgb, var(--danger-base) 22%, transparent); color: var(--danger-base); }
+  .dot.leave { background: color-mix(in srgb, var(--info-base) 22%, transparent); color: var(--info-base); }
+  .dot.future { background: var(--surface-subtle); color: var(--text-disabled); }
+</style>
+</head>
+<body>
+<button id="offline-toggle" class="btn" aria-pressed="false" aria-label="পরীক্ষার জন্য অফলাইন মোড টগল করুন">🔌 অফলাইন মোড: বন্ধ</button>
+<header class="app-header">
+  <a class="back" href="../index.html" aria-label="পেছনে যান">←</a>
+  <h1>আমার সন্তান</h1>
+  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: এখানে সন্তানের হাজিরা, ফলাফল ও নোটিশ দেখা যায়।'); return false;">❓</a>
+</header>
+<main>
+  <div id="offline-banner" class="banner banner-offline" style="display:none;" role="status">📶 অফলাইন — শেষবার সংরক্ষিত তথ্য দেখানো হচ্ছে, এখন হালনাগাদ নয়।</div>
+
+  <div class="child-switcher" role="group" aria-label="সন্তান বাছাই করুন">
+    <button class="child-chip" aria-pressed="true" data-child="0" onclick="selectChild(0)">রাকিবুল ইসলাম (৬ক)</button>
+    <button class="child-chip" aria-pressed="false" data-child="1" onclick="selectChild(1)">সৈয়দা তানজিলা (৩খ)</button>
+  </div>
+
+  <h2>আজকের ও সাম্প্রতিক হাজিরা</h2>
+  <div class="card">
+    <div class="attendance-dots" id="attendance-dots"></div>
+    <p class="helper" style="margin-top:8px;">🟩 উপস্থিত &nbsp; 🟥 অনুপস্থিত &nbsp; 🟦 ছুটি</p>
+  </div>
+
+  <h2>সর্বশেষ ফলাফল</h2>
+  <div class="card" id="result-card"></div>
+
+  <h2>নোটিশ</h2>
+  <div id="notices-list"></div>
+</main>
+
+<div id="toast-region" aria-live="polite"></div>
+
+<nav class="bottom-nav" aria-label="প্রধান ন্যাভিগেশন">
+  <a href="#" aria-current="page">হোম</a>
+  <a href="#">সন্তান</a>
+  <a href="#">নোটিশ</a>
+</nav>
+
+<script src="../shared/app.js"></script>
+<script>
+  function toBnDigits(num) {
+    var map = ["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
+    return String(num).split("").map(function (d) { return /[0-9]/.test(d) ? map[d] : d; }).join("");
+  }
+  var children = [
+    {
+      name: "রাকিবুল ইসলাম", section: "৬ক",
+      attendance: ["present","present","absent","present","present","leave","present","present","present","future","future","future","future","future"],
+      result: { exam: "অর্ধবার্ষিক পরীক্ষা ২০২৬", total: 412, outOf: 500, grade: "A", rank: 6, published: true },
+      notices: [
+        { title: "অভিভাবক সমাবেশ — ৫ অক্টোবর", body: "সকাল ১০টায় বিদ্যালয় মিলনায়তনে।" },
+        { title: "বার্ষিক ক্রীড়া প্রতিযোগিতা", body: "নিবন্ধনের শেষ তারিখ ৩০ সেপ্টেম্বর।" }
+      ]
+    },
+    {
+      name: "সৈয়দা তানজিলা", section: "৩খ",
+      attendance: ["present","present","present","present","leave","present","present","present","present","future","future","future","future","future"],
+      result: { exam: "অর্ধবার্ষিক পরীক্ষা ২০২৬", total: 0, outOf: 500, grade: "-", rank: 0, published: false },
+      notices: []
+    }
+  ];
+  var current = 0;
+
+  function selectChild(i) {
+    current = i;
+    document.querySelectorAll(".child-chip").forEach(function (c, idx) { c.setAttribute("aria-pressed", String(idx === i)); });
+    render();
+  }
+  window.selectChild = selectChild;
+
+  function render() {
+    var c = children[current];
+    document.getElementById("attendance-dots").innerHTML = c.attendance.map(function (a) {
+      var label = a === "present" ? "উ" : a === "absent" ? "অ" : a === "leave" ? "ছ" : "";
+      return '<div class="dot ' + a + '" aria-label="' + (a === "future" ? "এখনো হয়নি" : a) + '">' + label + "</div>";
+    }).join("");
+
+    var r = c.result;
+    var rc = document.getElementById("result-card");
+    if (!r.published) {
+      rc.innerHTML = '<div class="empty-state">এই পরীক্ষার ফলাফল এখনো প্রকাশ হয়নি।</div>';
+    } else {
+      rc.innerHTML =
+        '<div class="card-title">' + r.exam + '</div>' +
+        '<div class="card-meta">মোট: ' + toBnDigits(r.total) + '/' + toBnDigits(r.outOf) + ' · গ্রেড: ' + r.grade + ' · মেধাস্থান: ' + toBnDigits(r.rank) + '</div>' +
+        '<button class="btn btn-secondary" style="margin-top:8px;" onclick="showToast(\'মার্কশিট ডাউনলোড শুরু হয়েছে\')">মার্কশিট দেখুন / ডাউনলোড</button>';
+    }
+
+    var nl = document.getElementById("notices-list");
+    if (!c.notices.length) {
+      nl.innerHTML = '<div class="empty-state">এখনো কোনো নোটিশ নেই।</div>';
+    } else {
+      nl.innerHTML = c.notices.map(function (n) {
+        return '<div class="card"><div class="card-title">' + n.title + '</div><div class="card-meta">' + n.body + '</div></div>';
+      }).join("");
+    }
+  }
+
+  document.addEventListener("connectivitychange", function (e) {
+    document.getElementById("offline-banner").style.display = e.detail.offline ? "flex" : "none";
+  });
+
+  render();
+</script>
+</body>
+</html>
