@@ -145,5 +145,51 @@
         "step4": "Tap “Add” at the top right."
       }
     }
+  },
+  "table": {
+    "toolbar": {
+      "search": "Search",
+      "filters": "Filters",
+      "filtersActive": "Filters ({count})",
+      "sort": "Sort by",
+      "sortNone": "Not sorted",
+      "sortAsc": "{column}: ascending",
+      "sortDesc": "{column}: descending",
+      "clearFilters": "Clear filters"
+    },
+    "panel": {
+      "title": "Filters and columns",
+      "filtersTitle": "Filters",
+      "columnsTitle": "Show columns",
+      "all": "All",
+      "done": "Done"
+    },
+    "state": {
+      "loading": "Loading the list",
+      "emptyTitle": "Nothing found.",
+      "emptyDescription": "Try changing the search or filters.",
+      "errorTitle": "Could not load the list.",
+      "errorDescription": "Please try again.",
+      "retry": "Try again"
+    },
+    "select": {
+      "row": "Select {name}",
+      "rowFallback": "Select row {number}",
+      "all": "Select all on this page",
+      "count": "{count} selected",
+      "clear": "Clear selection",
+      "column": "Select"
+    },
+    "page": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "info": "{from}–{to} of {total}",
+      "of": "Page {page} of {pages}",
+      "size": "Per page"
+    },
+    "sortState": {
+      "ascending": "Sorted ascending",
+      "descending": "Sorted descending"
+    }
   }
 }

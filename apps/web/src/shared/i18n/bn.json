@@ -145,5 +145,51 @@
         "step4": "উপরের ডানদিকে “যোগ করুন” (Add) চাপুন।"
       }
     }
+  },
+  "table": {
+    "toolbar": {
+      "search": "অনুসন্ধান",
+      "filters": "ফিল্টার",
+      "filtersActive": "ফিল্টার ({count})",
+      "sort": "সাজান",
+      "sortNone": "সাজানো নেই",
+      "sortAsc": "{column}: ক্রমানুসারে",
+      "sortDesc": "{column}: উল্টো ক্রমে",
+      "clearFilters": "ফিল্টার মুছুন"
+    },
+    "panel": {
+      "title": "ফিল্টার ও কলাম",
+      "filtersTitle": "ফিল্টার",
+      "columnsTitle": "কলাম দেখান",
+      "all": "সব",
+      "done": "সম্পন্ন"
+    },
+    "state": {
+      "loading": "তালিকা লোড হচ্ছে",
+      "emptyTitle": "কোনো তথ্য পাওয়া যায়নি।",
+      "emptyDescription": "অনুসন্ধান বা ফিল্টার বদলে দেখুন।",
+      "errorTitle": "তালিকা লোড করা যায়নি।",
+      "errorDescription": "আবার চেষ্টা করুন।",
+      "retry": "আবার চেষ্টা করুন"
+    },
+    "select": {
+      "row": "{name} বাছাই করুন",
+      "rowFallback": "সারি {number} বাছাই করুন",
+      "all": "এই পাতার সবগুলো বাছাই করুন",
+      "count": "{count}টি বাছাই করা হয়েছে",
+      "clear": "বাছাই মুছুন",
+      "column": "বাছাই"
+    },
+    "page": {
+      "previous": "আগের পাতা",
+      "next": "পরের পাতা",
+      "info": "{from}–{to} / {total}",
+      "of": "পাতা {page} / {pages}",
+      "size": "প্রতি পাতায়"
+    },
+    "sortState": {
+      "ascending": "ক্রমানুসারে সাজানো",
+      "descending": "উল্টো ক্রমে সাজানো"
+    }
   }
 }
