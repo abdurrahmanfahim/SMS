@@ -1,0 +1,44 @@
+/*
+ * Phone essentials. The web app keeps two things in sync on <html> (apps/web/src/shared/viewport.ts):
+ *   --kb-inset            pixels the on-screen keyboard covers (0 when the layout viewport already
+ *                         shrinks, i.e. interactive-widget=resizes-content works)
+ *   data-keyboard="open"  set while a text field has focus and the keyboard is up
+ * The bottom tab bar is 56px high, see apps/web layout.
+ */
+:root {
+  --tab-bar-height: 56px;
+}
+
+/* Sticky action bar: above the tab bar normally, right above the keyboard when it is open. */
+.sms-action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-sticky-header);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface-base);
+  border-top: 1px solid var(--color-border-default);
+}
+.sms-action-bar-spacer {
+  height: calc(4.5rem);
+}
+@media (min-width: 768px) {
+  .sms-action-bar {
+    bottom: 0;
+    left: 240px;
+    padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+  }
+}
+html[data-keyboard="open"] .sms-action-bar {
+  bottom: var(--kb-inset, 0px);
+  padding-bottom: var(--space-2);
+}
+/* While the keyboard is up the tab bar would only steal space above it. */
+html[data-keyboard="open"] .sms-hide-when-keyboard {
+  display: none;
+}
