@@ -6,6 +6,7 @@ import { features } from "./features";
 import { GroupGuard } from "./guards";
 import { AppLayout } from "./layout/AppLayout";
 import { DevKit } from "./pages/DevKit";
+import { InstallGuide } from "./pages/InstallGuide";
 import { Placeholder } from "./pages/Placeholder";
 import { SampleForm } from "./pages/SampleForm";
 
@@ -73,6 +74,11 @@ export function createShellRoutes(
       { index: true, element: <Placeholder name="home" /> },
       ...extra.parent,
     ]),
+    {
+      path: "/install",
+      element: <AppLayout />,
+      children: [{ index: true, element: <InstallGuide /> }],
+    },
     ...(devToolsEnabled
       ? [
           {

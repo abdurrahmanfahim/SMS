@@ -11,6 +11,7 @@ import { PageLoading } from "../patterns/PageLoading";
 import { OfflineNotice } from "../pwa/OfflineNotice";
 import { UpdatePrompt } from "../pwa/UpdatePrompt";
 
+import { HelpButton } from "./HelpButton";
 import { BottomTabBar, Sidebar } from "./NavLinks";
 import { LanguageSwitcher, RoleSwitcher } from "./Switchers";
 
@@ -26,10 +27,23 @@ export function AppLayout() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <a
+        href="#main"
+        onClick={(event) => {
+          event.preventDefault();
+          const main = document.getElementById("main");
+          main?.focus();
+          main?.scrollIntoView();
+        }}
+        className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-tooltip focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg"
+      >
+        {t("shell.a11y.skip")}
+      </a>
       <header className="sticky top-0 z-sticky flex flex-wrap items-center justify-between gap-2 border-b border-line bg-surface px-4 py-2">
         <span className="text-lg font-semibold">{t("shell.brand.name")}</span>
         <LanguageSwitcher />
         {devToolsEnabled ? <RoleSwitcher /> : null}
+        <HelpButton />
       </header>
       <OfflineNotice />
       <div className="flex flex-1">

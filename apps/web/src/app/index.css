@@ -1,4 +1,5 @@
 @import "@sms/ui/tokens.css";
+@import "@sms/ui/phone.css";
 @import "./fonts.css";
 
 @tailwind base;
@@ -10,7 +11,7 @@
     font-family: var(--font-bangla);
     /* Keeps focused fields clear of sticky bars (WCAG 2.4.11). */
     scroll-padding-top: 4.5rem;
-    scroll-padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    scroll-padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px));
     -webkit-text-size-adjust: 100%;
   }
   body {

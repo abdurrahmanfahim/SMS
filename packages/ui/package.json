@@ -36,7 +36,8 @@
       "default": "./src/index.ts"
     },
     "./tokens.css": "./src/styles/tokens.css",
-    "./tailwind-preset": "./tailwind-preset.js"
+    "./tailwind-preset": "./tailwind-preset.js",
+    "./phone.css": "./src/styles/phone.css"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.23",

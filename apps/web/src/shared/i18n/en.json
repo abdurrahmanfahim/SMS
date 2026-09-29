@@ -35,7 +35,17 @@
       "class": "Class",
       "nameRequired": "Enter a name.",
       "phoneInvalid": "Enter a valid 11-digit mobile number.",
-      "classRequired": "Choose a class."
+      "classRequired": "Choose a class.",
+      "actions": "Form actions"
+    },
+    "a11y": {
+      "skip": "Skip to main content"
+    },
+    "help": {
+      "button": "Help",
+      "title": "Help",
+      "body": "If something goes wrong, tell your institution's admin. Adding the app to your phone's home screen makes it open faster.",
+      "install": "How to add to the home screen"
     }
   },
   "devkit": {
@@ -107,6 +117,27 @@
     },
     "offline": {
       "message": "You are offline. Try again when the connection is back."
+    }
+  },
+  "install": {
+    "guide": {
+      "title": "Add to your phone's home screen",
+      "intro": "Once it is on your home screen, the app opens in one tap like any other app.",
+      "installNow": "Install now",
+      "android": {
+        "title": "Android (Chrome)",
+        "step1": "Open this site in the Chrome browser.",
+        "step2": "Tap the three-dot menu at the top right.",
+        "step3": "Tap “Install app” or “Add to Home screen”.",
+        "step4": "Tap “Install”. The icon appears on your home screen."
+      },
+      "iphone": {
+        "title": "iPhone (Safari)",
+        "step1": "Open this site in the Safari browser. Other browsers will not work.",
+        "step2": "Tap the Share button at the bottom (a square with an arrow pointing up).",
+        "step3": "Scroll down and tap “Add to Home Screen”.",
+        "step4": "Tap “Add” at the top right."
+      }
     }
   }
 }

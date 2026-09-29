@@ -1,5 +1,5 @@
 import { bnToAscii } from "@sms/domain/src/digits";
-import { Button, Input, Select, useToast } from "@sms/ui";
+import { Button, Input, Select, StickyActionBar, useToast } from "@sms/ui";
 import { useState, type FormEvent } from "react";
 
 import { useT } from "../../shared/i18n";
@@ -67,7 +67,9 @@ export function SampleForm() {
         error={errors.className}
         errorPrefix={t("common.state.error")}
       />
-      <Button type="submit">{t("common.action.save")}</Button>
+      <StickyActionBar ariaLabel={t("shell.form.actions")}>
+        <Button type="submit">{t("common.action.save")}</Button>
+      </StickyActionBar>
     </form>
   );
 }

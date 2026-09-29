@@ -7,6 +7,7 @@ import { UiProviders } from "./app/Providers";
 import { createShellRoutes } from "./app/routes";
 import { registerMessages } from "./shared/i18n";
 import { RoleProvider } from "./shared/role";
+import { installViewportSync } from "./shared/viewport";
 
 import "./app/index.css";
 
@@ -17,6 +18,8 @@ if (!container) {
 
 registerMessages("bn", features.translations.bn);
 registerMessages("en", features.translations.en);
+
+installViewportSync();
 
 const router = createBrowserRouter(createShellRoutes());
 
