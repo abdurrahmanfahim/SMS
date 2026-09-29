@@ -30,7 +30,7 @@ Adopted under decision D-14. Sources and reasoning: `docs/research/ux-standards.
 ## 4. Touch and layout
 
 - **Phone-complete (D-16):** every task in every role must be doable on a phone alone, without a laptop, zooming or horizontal page scrolling. Tablets and desktops are enhancements. Binding detail: `docs/spec/mobile-complete.md`.
-- Minimum control size 44×44 CSS px with 8 px between controls (project rule; WCAG minimum is 24).
+- Minimum control size 44×44 CSS px with 8 px between controls (project rule; WCAG minimum is 24). This applies to every part of a segmented control too: each segment is its own 44×44 target (`leader-rulings.md` R-04).
 - Design at 360 px first. Wide tables become cards on phones; grids that must stay grids (attendance, marks) keep a sticky header row and first column and scroll inside their own container.
 - Dialogs become bottom drawers on phones.
 - Thumb zone: frequent actions sit low and central.
@@ -58,7 +58,7 @@ Adopted under decision D-14. Sources and reasoning: `docs/research/ux-standards.
 
 ## 8. Performance (Core Web Vitals, field data at the 75th percentile)
 
-- LCP at most 2.5 s, INP at most 200 ms, CLS at most 0.1. CI checks lab proxies on a throttled mobile profile (budgets in ADR 0004).
+- LCP at most 2.5 s, INP at most 200 ms, CLS at most 0.1. CI checks lab proxies on a throttled mobile profile (budgets in ADR 0005).
 
 ## 9. Checks before merge
 
