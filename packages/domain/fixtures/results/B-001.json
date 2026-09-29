@@ -1,0 +1,161 @@
+{
+  "id": "B-001",
+  "source": "Boundary cases from spec §2 and §10 (79.99 vs 80.00, 32.99 vs 33.00); values in hundredths of a mark.",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "s",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "m7999",
+      "marks": {
+        "s": {
+          "written": 7999
+        }
+      }
+    },
+    {
+      "id": "m8000",
+      "marks": {
+        "s": {
+          "written": 8000
+        }
+      }
+    },
+    {
+      "id": "m3299",
+      "marks": {
+        "s": {
+          "written": 3299
+        }
+      }
+    },
+    {
+      "id": "m3300",
+      "marks": {
+        "s": {
+          "written": 3300
+        }
+      }
+    },
+    {
+      "id": "m6999",
+      "marks": {
+        "s": {
+          "written": 6999
+        }
+      }
+    },
+    {
+      "id": "m7000",
+      "marks": {
+        "s": {
+          "written": 7000
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "m7999": {
+        "status": "ok",
+        "subjects": {
+          "s": {
+            "grade": "A",
+            "point": 400,
+            "passed": true,
+            "percent_bp": 7999
+          }
+        },
+        "totals": {
+          "outcome": "passed",
+          "gpa": 400,
+          "grade": "A"
+        }
+      },
+      "m8000": {
+        "status": "ok",
+        "subjects": {
+          "s": {
+            "grade": "A+",
+            "point": 500,
+            "passed": true
+          }
+        },
+        "totals": {
+          "outcome": "passed",
+          "gpa": 500,
+          "grade": "A+"
+        }
+      },
+      "m3299": {
+        "status": "ok",
+        "subjects": {
+          "s": {
+            "grade": "F",
+            "point": 0,
+            "passed": false
+          }
+        },
+        "totals": {
+          "outcome": "failed",
+          "gpa": 0,
+          "grade": "F"
+        }
+      },
+      "m3300": {
+        "status": "ok",
+        "subjects": {
+          "s": {
+            "grade": "D",
+            "point": 100,
+            "passed": true
+          }
+        },
+        "totals": {
+          "outcome": "passed",
+          "gpa": 100,
+          "grade": "D"
+        }
+      },
+      "m6999": {
+        "status": "ok",
+        "subjects": {
+          "s": {
+            "grade": "A-",
+            "point": 350
+          }
+        },
+        "totals": {
+          "gpa": 350,
+          "grade": "A-"
+        }
+      },
+      "m7000": {
+        "status": "ok",
+        "subjects": {
+          "s": {
+            "grade": "A",
+            "point": 400
+          }
+        },
+        "totals": {
+          "gpa": 400,
+          "grade": "A"
+        }
+      }
+    }
+  }
+}

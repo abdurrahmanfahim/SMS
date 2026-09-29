@@ -1,0 +1,97 @@
+{
+  "id": "T-001",
+  "source": "Students with identical totals and GPA (spec §6, §10). Ranking itself belongs to M2-D2; this fixture only pins the engine values ranking will consume.",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "s1",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "tie-a",
+      "marks": {
+        "s1": {
+          "written": 8000
+        },
+        "s2": {
+          "written": 7000
+        }
+      }
+    },
+    {
+      "id": "tie-b",
+      "marks": {
+        "s1": {
+          "written": 7000
+        },
+        "s2": {
+          "written": 8000
+        }
+      }
+    },
+    {
+      "id": "tie-c",
+      "marks": {
+        "s1": {
+          "written": 6000
+        },
+        "s2": {
+          "written": 7000
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "tie-a": {
+        "status": "ok",
+        "totals": {
+          "outcome": "passed",
+          "gpa": 450,
+          "grade": "A",
+          "total": 15000
+        }
+      },
+      "tie-b": {
+        "status": "ok",
+        "totals": {
+          "outcome": "passed",
+          "gpa": 450,
+          "grade": "A",
+          "total": 15000
+        }
+      },
+      "tie-c": {
+        "status": "ok",
+        "totals": {
+          "outcome": "passed",
+          "gpa": 375,
+          "grade": "A-",
+          "total": 13000
+        }
+      }
+    }
+  }
+}
