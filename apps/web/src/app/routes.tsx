@@ -1,7 +1,8 @@
-import { Navigate, Outlet, type RouteObject } from "react-router-dom";
+import { Navigate, type RouteObject } from "react-router-dom";
 
 import { features } from "./features";
 import { GroupGuard } from "./guards";
+import { AppLayout } from "./layout/AppLayout";
 import { Placeholder } from "./pages/Placeholder";
 
 /** Wraps a group's pages: guard first (stub until M1-P2), then the group layout. */
@@ -13,7 +14,7 @@ function group(
   return {
     path,
     element: <GroupGuard group={guard} />,
-    children: [{ element: <Outlet />, children: pages }],
+    children: [{ element: <AppLayout />, children: pages }],
   };
 }
 
@@ -56,16 +57,16 @@ export function createShellRoutes(
     { path: "/", element: <Navigate to="/app" replace /> },
     group("/auth", "auth", [
       { index: true, element: <Navigate to="login" replace /> },
-      { path: "login", element: <Placeholder name="SMS" /> },
+      { path: "login", element: <Placeholder name="home" /> },
       ...extra.auth,
     ]),
-    group("/app", "app", [{ index: true, element: <Placeholder name="SMS" /> }, ...extra.app]),
+    group("/app", "app", [{ index: true, element: <Placeholder name="home" /> }, ...extra.app]),
     group("/platform", "platform", [
-      { index: true, element: <Placeholder name="SMS" /> },
+      { index: true, element: <Placeholder name="home" /> },
       ...extra.platform,
     ]),
     group("/parent", "parent", [
-      { index: true, element: <Placeholder name="SMS" /> },
+      { index: true, element: <Placeholder name="home" /> },
       ...extra.parent,
     ]),
     { path: "*", element: <Navigate to="/" replace /> },

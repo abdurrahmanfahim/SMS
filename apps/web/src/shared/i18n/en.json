@@ -1,0 +1,26 @@
+{
+  "shell": {
+    "brand": {
+      "name": "SMS"
+    },
+    "nav": {
+      "label": "Main menu",
+      "home": "Home"
+    },
+    "home": {
+      "placeholder": "This screen will be added later."
+    },
+    "role": {
+      "label": "Role (developer)",
+      "platform_owner": "Platform owner",
+      "institution_admin": "Institution admin",
+      "teacher": "Teacher",
+      "accountant": "Accountant",
+      "guardian": "Guardian",
+      "student": "Student"
+    },
+    "language": {
+      "label": "Language"
+    }
+  }
+}

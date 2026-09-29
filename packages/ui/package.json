@@ -6,10 +6,12 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && node scripts/generate-tokens.mjs --check",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "build": "tsc -p tsconfig.json --emitDeclarationOnly false --noEmit false --outDir dist"
+    "build": "tsc -p tsconfig.json --emitDeclarationOnly false --noEmit false --outDir dist",
+    "tokens:generate": "node scripts/generate-tokens.mjs",
+    "tokens:check": "node scripts/generate-tokens.mjs --check"
   },
   "peerDependencies": {
     "react": "^19.0.0"
@@ -21,5 +23,13 @@
     "vitest": "^2.1.1",
     "eslint": "^9.11.1",
     "react": "^19.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./tokens.css": "./src/styles/tokens.css",
+    "./tailwind-preset": "./tailwind-preset.js"
   }
 }

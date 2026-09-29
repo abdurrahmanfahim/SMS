@@ -1,0 +1,26 @@
+{
+  "shell": {
+    "brand": {
+      "name": "SMS"
+    },
+    "nav": {
+      "label": "প্রধান মেনু",
+      "home": "হোম"
+    },
+    "home": {
+      "placeholder": "এই স্ক্রিনটি পরে যুক্ত হবে।"
+    },
+    "role": {
+      "label": "ভূমিকা (ডেভেলপার)",
+      "platform_owner": "প্ল্যাটফর্ম মালিক",
+      "institution_admin": "প্রতিষ্ঠানের অ্যাডমিন",
+      "teacher": "শিক্ষক",
+      "accountant": "হিসাবরক্ষক",
+      "guardian": "অভিভাবক",
+      "student": "শিক্ষার্থী"
+    },
+    "language": {
+      "label": "ভাষা"
+    }
+  }
+}

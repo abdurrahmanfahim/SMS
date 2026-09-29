@@ -2,20 +2,30 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider, type RouteObject } from "react-router-dom";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { RoleProvider } from "../shared/role";
+
 import { createShellRoutes, partitionFeatureRoutes } from "./routes";
 
 afterEach(cleanup);
 
+function wrap(router: ReturnType<typeof createMemoryRouter>) {
+  return (
+    <RoleProvider role="institution_admin">
+      <RouterProvider router={router} />
+    </RoleProvider>
+  );
+}
+
 function renderAt(path: string, featureRoutes: RouteObject[] = []) {
   const router = createMemoryRouter(createShellRoutes(featureRoutes), { initialEntries: [path] });
-  render(<RouterProvider router={router} />);
+  render(wrap(router));
   return router;
 }
 
 describe("shell route groups", () => {
   it.each(["/app", "/platform", "/parent", "/auth/login"])("renders %s", (path) => {
     const router = renderAt(path);
-    expect(screen.getByTestId("page-SMS")).toBeInTheDocument();
+    expect(screen.getByTestId("page-home")).toBeInTheDocument();
     expect(router.state.location.pathname).toBe(path);
   });
 

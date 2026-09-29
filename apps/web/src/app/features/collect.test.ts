@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 
+import { flattenMessages } from "../../shared/i18n/flatten";
 import type { NavItem } from "../../shared/nav";
 
-import { collectFeatures, flattenMessages } from "./collect";
+import { collectFeatures } from "./collect";
 
 const Icon = () => null;
 const nav = (key: string, over: Partial<NavItem> = {}): NavItem => ({

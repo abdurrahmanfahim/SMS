@@ -1,6 +1,7 @@
 import type { RouteObject } from "react-router-dom";
 
 import type { FeatureRegistration, HomeWidget } from "../../shared/features";
+import { flattenMessages } from "../../shared/i18n/flatten";
 import type { NavItem } from "../../shared/nav";
 
 export type Locale = "bn" | "en";
@@ -15,22 +16,6 @@ export interface CollectedFeatures {
 
 const REGISTER_RE = /(?:^|\/)features\/([^/]+)\/register\.ts$/;
 const I18N_RE = /(?:^|\/)features\/([^/]+)\/i18n\/(bn|en)\.json$/;
-
-/** Flattens `{ a: { b: "x" } }` into `{ "a.b": "x" }`. Non-string leaves are rejected. */
-export function flattenMessages(input: unknown, prefix = ""): Record<string, string> {
-  const out: Record<string, string> = {};
-  if (typeof input !== "object" || input === null || Array.isArray(input)) {
-    throw new Error(`i18n file must contain an object${prefix ? ` at "${prefix}"` : ""}`);
-  }
-  for (const [key, value] of Object.entries(input)) {
-    const full = prefix ? `${prefix}.${key}` : key;
-    if (typeof value === "string") out[full] = value;
-    else if (typeof value === "object" && value !== null && !Array.isArray(value))
-      Object.assign(out, flattenMessages(value, full));
-    else throw new Error(`i18n value at "${full}" must be a string or an object`);
-  }
-  return out;
-}
 
 /** JSON imported through Vite arrives as `{ default: {...} }`; a plain object is also fine. */
 function jsonBody(mod: unknown): unknown {

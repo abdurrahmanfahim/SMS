@@ -1,0 +1,25 @@
+@import "@sms/ui/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: var(--font-bangla);
+    /* Keeps focused fields clear of sticky bars (WCAG 2.4.11). */
+    scroll-padding-top: 4.5rem;
+    scroll-padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-surface text-content;
+    font-size: var(--text-base);
+    line-height: var(--text-base-leading);
+    margin: 0;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-focus-ring-base);
+    outline-offset: 2px;
+  }
+}
