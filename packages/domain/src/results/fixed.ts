@@ -90,3 +90,9 @@ export function formatHundredths(value: number): string {
   const v = BigInt(value);
   return `${v / 100n}.${(v % 100n).toString().padStart(2, "0")}`;
 }
+
+/** Orders two ids by UTF-16 code unit, so sorting never depends on the runtime's locale. */
+export function compareIds(a: string, b: string): number {
+  if (a < b) return -1;
+  return a > b ? 1 : 0;
+}

@@ -1,0 +1,471 @@
+{
+  "id": "G-001",
+  "source": "Public government-college test-exam marksheet (Kushtia Govt. College, Science XII Test Result 2023), names removed; docs/spec/results-engine.md §9. Component full marks are inferred (spec §9), the subject totals and points are from the sheet.",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "bangla",
+        "components": [
+          {
+            "id": "p1_mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 30
+          },
+          {
+            "id": "p1_cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 70
+          },
+          {
+            "id": "p2_mcq",
+            "paper": 2,
+            "code": "mcq",
+            "full": 30
+          },
+          {
+            "id": "p2_cq",
+            "paper": 2,
+            "code": "cq",
+            "full": 70
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "english",
+        "components": [
+          {
+            "id": "p1_mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 30
+          },
+          {
+            "id": "p1_cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 70
+          },
+          {
+            "id": "p2_mcq",
+            "paper": 2,
+            "code": "mcq",
+            "full": 30
+          },
+          {
+            "id": "p2_cq",
+            "paper": 2,
+            "code": "cq",
+            "full": 70
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "ict",
+        "components": [
+          {
+            "id": "mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "prac",
+            "paper": 1,
+            "code": "prac",
+            "full": 25
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "physics",
+        "components": [
+          {
+            "id": "p1_mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "p1_cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p1_prac",
+            "paper": 1,
+            "code": "prac",
+            "full": 25
+          },
+          {
+            "id": "p2_mcq",
+            "paper": 2,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "p2_cq",
+            "paper": 2,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p2_prac",
+            "paper": 2,
+            "code": "prac",
+            "full": 25
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "chemistry",
+        "components": [
+          {
+            "id": "p1_mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "p1_cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p1_prac",
+            "paper": 1,
+            "code": "prac",
+            "full": 25
+          },
+          {
+            "id": "p2_mcq",
+            "paper": 2,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "p2_cq",
+            "paper": 2,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p2_prac",
+            "paper": 2,
+            "code": "prac",
+            "full": 25
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "biology",
+        "components": [
+          {
+            "id": "p1_mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "p1_cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p1_prac",
+            "paper": 1,
+            "code": "prac",
+            "full": 25
+          },
+          {
+            "id": "p2_mcq",
+            "paper": 2,
+            "code": "mcq",
+            "full": 25
+          },
+          {
+            "id": "p2_cq",
+            "paper": 2,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p2_prac",
+            "paper": 2,
+            "code": "prac",
+            "full": 25
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "math",
+        "components": [
+          {
+            "id": "p1_mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 50
+          },
+          {
+            "id": "p1_cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 50
+          },
+          {
+            "id": "p2_mcq",
+            "paper": 2,
+            "code": "mcq",
+            "full": 50
+          },
+          {
+            "id": "p2_cq",
+            "paper": 2,
+            "code": "cq",
+            "full": 50
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["mcq"],
+              "min_percent": 33
+            },
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "g001-s1",
+      "optional_subject_id": "math",
+      "marks": {
+        "bangla": {
+          "p1_mcq": 2000,
+          "p1_cq": 4700,
+          "p2_mcq": 2000,
+          "p2_cq": 4600
+        },
+        "english": {
+          "p1_mcq": 2200,
+          "p1_cq": 5400,
+          "p2_mcq": 2100,
+          "p2_cq": 5400
+        },
+        "ict": {
+          "mcq": 1300,
+          "cq": 2500,
+          "prac": 1500
+        },
+        "physics": {
+          "p1_mcq": 1700,
+          "p1_cq": 3300,
+          "p1_prac": 2200,
+          "p2_mcq": 1600,
+          "p2_cq": 3500,
+          "p2_prac": 2200
+        },
+        "chemistry": {
+          "p1_mcq": 1500,
+          "p1_cq": 3200,
+          "p1_prac": 2000,
+          "p2_mcq": 1600,
+          "p2_cq": 3100,
+          "p2_prac": 2000
+        },
+        "biology": {
+          "p1_mcq": 1600,
+          "p1_cq": 3400,
+          "p1_prac": 2000,
+          "p2_mcq": 1700,
+          "p2_cq": 3300,
+          "p2_prac": 2000
+        },
+        "math": {
+          "p1_mcq": 3300,
+          "p1_cq": 1400,
+          "p2_mcq": 3300,
+          "p2_cq": 1300
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "g001-s1": {
+        "status": "ok",
+        "totals": {
+          "outcome": "passed",
+          "gpa": 367,
+          "grade": "A-",
+          "total": 84900,
+          "full": 130000,
+          "average_percent_bp": 6531,
+          "failed_subject_ids": ["math"],
+          "counted_subject_ids": [
+            "bangla",
+            "biology",
+            "chemistry",
+            "english",
+            "ict",
+            "math",
+            "physics"
+          ]
+        },
+        "subjects": {
+          "bangla": {
+            "total": 13300,
+            "full": 20000,
+            "percent_bp": 6650,
+            "grade": "A-",
+            "point": 350,
+            "passed": true
+          },
+          "english": {
+            "total": 15100,
+            "full": 20000,
+            "percent_bp": 7550,
+            "grade": "A",
+            "point": 400,
+            "passed": true
+          },
+          "ict": {
+            "total": 5300,
+            "full": 10000,
+            "percent_bp": 5300,
+            "grade": "B",
+            "point": 300,
+            "passed": true
+          },
+          "physics": {
+            "total": 14500,
+            "full": 20000,
+            "percent_bp": 7250,
+            "grade": "A",
+            "point": 400,
+            "passed": true
+          },
+          "chemistry": {
+            "total": 13400,
+            "full": 20000,
+            "percent_bp": 6700,
+            "grade": "A-",
+            "point": 350,
+            "passed": true
+          },
+          "biology": {
+            "total": 14000,
+            "full": 20000,
+            "percent_bp": 7000,
+            "grade": "A",
+            "point": 400,
+            "passed": true
+          },
+          "math": {
+            "total": 9300,
+            "full": 20000,
+            "percent_bp": 4650,
+            "grade": "F",
+            "point": 0,
+            "passed": false
+          }
+        }
+      }
+    }
+  }
+}

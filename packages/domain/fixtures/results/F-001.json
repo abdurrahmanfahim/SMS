@@ -1,0 +1,281 @@
+{
+  "id": "F-001",
+  "source": "Synthetic students (invented ids) covering each outcome; expected values computed by hand from spec §3-§5.",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "bangla",
+        "components": [
+          {
+            "id": "mcq",
+            "paper": 1,
+            "code": "mcq",
+            "full": 30
+          },
+          {
+            "id": "cq",
+            "paper": 1,
+            "code": "cq",
+            "full": 70
+          }
+        ],
+        "pass_rule": {
+          "min_percent_total": 33,
+          "groups": [
+            {
+              "codes": ["cq"],
+              "min_percent": 33
+            }
+          ]
+        }
+      },
+      {
+        "id": "math",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "science",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "agri",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "pass-with-optional",
+      "subject_ids": ["bangla", "math", "science", "agri"],
+      "optional_subject_id": "agri",
+      "marks": {
+        "bangla": {
+          "mcq": 2000,
+          "cq": 5000
+        },
+        "math": {
+          "written": 8000
+        },
+        "science": {
+          "written": 6000
+        },
+        "agri": {
+          "written": 7500
+        }
+      }
+    },
+    {
+      "id": "fail-by-total",
+      "subject_ids": ["bangla", "math", "science"],
+      "marks": {
+        "bangla": {
+          "mcq": 2000,
+          "cq": 5000
+        },
+        "math": {
+          "written": 3000
+        },
+        "science": {
+          "written": 6000
+        }
+      }
+    },
+    {
+      "id": "fail-by-group",
+      "subject_ids": ["bangla", "math", "science"],
+      "marks": {
+        "bangla": {
+          "mcq": 3000,
+          "cq": 2000
+        },
+        "math": {
+          "written": 8000
+        },
+        "science": {
+          "written": 6000
+        }
+      }
+    },
+    {
+      "id": "absent-all",
+      "subject_ids": ["bangla", "math", "science"],
+      "marks": {
+        "bangla": {
+          "mcq": "absent",
+          "cq": "absent"
+        },
+        "math": {
+          "written": "absent"
+        },
+        "science": {
+          "written": "absent"
+        }
+      }
+    },
+    {
+      "id": "absent-one",
+      "subject_ids": ["bangla", "math", "science"],
+      "marks": {
+        "bangla": {
+          "mcq": 2000,
+          "cq": 5000
+        },
+        "math": {
+          "written": "absent"
+        },
+        "science": {
+          "written": 6000
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "pass-with-optional": {
+        "status": "ok",
+        "totals": {
+          "outcome": "passed",
+          "gpa": 483,
+          "grade": "A",
+          "total": 28500,
+          "full": 40000,
+          "average_percent_bp": 7125,
+          "failed_subject_ids": []
+        },
+        "subjects": {
+          "bangla": {
+            "total": 7000,
+            "full": 10000,
+            "percent_bp": 7000,
+            "grade": "A",
+            "point": 400,
+            "passed": true
+          },
+          "math": {
+            "total": 8000,
+            "full": 10000,
+            "percent_bp": 8000,
+            "grade": "A+",
+            "point": 500,
+            "passed": true
+          },
+          "science": {
+            "total": 6000,
+            "full": 10000,
+            "percent_bp": 6000,
+            "grade": "A-",
+            "point": 350,
+            "passed": true
+          },
+          "agri": {
+            "total": 7500,
+            "full": 10000,
+            "percent_bp": 7500,
+            "grade": "A",
+            "point": 400,
+            "passed": true
+          }
+        }
+      },
+      "fail-by-total": {
+        "status": "ok",
+        "totals": {
+          "outcome": "failed",
+          "gpa": 0,
+          "grade": "F",
+          "failed_subject_ids": ["math"]
+        },
+        "subjects": {
+          "math": {
+            "total": 3000,
+            "full": 10000,
+            "percent_bp": 3000,
+            "grade": "F",
+            "point": 0,
+            "passed": false
+          }
+        }
+      },
+      "fail-by-group": {
+        "status": "ok",
+        "totals": {
+          "outcome": "failed",
+          "gpa": 0,
+          "grade": "F",
+          "failed_subject_ids": ["bangla"]
+        },
+        "subjects": {
+          "bangla": {
+            "total": 5000,
+            "full": 10000,
+            "percent_bp": 5000,
+            "grade": "F",
+            "point": 0,
+            "passed": false,
+            "reasons": [
+              {
+                "kind": "group_below_min",
+                "codes": ["cq"]
+              }
+            ]
+          }
+        }
+      },
+      "absent-all": {
+        "status": "ok",
+        "totals": {
+          "outcome": "absent",
+          "gpa": null,
+          "grade": null
+        }
+      },
+      "absent-one": {
+        "status": "ok",
+        "totals": {
+          "outcome": "failed",
+          "gpa": 0,
+          "grade": "F",
+          "failed_subject_ids": ["math"]
+        },
+        "subjects": {
+          "math": {
+            "passed": false,
+            "grade": "F",
+            "all_absent": true,
+            "reasons": [
+              {
+                "kind": "absent_component",
+                "component_id": "written"
+              },
+              {
+                "kind": "total_below_min"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

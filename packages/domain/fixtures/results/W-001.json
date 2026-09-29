@@ -1,0 +1,62 @@
+{
+  "id": "W-001",
+  "source": "A withheld mark withholds the whole result (spec §4).",
+  "scheme": "bd-general-gpa5",
+  "exam": {
+    "subjects": [
+      {
+        "id": "s1",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      },
+      {
+        "id": "s2",
+        "components": [
+          {
+            "id": "written",
+            "paper": 1,
+            "code": "written",
+            "full": 100
+          }
+        ]
+      }
+    ]
+  },
+  "students": [
+    {
+      "id": "withheld-s1",
+      "marks": {
+        "s1": {
+          "written": "withheld"
+        },
+        "s2": {
+          "written": 9000
+        }
+      }
+    }
+  ],
+  "expected": {
+    "students": {
+      "withheld-s1": {
+        "status": "ok",
+        "subjects": {
+          "s1": {
+            "status": "withheld"
+          }
+        },
+        "totals": {
+          "outcome": "withheld",
+          "gpa": null,
+          "grade": null,
+          "total": null
+        }
+      }
+    }
+  }
+}

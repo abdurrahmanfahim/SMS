@@ -8,7 +8,7 @@ import {
   zodErrors,
 } from "./config.js";
 import { type EngineResult, type ResultsError, failWith, succeed } from "./errors.js";
-import { atLeastPercent, divRound, lcm, roundToUnit } from "./fixed.js";
+import { atLeastPercent, compareIds, divRound, lcm, roundToUnit } from "./fixed.js";
 import { type ExamInput, type Mark, type ParsedSubject, examSchema } from "./schema.js";
 
 /** Version of the engine's rules; stored in every published snapshot (spec §8). */
@@ -96,29 +96,58 @@ export type SubjectInput = {
   readonly marks?: Readonly<Record<string, Mark>> | undefined;
 };
 
-/**
- * Computes one subject's result (spec §3 steps 1 to 6): validates marks, converts components,
- * totals all papers, checks the total and group pass rules and looks up grade and point.
- *
- * `scheme` comes from `parseGradeScheme` and `subject` from the validated exam. Marks are
- * whole hundredths. Returns `mark_out_of_range` for a mark above its component's full marks and,
- * when the scheme's `missing` policy is `block`, `missing_marks` for each component without an
- * entry (with `treat_as_absent` those components count as absent). A `withheld` code gives a
- * `withheld` subject; a subject whose components are all `exempt` gives an `exempt` subject that
- * is left out of every total. A component `absent` counts as 0 and fails the subject. Never
- * throws.
- */
-export function computeSubjectResults(input: SubjectInput): EngineResult<SubjectResult> {
-  const { scheme, subject, marks } = input;
-  const errors: ResultsError[] = [];
-  const components = [...subject.components].sort(
-    (a, b) => a.paper - b.paper || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0),
+type PreparedComponent = {
+  readonly id: string;
+  readonly code: string;
+  readonly paper: number;
+  /** Raw full marks in hundredths. */
+  readonly fullH: number;
+  /** Numerator factor of the conversion (`convert_to`), or 1n without conversion. */
+  readonly factor: bigint;
+  /** Denominator of the conversion (the component's full marks), or 1n without conversion. */
+  readonly divisor: bigint;
+  /** Full marks after conversion, in hundredths. */
+  readonly convertedFullH: bigint;
+};
+
+/** A subject with its components ordered and its pass rule normalized; built once per exam. */
+type PreparedSubjectRun = {
+  readonly scheme: GradeScheme;
+  readonly id: string;
+  readonly components: readonly PreparedComponent[];
+  readonly rule: PassRule;
+};
+
+function prepareSubject(scheme: GradeScheme, subject: ParsedSubject): PreparedSubjectRun {
+  const ordered = [...subject.components].sort(
+    (a, b) => a.paper - b.paper || compareIds(a.id, b.id),
   );
+  return {
+    scheme,
+    id: subject.id,
+    components: ordered.map((c) => ({
+      id: c.id,
+      code: c.code,
+      paper: c.paper,
+      fullH: c.full * 100,
+      factor: BigInt(c.convert_to ?? 1),
+      divisor: BigInt(c.convert_to === undefined ? 1 : c.full),
+      convertedFullH: BigInt(c.convert_to ?? c.full) * 100n,
+    })),
+    rule: subject.pass_rule === undefined ? scheme.pass : normalizePassRule(subject.pass_rule),
+  };
+}
+
+function runSubject(
+  prep: PreparedSubjectRun,
+  marks: Readonly<Record<string, Mark>> | undefined,
+): EngineResult<SubjectResult> {
+  const { scheme, components } = prep;
+  const errors: ResultsError[] = [];
   const view: ComponentResult[] = [];
   let withheld = false;
 
   for (const component of components) {
-    const fullH = component.full * 100;
     const entered = marks?.[component.id];
     let state: ComponentState = "scored";
     let mark: number | null = null;
@@ -126,8 +155,8 @@ export function computeSubjectResults(input: SubjectInput): EngineResult<Subject
       if (scheme.missing === "block") {
         errors.push({
           code: "missing_marks",
-          path: `${subject.id}.${component.id}`,
-          message: `No marks entered for component ${component.id} of subject ${subject.id}.`,
+          path: `${prep.id}.${component.id}`,
+          message: `No marks entered for component ${component.id} of subject ${prep.id}.`,
         });
       } else {
         state = "absent";
@@ -138,11 +167,11 @@ export function computeSubjectResults(input: SubjectInput): EngineResult<Subject
       state = "exempt";
     } else if (entered === "withheld") {
       withheld = true;
-    } else if (entered > fullH) {
+    } else if (entered > component.fullH) {
       errors.push({
         code: "mark_out_of_range",
-        path: `${subject.id}.${component.id}`,
-        message: `Marks for component ${component.id} of subject ${subject.id} are above its full marks.`,
+        path: `${prep.id}.${component.id}`,
+        message: `Marks for component ${component.id} of subject ${prep.id} are above its full marks.`,
       });
     } else {
       mark = entered;
@@ -151,60 +180,56 @@ export function computeSubjectResults(input: SubjectInput): EngineResult<Subject
       id: component.id,
       code: component.code,
       paper: component.paper,
-      full: fullH,
+      full: component.fullH,
       mark,
       state,
     });
   }
 
   if (errors.length > 0) return failWith(errors);
-  if (withheld) return succeed(emptySubject(subject.id, "withheld", view));
+  if (withheld) return succeed(emptySubject(prep.id, "withheld", view));
 
-  const counted = components.filter((_, index) => view[index]?.state !== "exempt");
-  if (counted.length === 0) return succeed(emptySubject(subject.id, "exempt", view));
+  const countedIndexes: number[] = [];
+  view.forEach((entry, index) => {
+    if (entry.state !== "exempt") countedIndexes.push(index);
+  });
+  if (countedIndexes.length === 0) return succeed(emptySubject(prep.id, "exempt", view));
 
-  const byId = new Map(view.map((entry) => [entry.id, entry]));
-  const contribution = (id: string): { n: bigint; d: bigint; full: bigint } => {
-    const component = components.find((c) => c.id === id) as (typeof components)[number];
-    const markH = BigInt((byId.get(id) as ComponentResult).mark ?? 0);
-    if (component.convert_to === undefined) {
-      return { n: markH, d: 1n, full: BigInt(component.full) * 100n };
-    }
-    return {
-      n: markH * BigInt(component.convert_to),
-      d: BigInt(component.full),
-      full: BigInt(component.convert_to) * 100n,
-    };
-  };
-
+  // Exact fractions: converted marks are `mark x factor / divisor`.
   let total = ZERO;
   let fullH = 0n;
-  for (const component of counted) {
-    const part = contribution(component.id);
-    total = addFraction(total, part.n, part.d);
-    fullH += part.full;
+  for (const index of countedIndexes) {
+    const component = components[index] as PreparedComponent;
+    total = addFraction(
+      total,
+      BigInt((view[index] as ComponentResult).mark ?? 0) * component.factor,
+      component.divisor,
+    );
+    fullH += component.convertedFullH;
   }
   const denominator = total.d * fullH;
 
-  const rule: PassRule =
-    subject.pass_rule === undefined ? scheme.pass : normalizePassRule(subject.pass_rule);
   const reasons: FailReason[] = [];
-  for (const component of counted) {
-    if (byId.get(component.id)?.state === "absent") {
-      reasons.push({ kind: "absent_component", component_id: component.id });
-    }
+  for (const index of countedIndexes) {
+    const entry = view[index] as ComponentResult;
+    if (entry.state === "absent")
+      reasons.push({ kind: "absent_component", component_id: entry.id });
   }
-  if (!atLeastPercent(total.n, denominator, rule.minTotalBp)) {
+  if (!atLeastPercent(total.n, denominator, prep.rule.minTotalBp)) {
     reasons.push({ kind: "total_below_min" });
   }
-  for (const group of rule.groups) {
+  for (const group of prep.rule.groups) {
     let groupTotal = ZERO;
     let groupFull = 0n;
-    for (const component of counted) {
+    for (const index of countedIndexes) {
+      const component = components[index] as PreparedComponent;
       if (!group.codes.includes(component.code)) continue;
-      const part = contribution(component.id);
-      groupTotal = addFraction(groupTotal, part.n, part.d);
-      groupFull += part.full;
+      groupTotal = addFraction(
+        groupTotal,
+        BigInt((view[index] as ComponentResult).mark ?? 0) * component.factor,
+        component.divisor,
+      );
+      groupFull += component.convertedFullH;
     }
     if (groupFull > 0n && !atLeastPercent(groupTotal.n, groupTotal.d * groupFull, group.minBp)) {
       reasons.push({ kind: "group_below_min", codes: group.codes });
@@ -218,7 +243,7 @@ export function computeSubjectResults(input: SubjectInput): EngineResult<Subject
     scheme.kind === "gpa_bands" ? (passed ? (band.point as number) : scheme.fail.point) : null;
 
   return succeed({
-    subject_id: subject.id,
+    subject_id: prep.id,
     status: "counted",
     components: view,
     total: Number(roundToUnit(total.n, total.d, scheme.marksUnit, scheme.mode)),
@@ -227,10 +252,27 @@ export function computeSubjectResults(input: SubjectInput): EngineResult<Subject
     grade,
     point,
     passed,
-    all_absent: counted.every((component) => byId.get(component.id)?.state === "absent"),
+    all_absent: countedIndexes.every(
+      (index) => (view[index] as ComponentResult).state === "absent",
+    ),
     reasons,
     exact_total: { num: total.n.toString(), den: total.d.toString() },
   });
+}
+
+/**
+ * Computes one subject's result (spec §3 steps 1 to 6): validates marks, converts components,
+ * totals all papers, checks the total and group pass rules and looks up grade and point.
+ *
+ * `scheme` comes from `parseGradeScheme` and `subject` from the validated exam. Marks are whole
+ * hundredths. Returns `mark_out_of_range` for a mark above its component's full marks and, when
+ * the scheme's `missing` policy is `block`, `missing_marks` for each component without an entry
+ * (with `treat_as_absent` those components count as absent). A `withheld` code gives a `withheld`
+ * subject; a subject whose components are all `exempt` gives an `exempt` subject that is left out
+ * of every total. A component `absent` counts as 0 and fails the subject. Never throws.
+ */
+export function computeSubjectResults(input: SubjectInput): EngineResult<SubjectResult> {
+  return runSubject(prepareSubject(input.scheme, input.subject), input.marks);
 }
 
 /** Overall outcome of a student. */
@@ -401,8 +443,6 @@ export type ExamResult = {
   readonly students: readonly StudentEntry[];
 };
 
-const compare = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
-
 /** Structural checks between scheme, subjects and students that zod cannot express. */
 function crossCheck(exam: ReturnType<typeof examSchema.parse>): ResultsError[] {
   const errors: ResultsError[] = [];
@@ -520,19 +560,16 @@ export function computeExam(input: ExamInput): EngineResult<ExamResult> {
   const errors = crossCheck(exam);
   if (errors.length > 0) return failWith(errors);
 
-  const subjects = [...exam.subjects].sort((a, b) => compare(a.id, b.id));
-  const students = [...exam.students].sort((a, b) => compare(a.id, b.id));
+  const subjects = [...exam.subjects].sort((a, b) => compareIds(a.id, b.id));
+  const students = [...exam.students].sort((a, b) => compareIds(a.id, b.id));
+  const prepared = subjects.map((subject) => prepareSubject(scheme.value, subject));
   const entries: StudentEntry[] = students.map((student) => {
     const enrolled = new Set(student.subject_ids ?? subjects.map((s) => s.id));
     const results: SubjectResult[] = [];
     const problems: ResultsError[] = [];
-    for (const subject of subjects) {
+    for (const subject of prepared) {
       if (!enrolled.has(subject.id)) continue;
-      const result = computeSubjectResults({
-        scheme: scheme.value,
-        subject,
-        marks: student.marks[subject.id],
-      });
+      const result = runSubject(subject, student.marks[subject.id]);
       if (result.ok) results.push(result.value);
       else problems.push(...result.errors);
     }
