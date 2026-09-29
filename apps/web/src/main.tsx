@@ -1,10 +1,11 @@
+import { ToastProvider } from "@sms/ui";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { features } from "./app/features";
 import { createShellRoutes } from "./app/routes";
-import { registerMessages } from "./shared/i18n";
+import { registerMessages, t } from "./shared/i18n";
 import { RoleProvider } from "./shared/role";
 
 import "./index.css";
@@ -22,7 +23,12 @@ const router = createBrowserRouter(createShellRoutes());
 createRoot(container).render(
   <StrictMode>
     <RoleProvider>
-      <RouterProvider router={router} />
+      <ToastProvider
+        closeLabel={t("common.action.close")}
+        viewportLabel={t("common.label.notifications")}
+      >
+        <RouterProvider router={router} />
+      </ToastProvider>
     </RoleProvider>
   </StrictMode>,
 );

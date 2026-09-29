@@ -22,5 +22,66 @@
     "language": {
       "label": "Language"
     }
+  },
+  "devkit": {
+    "kit": {
+      "title": "Component kit (developer)",
+      "buttons": "Buttons",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "destructive": "Destructive",
+      "loading": "Loading",
+      "disabled": "Disabled",
+      "input": "Input",
+      "inputLabel": "Mobile number",
+      "inputHelp": "Enter an 11-digit mobile number",
+      "inputError": "This number is not valid",
+      "select": "Select",
+      "selectLabel": "Class",
+      "selectPlaceholder": "Choose a class",
+      "class6": "Class 6",
+      "class7": "Class 7",
+      "badges": "Badges",
+      "present": "Present",
+      "absent": "Absent",
+      "leave": "Leave",
+      "late": "Late",
+      "card": "Card",
+      "cardTitle": "Md. Abdur Rahman Fahim Chowdhury",
+      "cardMeta": "Roll 12 · Class 6",
+      "skeleton": "Skeleton",
+      "empty": "Empty state",
+      "emptyTitle": "No exam has been created yet.",
+      "emptyDesc": "Create a new exam.",
+      "emptyAction": "New exam",
+      "error": "Error state",
+      "errorTitle": "Could not save.",
+      "errorDesc": "Please try again.",
+      "errorAction": "Try again",
+      "overlays": "Dialog and sheet",
+      "openDialog": "Open dialog",
+      "openSheet": "Open sheet",
+      "openConfirm": "Open confirmation",
+      "toast": "Show toast",
+      "dialogBody": "This is a sample dialog.",
+      "confirmTitle": "Publish results?",
+      "confirmDesc": "This will publish results for 120 students across 3 sections. This cannot be undone later."
+    }
+  },
+  "common": {
+    "action": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "close": "Close"
+    },
+    "state": {
+      "loading": "Loading",
+      "saved": "Saved",
+      "error": "Error"
+    },
+    "label": {
+      "notifications": "Notifications"
+    }
   }
 }

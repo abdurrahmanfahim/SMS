@@ -1,8 +1,11 @@
 import { Navigate, type RouteObject } from "react-router-dom";
 
+import { devToolsEnabled } from "../shared/devtools";
+
 import { features } from "./features";
 import { GroupGuard } from "./guards";
 import { AppLayout } from "./layout/AppLayout";
+import { DevKit } from "./pages/DevKit";
 import { Placeholder } from "./pages/Placeholder";
 
 /** Wraps a group's pages: guard first (stub until M1-P2), then the group layout. */
@@ -69,6 +72,9 @@ export function createShellRoutes(
       { index: true, element: <Placeholder name="home" /> },
       ...extra.parent,
     ]),
+    ...(devToolsEnabled
+      ? [{ path: "/dev", element: <AppLayout />, children: [{ path: "kit", element: <DevKit /> }] }]
+      : []),
     { path: "*", element: <Navigate to="/" replace /> },
   ];
 }
