@@ -1,4 +1,4 @@
-import { createSmsClientFromEnv, type SmsClient } from "@sms/db";
+import type { SmsClient } from "@sms/db";
 import { useEffect, useSyncExternalStore } from "react";
 
 export type MembershipRole =
@@ -42,7 +42,9 @@ export const INSTITUTION_STORAGE_KEY = "sms.skeleton.institution";
  * anon client, so Postgres RLS decides what a user can see (never this code).
  * M1-W2 replaces it (docs/tasks/M1-W2.md step 1).
  */
-export function createSessionStore(getClient: () => SmsClient | null, storage: StorageLike | null) {
+export type ClientSource = () => SmsClient | null | Promise<SmsClient | null>;
+
+export function createSessionStore(getClient: ClientSource, storage: StorageLike | null) {
   let state: SessionState = { status: "loading" };
   let started = false;
   const listeners = new Set<() => void>();
@@ -123,7 +125,7 @@ export function createSessionStore(getClient: () => SmsClient | null, storage: S
     async start(): Promise<void> {
       if (started) return;
       started = true;
-      const client = getClient();
+      const client = await getClient();
       if (!client) return set({ status: "unconfigured" });
       client.auth.onAuthStateChange((event, session) => {
         if (event === "SIGNED_OUT" || (!session && event !== "INITIAL_SESSION")) {
@@ -141,7 +143,7 @@ export function createSessionStore(getClient: () => SmsClient | null, storage: S
     },
 
     async signIn(email: string, password: string): Promise<SignInResult> {
-      const client = getClient();
+      const client = await getClient();
       if (!client) return { ok: false, reason: "failed" };
       const { data, error } = await client.auth.signInWithPassword({ email, password });
       if (error || !data.user) {
@@ -160,7 +162,7 @@ export function createSessionStore(getClient: () => SmsClient | null, storage: S
     async signOut(): Promise<void> {
       writeStored(null);
       set({ status: "signed_out" });
-      await getClient()?.auth.signOut();
+      await (await getClient())?.auth.signOut();
     },
 
     selectInstitution(id: string): void {
@@ -180,15 +182,13 @@ export function createSessionStore(getClient: () => SmsClient | null, storage: S
 
 export type SessionStore = ReturnType<typeof createSessionStore>;
 
-let client: SmsClient | null | undefined;
-function envClient(): SmsClient | null {
-  if (client === undefined) {
-    try {
-      client = createSmsClientFromEnv();
-    } catch {
-      client = null;
-    }
-  }
+let client: Promise<SmsClient | null> | undefined;
+/**
+ * Loads the Supabase client on first use, in its own chunk. Importing it statically would add
+ * about 60 KB gzip to every page's first load, including pages that never sign in.
+ */
+function envClient(): Promise<SmsClient | null> {
+  client ??= import("@sms/db").then((db) => db.createSmsClientFromEnv()).catch(() => null);
   return client;
 }
 
