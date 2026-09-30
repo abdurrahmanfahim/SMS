@@ -236,12 +236,10 @@ describe("classStats", () => {
       makeRow({ id: "c", outcome: "failed" }),
     ];
     expect(classStats(thirds).overall.pass_rate_bp).toBe(3333);
-    const twoThirds = [...thirds]
-      .reverse()
-      .map((r, i) => ({
-        ...r,
-        totals: { ...r.totals, outcome: i === 0 ? ("failed" as const) : ("passed" as const) },
-      }));
+    const twoThirds = [...thirds].reverse().map((r, i) => ({
+      ...r,
+      totals: { ...r.totals, outcome: i === 0 ? ("failed" as const) : ("passed" as const) },
+    }));
     expect(classStats(twoThirds).overall.pass_rate_bp).toBe(6667);
   });
 
