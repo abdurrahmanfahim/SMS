@@ -57,13 +57,7 @@ jobs:
 
       - name: E2E smoke test
         timeout-minutes: 10
-        shell: bash
-        run: |
-          set -o pipefail
-          pnpm e2e 2>&1 | tee /tmp/e2e.log || {
-            grep -E "✘|Error:|Expected|Received|Timeout|failed|passed" /tmp/e2e.log | head -25 | cut -c1-230 | while IFS= read -r l; do echo "::error::DIAG $l"; done
-            exit 1
-          }
+        run: pnpm e2e
         env:
           CI: true
 
