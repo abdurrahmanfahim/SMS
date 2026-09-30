@@ -48,6 +48,13 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Script tests (staging seed, bundle check)
+        run: pnpm test:scripts
+
+      # Fails the build if the web bundle contains the service-role key (or the text service_role).
+      - name: Bundle must not contain the service-role key
+        run: node scripts/check-bundle-secrets.mjs apps/web/dist
+
       - name: E2E smoke test
         timeout-minutes: 10
         run: pnpm e2e
