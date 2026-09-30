@@ -8,7 +8,8 @@
  * a discriminated union (`{ ok: true, ... } | { ok: false, reason }`) rather than throwing.
  *
  * `results/` holds the result engine (`computeSubjectResults`, `computeOverall`, `computeExam`, grade-scheme
- * presets and snapshot checksums, task `M2-D1`). Ranking (`M2-D2`) and fee logic (`M3-*`) are not part of it yet.
+ * presets and snapshot checksums, task `M2-D1`) and merit ranking and class statistics (`rankResults`,
+ * `topRanked`, `classStats`, task `M2-D2`).
  */
 
 export * from "./money.js";

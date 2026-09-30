@@ -1,0 +1,66 @@
+{
+  "id": "R-006",
+  "title": "subject key decides, missing subject ranks last, roll breaks the final tie",
+  "config": {
+    "ties": "competition",
+    "scopes": ["class"],
+    "include_failed": false,
+    "order": ["total_desc", "subject:math_desc", "roll_asc"]
+  },
+  "rows": [
+    {
+      "student_id": "p",
+      "roll": 1,
+      "section_id": "A",
+      "outcome": "passed",
+      "total": 30000,
+      "gpa": 400,
+      "subjects": {
+        "math": 17000,
+        "eng": 13000
+      }
+    },
+    {
+      "student_id": "q",
+      "roll": 2,
+      "section_id": "A",
+      "outcome": "passed",
+      "total": 30000,
+      "gpa": 400,
+      "subjects": {
+        "math": 15000,
+        "eng": 15000
+      }
+    },
+    {
+      "student_id": "r",
+      "roll": 3,
+      "section_id": "A",
+      "outcome": "passed",
+      "total": 30000,
+      "gpa": 400,
+      "subjects": {
+        "math": 15000,
+        "eng": 15000
+      }
+    },
+    {
+      "student_id": "s",
+      "roll": 4,
+      "section_id": "A",
+      "outcome": "passed",
+      "total": 30000,
+      "gpa": 400,
+      "subjects": {
+        "math": null,
+        "eng": 14000
+      }
+    }
+  ],
+  "expected": {
+    "p": [1, null],
+    "q": [2, null],
+    "r": [3, null],
+    "s": [4, null]
+  }
+}
