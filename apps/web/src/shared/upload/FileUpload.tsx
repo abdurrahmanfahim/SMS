@@ -74,6 +74,10 @@ export function FileUpload(props: FileUploadProps) {
   const [phase, setPhase] = useState<Phase>({ kind: "idle" });
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  // "Try again" runs later than the render that showed the error. It must use the newest `upload`
+  // and `onUploaded` the parent passed, not the ones captured when the upload first failed.
+  const latest = useRef({ upload, onUploaded });
+  latest.current = { upload, onUploaded };
   const cameraRef = useRef<HTMLInputElement>(null);
   const galleryRef = useRef<HTMLInputElement>(null);
 
@@ -95,32 +99,29 @@ export function FileUpload(props: FileUploadProps) {
     [],
   );
 
-  const send = useCallback(
-    async (blob: Blob, name: string) => {
-      const controller = new AbortController();
-      abortRef.current = controller;
-      setPhase({ kind: "uploading", name, progress: 0 });
-      try {
-        const result = await upload(blob, {
-          fileName: name,
-          signal: controller.signal,
-          onProgress: (fraction) =>
-            setPhase((p) =>
-              p.kind === "uploading" ? { ...p, progress: Math.min(1, Math.max(0, fraction)) } : p,
-            ),
-        });
-        setPhase({ kind: "done", name });
-        onUploaded(result, blob);
-      } catch (error) {
-        if (error instanceof UploadAbortedError || controller.signal.aborted) {
-          setPhase({ kind: "cancelled" });
-        } else {
-          setPhase({ kind: "error", code: "failed", retry: () => void send(blob, name) });
-        }
+  const send = useCallback(async (blob: Blob, name: string) => {
+    const controller = new AbortController();
+    abortRef.current = controller;
+    setPhase({ kind: "uploading", name, progress: 0 });
+    try {
+      const result = await latest.current.upload(blob, {
+        fileName: name,
+        signal: controller.signal,
+        onProgress: (fraction) =>
+          setPhase((p) =>
+            p.kind === "uploading" ? { ...p, progress: Math.min(1, Math.max(0, fraction)) } : p,
+          ),
+      });
+      setPhase({ kind: "done", name });
+      latest.current.onUploaded(result, blob);
+    } catch (error) {
+      if (error instanceof UploadAbortedError || controller.signal.aborted) {
+        setPhase({ kind: "cancelled" });
+      } else {
+        setPhase({ kind: "error", code: "failed", retry: () => void send(blob, name) });
       }
-    },
-    [upload, onUploaded],
-  );
+    }
+  }, []);
 
   const prepare = useCallback(
     async (blob: Blob, picked: File, alreadyCropped: boolean) => {

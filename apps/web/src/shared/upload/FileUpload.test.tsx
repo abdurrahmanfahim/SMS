@@ -196,6 +196,23 @@ describe("FileUpload failure, retry and cancel", () => {
     expect(image.compressImage).toHaveBeenCalledOnce();
   });
 
+  it("retries with the newest upload function the parent passed, not the one from the failed attempt", async () => {
+    const failing = vi.fn<Uploader>().mockRejectedValue(new Error("down"));
+    const working = vi.fn<Uploader>().mockResolvedValue({ path: "fresh" });
+    const onUploaded = vi.fn();
+    const { rerender } = render(
+      <FileUpload label="লোগো" upload={failing} onUploaded={onUploaded} />,
+    );
+    pick("upload-gallery", file("a.jpg", "image/jpeg"));
+    await screen.findByTestId("upload-error");
+    rerender(<FileUpload label="লোগো" upload={working} onUploaded={onUploaded} />);
+    fireEvent.click(screen.getByRole("button", { name: "আবার চেষ্টা করুন" }));
+    await waitFor(() => expect(onUploaded).toHaveBeenCalledOnce());
+    expect(working).toHaveBeenCalledOnce();
+    expect(failing).toHaveBeenCalledOnce();
+    expect(onUploaded.mock.calls[0]![0]).toEqual({ path: "fresh" });
+  });
+
   it("cancels an upload in progress", async () => {
     const upload: Uploader = (_b, { signal }) =>
       new Promise((_resolve, reject) =>

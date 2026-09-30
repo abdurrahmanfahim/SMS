@@ -147,7 +147,9 @@
       "shareCopied": "কপি হয়েছে",
       "shareCopyFailed": "কপি করা যায়নি",
       "shareDownloaded": "ফাইলটি সংরক্ষণ করা হয়েছে",
-      "shareShared": "শেয়ার করা হয়েছে"
+      "shareShared": "শেয়ার করা হয়েছে",
+      "uploadPhotoPlain": "ছবি (কাটা ছাড়া, শুধু ছোট করা)",
+      "uploadedSize": "আপলোড করা ছবির আকার: {bytes} বাইট"
     }
   },
   "common": {

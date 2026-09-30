@@ -110,6 +110,13 @@ describe("DataTable table mode", () => {
     expect(screen.getByRole("table")).toHaveAttribute("aria-rowcount", "10001");
   });
 
+  it("makes the scrolling area reachable by keyboard and gives it the table's name", () => {
+    render(<DataTable {...base()} />);
+    const region = screen.getByRole("region", { name: "শিক্ষার্থীর তালিকা" });
+    expect(region).toHaveAttribute("tabindex", "0");
+    expect(region).toContainElement(screen.getByRole("table", { name: "শিক্ষার্থীর তালিকা" }));
+  });
+
   it("sorts client-side and marks the header with aria-sort", () => {
     render(<DataTable {...base()} />);
     const rollHeader = screen.getByRole("columnheader", { name: /রোল/ });
@@ -117,7 +124,31 @@ describe("DataTable table mode", () => {
     // numeric columns sort descending on the first click
     fireEvent.click(within(rollHeader).getByRole("button"));
     expect(rollHeader).toHaveAttribute("aria-sort", "descending");
-    expect(within(bodyRows()[0]!).getByText("5")).toBeInTheDocument();
+    expect(within(bodyRows()[0]!).getByText("৫")).toBeInTheDocument();
+  });
+
+  it("shows numbers in the UI language's digits: Bangla digits in Bangla, ASCII in English", () => {
+    const { unmount } = render(<DataTable {...base()} />);
+    expect(within(bodyRows()[2]!).getByText("৩")).toBeInTheDocument();
+    unmount();
+    setLocale("en");
+    render(<DataTable {...base()} />);
+    expect(within(bodyRows()[2]!).getByText("3")).toBeInTheDocument();
+  });
+
+  it("sorts text in Bangla collation order", () => {
+    const data = [
+      { id: "a", name: "সুমি", roll: 1, section: "ক" },
+      { id: "b", name: "অনিক", roll: 2, section: "ক" },
+      { id: "c", name: "মিতা", roll: 3, section: "ক" },
+    ];
+    render(<DataTable {...base({ data })} />);
+    fireEvent.click(within(screen.getByRole("columnheader", { name: /নাম/ })).getByRole("button"));
+    expect(bodyRows().map((r) => within(r).getAllByRole("cell")[0]!.textContent)).toEqual([
+      "অনিক",
+      "মিতা",
+      "সুমি",
+    ]);
   });
 
   it("reports sorting changes when controlled", () => {
@@ -199,7 +230,7 @@ describe("DataTable server mode", () => {
         {...base({ rowCount: 100, sorting: [{ id: "roll", desc: true }], data: people(3) })}
       />,
     );
-    expect(within(bodyRows()[0]!).getByText("1")).toBeInTheDocument();
+    expect(within(bodyRows()[0]!).getByText("১")).toBeInTheDocument();
   });
 
   it("disables previous on the first page and next on the last", () => {
@@ -247,6 +278,14 @@ describe("DataTable card mode", () => {
     mockPhone(false);
     render(<DataTable {...base()} />);
     expect(screen.getByRole("table")).toBeInTheDocument();
+  });
+
+  it("keeps the card list scrollable by keyboard even when cards are not clickable", () => {
+    mockPhone(true);
+    render(<DataTable {...base()} />);
+    const region = screen.getByRole("region", { name: "শিক্ষার্থীর তালিকা" });
+    expect(region).toHaveAttribute("tabindex", "0");
+    expect(within(region).queryAllByRole("button")).toHaveLength(0);
   });
 
   it("shows title, subtitle and meta lines from column roles, and is one tap target", () => {

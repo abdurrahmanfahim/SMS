@@ -5,6 +5,7 @@ import {
   type PaginationState,
   type Row,
   type RowSelectionState,
+  type SortingFn,
   type SortingState,
   type VisibilityState,
   flexRender,
@@ -21,7 +22,7 @@ import { type ReactNode, useMemo, useRef, useState } from "react";
 import { formatNumber } from "../format";
 import { useControllable } from "../hooks/useControllable";
 import { useIsPhone } from "../hooks/useMediaQuery";
-import { useT } from "../i18n";
+import { useLocale, useT } from "../i18n";
 
 import { columnLabel } from "./columnLabel";
 import { FilterSheet } from "./FilterSheet";
@@ -29,6 +30,35 @@ import { Pagination } from "./Pagination";
 import { toColumnFilters } from "./useTableState";
 
 const SELECT_ID = "__select";
+
+const collators = new Map<string, Intl.Collator>();
+function collatorFor(locale: string): Intl.Collator {
+  let collator = collators.get(locale);
+  if (!collator) {
+    collator = new Intl.Collator(locale, { numeric: true, sensitivity: "base" });
+    collators.set(locale, collator);
+  }
+  return collator;
+}
+
+/**
+ * Default sort for every column: numbers by value, text with `Intl.Collator` in the UI language
+ * (correct Bangla order, and far faster on thousands of rows than TanStack's regex-based
+ * "alphanumeric" sort), empty values last.
+ */
+function makeCollatorSort<T>(locale: string): SortingFn<T> {
+  const collator = collatorFor(locale === "bn" ? "bn-BD" : "en");
+  return (rowA, rowB, columnId) => {
+    const a = rowA.getValue<unknown>(columnId);
+    const b = rowB.getValue<unknown>(columnId);
+    const aEmpty = a === null || a === undefined || a === "";
+    const bEmpty = b === null || b === undefined || b === "";
+    if (aEmpty || bEmpty) return aEmpty === bEmpty ? 0 : aEmpty ? 1 : -1;
+    if (typeof a === "number" && typeof b === "number") return a === b ? 0 : a < b ? -1 : 1;
+    if (typeof a === "boolean" && typeof b === "boolean") return a === b ? 0 : a ? 1 : -1;
+    return collator.compare(String(a), String(b));
+  };
+}
 const DEFAULT_TABLE_ROW_HEIGHT = 52;
 const CARD_HEIGHT = 112;
 const CARD_GAP = 8;
@@ -36,6 +66,7 @@ const CARD_GAP = 8;
 export interface DataTableProps<T> {
   /** Accessible name of the table (translated). */
   label: string;
+  /** Keep this array (and `data`) referentially stable, e.g. with `useMemo`; a new one per render redoes all row work. */
   columns: ColumnDef<T, never>[] | ColumnDef<T, unknown>[] | ColumnDef<T>[];
   data: T[];
   getRowId: (row: T) => string;
@@ -117,6 +148,7 @@ export function DataTable<T>(props: DataTableProps<T>) {
     rowHeight = DEFAULT_TABLE_ROW_HEIGHT,
   } = props;
   const t = useT();
+  const locale = useLocale();
   const isPhone = useIsPhone();
   const cards = mode === "cards" || (mode === "auto" && isPhone);
   const serverMode = rowCount !== undefined;
@@ -146,6 +178,20 @@ export function DataTable<T>(props: DataTableProps<T>) {
   const [panelOpen, setPanelOpen] = useState(false);
 
   const usePagination = props.pagination !== undefined;
+  // Stable identities: a new array or function on every render would make TanStack filter and
+  // sort all rows again on every render, which freezes the page on thousands of rows.
+  const columnFilters = useMemo(() => toColumnFilters(filters), [filters]);
+  const sortingFn = useMemo(() => makeCollatorSort<T>(locale), [locale]);
+  // Numbers show in the UI language's digits (Bangla digits in Bangla); values stay numbers.
+  const defaultCell = useMemo(
+    () => (context: { getValue: () => unknown }) => {
+      const value = context.getValue();
+      return typeof value === "number" ? formatNumber(value) : (value as ReactNode);
+    },
+    // formatNumber reads the current language, so the cell must be rebuilt when it changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [locale],
+  );
 
   const allColumns = useMemo(() => {
     const base = (columns as ColumnDef<T>[]).map((column) => {
@@ -173,10 +219,11 @@ export function DataTable<T>(props: DataTableProps<T>) {
     data,
     columns: allColumns,
     getRowId,
+    defaultColumn: { sortingFn, cell: defaultCell },
     state: {
       sorting,
       globalFilter: search,
-      columnFilters: toColumnFilters(filters),
+      columnFilters,
       columnVisibility,
       rowSelection: selection,
       ...(usePagination ? { pagination } : {}),
@@ -207,6 +254,19 @@ export function DataTable<T>(props: DataTableProps<T>) {
   const activeFilters = Object.values(filters).filter((v) => v !== "").length;
   const selectedIds = Object.keys(selection).filter((id) => selection[id]);
   const rowOffset = serverMode && usePagination ? pagination.pageIndex * pagination.pageSize : 0;
+
+  // State of the "select this page" checkbox. TanStack's own getters walk every row on every call,
+  // which on 10,000 rows made each scroll frame slow, so it is computed only when the rows or the
+  // selection change.
+  const pageSelection = useMemo(() => {
+    if (!enableRowSelection) return { all: false, some: false };
+    let selected = 0;
+    for (const row of rows) if (selection[row.id]) selected++;
+    return {
+      all: rows.length > 0 && selected === rows.length,
+      some: selected > 0 && selected < rows.length,
+    };
+  }, [enableRowSelection, rows, selection]);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemSize = cards ? CARD_HEIGHT + CARD_GAP : rowHeight;
@@ -361,6 +421,9 @@ export function DataTable<T>(props: DataTableProps<T>) {
       return (
         <div
           ref={scrollRef}
+          role="region"
+          aria-label={label}
+          tabIndex={0}
           className="overflow-auto"
           style={{ maxHeight }}
           data-testid="table-scroll"
@@ -414,6 +477,9 @@ export function DataTable<T>(props: DataTableProps<T>) {
     return (
       <div
         ref={scrollRef}
+        role="region"
+        aria-label={label}
+        tabIndex={0}
         className="overflow-auto rounded-lg border border-line"
         style={{ maxHeight }}
         data-testid="table-scroll"
@@ -446,9 +512,9 @@ export function DataTable<T>(props: DataTableProps<T>) {
                           type="checkbox"
                           className="h-5 w-5"
                           aria-label={t("table.select.all")}
-                          checked={table.getIsAllPageRowsSelected()}
+                          checked={pageSelection.all}
                           ref={(el) => {
-                            if (el) el.indeterminate = table.getIsSomePageRowsSelected();
+                            if (el) el.indeterminate = pageSelection.some;
                           }}
                           onChange={table.getToggleAllPageRowsSelectedHandler()}
                         />

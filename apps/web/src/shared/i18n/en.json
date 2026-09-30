@@ -147,7 +147,9 @@
       "shareCopied": "Copied",
       "shareCopyFailed": "Could not copy",
       "shareDownloaded": "The file was saved",
-      "shareShared": "Shared"
+      "shareShared": "Shared",
+      "uploadPhotoPlain": "Photo (no crop, only made smaller)",
+      "uploadedSize": "Uploaded photo size: {bytes} bytes"
     }
   },
   "common": {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { formatNumber } from "../../../shared/format";
 import { useT } from "../../../shared/i18n";
 import { FileUpload, type UploadResult, type Uploader } from "../../../shared/upload";
 
@@ -29,6 +30,7 @@ export function UploadDemo() {
   const t = useT();
   const [fail, setFail] = useState(false);
   const [uploaded, setUploaded] = useState<UploadResult | null>(null);
+  const [plainSize, setPlainSize] = useState<number | null>(null);
   const upload = fakeUploader(() => fail);
   return (
     <div className="flex max-w-xl flex-col gap-4">
@@ -54,6 +56,16 @@ export function UploadDemo() {
         maxBytes={5 * 1024 * 1024}
         onUploaded={(result) => setUploaded(result)}
       />
+      <FileUpload
+        label={t("devkit.kit.uploadPhotoPlain")}
+        upload={upload}
+        onUploaded={(_result, blob) => setPlainSize(blob.size)}
+      />
+      {plainSize !== null ? (
+        <p className="m-0" data-testid="upload-plain-size" data-bytes={plainSize}>
+          {t("devkit.kit.uploadedSize", { bytes: formatNumber(plainSize) })}
+        </p>
+      ) : null}
       {uploaded ? (
         <p className="m-0" data-testid="upload-result">
           {t("devkit.kit.uploaded", { path: uploaded.path })}

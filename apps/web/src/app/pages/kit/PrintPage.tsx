@@ -5,11 +5,12 @@ import { PageBreak, PrintButton, PrintLayout } from "../../../shared/print";
 
 import { makeStudents } from "./demoData";
 
-const students = makeStudents(75);
+const ROWS_PER_PART = 18;
+const students = makeStudents(ROWS_PER_PART * 3);
 
 function Part({ index }: { index: number }) {
   const t = useT();
-  const rows = students.slice(index * 25, index * 25 + 25);
+  const rows = students.slice(index * ROWS_PER_PART, (index + 1) * ROWS_PER_PART);
   return (
     <section>
       <h2 style={{ margin: "0 0 3mm", fontSize: "13pt" }}>
@@ -27,7 +28,7 @@ function Part({ index }: { index: number }) {
         <tbody>
           {rows.map((s, i) => (
             <tr key={s.id}>
-              <td>{index * 25 + i + 1}</td>
+              <td>{index * ROWS_PER_PART + i + 1}</td>
               <td>{s.name}</td>
               <td>{s.section}</td>
               <td>{s.phone}</td>
