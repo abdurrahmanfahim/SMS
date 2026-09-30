@@ -22,7 +22,9 @@
     "db:test": "supabase test db",
     "db:types": "supabase gen types typescript --local --schema public | prettier --parser=typescript > packages/db/src/types.ts",
     "db:diff": "supabase db diff",
-    "db:push:staging": "echo 'Requires SUPABASE_ACCESS_TOKEN, SUPABASE_PROJECT_REF, SUPABASE_DB_PASSWORD in your shell env; never run this in CI. See docs/runbooks/supabase-setup.md.' && supabase db push --linked"
+    "db:push:staging": "echo 'Requires SUPABASE_ACCESS_TOKEN, SUPABASE_PROJECT_REF, SUPABASE_DB_PASSWORD in your shell env; never run this in CI. See docs/runbooks/supabase-setup.md.' && supabase db push --linked",
+    "seed:staging": "node scripts/seed-staging.mjs",
+    "test:scripts": "node --test scripts/*.test.mjs"
   },
   "devDependencies": {
     "prettier": "^3.3.3",
