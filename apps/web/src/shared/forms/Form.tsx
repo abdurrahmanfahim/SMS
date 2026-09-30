@@ -3,7 +3,6 @@ import { type ReactNode, useState } from "react";
 import {
   type FieldValues,
   FormProvider,
-  type SubmitHandler,
   type UseFormReturn,
   useFormContext,
 } from "react-hook-form";
@@ -14,7 +13,7 @@ import { useT } from "../i18n";
 export interface FormProps<TIn extends FieldValues, TOut> {
   form: UseFormReturn<TIn, unknown, TOut>;
   /** Called with the parsed values. Throwing or rejecting shows the "could not save" message and keeps every typed value. */
-  onSubmit: SubmitHandler<TOut & FieldValues> | ((values: TOut) => void | Promise<void>);
+  onSubmit: (values: TOut) => void | Promise<void>;
   children: ReactNode;
   className?: string;
   /** Accessible name of the form. */
@@ -38,7 +37,7 @@ export function Form<TIn extends FieldValues, TOut>({
   const submit = form.handleSubmit(async (values) => {
     setFailed(false);
     try {
-      await (onSubmit as (values: TOut) => void | Promise<void>)(values);
+      await onSubmit(values);
     } catch {
       setFailed(true);
     }

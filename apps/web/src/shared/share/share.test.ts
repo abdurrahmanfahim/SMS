@@ -51,6 +51,16 @@ describe("shareFile", () => {
     expect(nav["share"]).not.toHaveBeenCalled();
   });
 
+  it("keeps a Bangla title in the shared file name", async () => {
+    const share = vi.fn().mockResolvedValue(undefined);
+    nav["share"] = share;
+    nav["canShare"] = () => true;
+    await shareFile(pdf(), { title: "মার্কশিট ৬ষ্ঠ শ্রেণি" });
+    expect((share.mock.calls[0]![0] as { files: File[] }).files[0]!.name).toBe(
+      "মার্কশিট_৬ষ্ঠ_শ্রেণি.pdf",
+    );
+  });
+
   it("downloads when the browser cannot share files", async () => {
     const outcome = await shareFile(pdf(), { title: "রিপোর্ট", fileName: "report.pdf" });
     expect(outcome).toBe("downloaded");

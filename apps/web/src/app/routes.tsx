@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { Navigate, type RouteObject } from "react-router-dom";
 
 import { devToolsEnabled } from "../shared/devtools";
@@ -5,7 +6,6 @@ import { devToolsEnabled } from "../shared/devtools";
 import { features } from "./features";
 import { GroupGuard } from "./guards";
 import { AppLayout } from "./layout/AppLayout";
-import { DevKit } from "./pages/DevKit";
 import { InstallGuide } from "./pages/InstallGuide";
 import { Placeholder } from "./pages/Placeholder";
 import { SampleForm } from "./pages/SampleForm";
@@ -51,6 +51,30 @@ export function partitionFeatureRoutes(
 }
 
 /**
+ * Dev-only pages (component kit, sample form, print sample). They are created inside the
+ * `devToolsEnabled` check so a production build drops them, and they load lazily so their
+ * weight (tables, forms, uploads) never reaches the first bundle.
+ */
+function devRoutes(): RouteObject[] {
+  if (!devToolsEnabled) return [];
+  const DevKit = lazy(() => import("./pages/DevKit").then((m) => ({ default: m.DevKit })));
+  const PrintPage = lazy(() =>
+    import("./pages/kit/PrintPage").then((m) => ({ default: m.PrintPage })),
+  );
+  return [
+    {
+      path: "/dev",
+      element: <AppLayout />,
+      children: [
+        { path: "kit", element: <DevKit /> },
+        { path: "form", element: <SampleForm /> },
+        { path: "print", element: <PrintPage /> },
+      ],
+    },
+  ];
+}
+
+/**
  * The shell's route table. Groups: /auth/*, /app/* (staff), /platform/* (platform console),
  * /parent/* (guardian). Feature routes are merged in by step 2.
  */
@@ -79,18 +103,7 @@ export function createShellRoutes(
       element: <AppLayout />,
       children: [{ index: true, element: <InstallGuide /> }],
     },
-    ...(devToolsEnabled
-      ? [
-          {
-            path: "/dev",
-            element: <AppLayout />,
-            children: [
-              { path: "kit", element: <DevKit /> },
-              { path: "form", element: <SampleForm /> },
-            ],
-          },
-        ]
-      : []),
+    ...devRoutes(),
     { path: "*", element: <Navigate to="/" replace /> },
   ];
 }

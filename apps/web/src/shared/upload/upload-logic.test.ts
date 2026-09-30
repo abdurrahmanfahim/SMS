@@ -127,6 +127,11 @@ describe("safeFileName", () => {
     expect(safeFileName("...")).toBe("file");
     expect(safeFileName("", "photo.jpg")).toBe("photo.jpg");
   });
+  it("keeps Bangla letters only when asked (downloads and shares, not storage keys)", () => {
+    expect(safeFileName("মার্কশিট ৬ষ্ঠ.pdf", "file", { unicode: true })).toBe("মার্কশিট_৬ষ্ঠ.pdf");
+    expect(safeFileName("মার্কশিট ৬ষ্ঠ.pdf")).toMatch(/^[\w.-]+$/);
+    expect(safeFileName("../../ফলাফল.pdf", "file", { unicode: true })).toBe("ফলাফল.pdf");
+  });
   it("keeps a normal name and limits the length", () => {
     expect(safeFileName("logo.png")).toBe("logo.png");
     expect(safeFileName("a".repeat(200) + ".png").length).toBeLessThanOrEqual(80);

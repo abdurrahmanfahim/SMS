@@ -15,14 +15,20 @@ export interface UploadResult {
 /** Sends one blob to storage. Reject on failure; honour `signal` to cancel. */
 export type Uploader = (blob: Blob, context: UploadContext) => Promise<UploadResult>;
 
-/** A file name that is safe inside a storage path: no folders, no odd characters. */
-export function safeFileName(name: string, fallback = "file"): string {
+/**
+ * A file name that is safe inside a path: no folders, no odd characters, at most 80 characters.
+ *
+ * Storage keys should stay ASCII, so by default anything else becomes `_`. Pass `unicode: true` for
+ * names that only leave the device as a download or a shared file, where Bangla letters are fine.
+ */
+export function safeFileName(name: string, fallback = "file", { unicode = false } = {}): string {
   // Keep only the last path segment, so `../../etc/passwd` becomes `passwd`.
   const base = name.split(/[\\/]/).pop() ?? "";
+  const allowed = unicode ? /[^\p{L}\p{M}\p{N}_.-]+/gu : /[^\w.-]+/g;
   const cleaned = base
-    .normalize("NFKD")
+    .normalize(unicode ? "NFC" : "NFKD")
     .replace(/\.{2,}/g, ".")
-    .replace(/[^\w.-]+/g, "_")
+    .replace(allowed, "_")
     .replace(/^\.+/, "")
     .replace(/_+/g, "_")
     .slice(-80);

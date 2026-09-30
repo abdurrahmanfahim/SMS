@@ -35,14 +35,15 @@ export function canShareFiles(files: File[]): boolean {
 }
 
 function nameFor(source: Blob | string, options: ShareOptions): string {
-  if (options.fileName) return safeFileName(options.fileName);
+  if (options.fileName) return safeFileName(options.fileName, "file", { unicode: true });
   if (typeof source === "string") {
     const last = source.split("?")[0]?.split("/").pop();
-    if (last && last.includes(".")) return safeFileName(decodeURIComponent(last));
+    if (last && last.includes("."))
+      return safeFileName(decodeURIComponent(last), "file", { unicode: true });
   }
   const type = typeof source === "string" ? "" : source.type;
   const extension = EXTENSIONS[type];
-  const base = safeFileName(options.title, "file");
+  const base = safeFileName(options.title, "file", { unicode: true });
   return extension && !base.endsWith(`.${extension}`) ? `${base}.${extension}` : base;
 }
 
