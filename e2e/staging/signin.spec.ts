@@ -38,7 +38,9 @@ test.describe("walking skeleton on staging", () => {
     await expect(page).toHaveURL(/\/auth\/sign-in$/);
   });
 
-  test("the two-institution user gets the picker and can reach both dashboards", async ({ page }) => {
+  test("the two-institution user gets the picker and can reach both dashboards", async ({
+    page,
+  }) => {
     await signIn(page, account("MULTI"));
     await expect(page).toHaveURL(/\/auth\/pick-institution$/);
     await page.getByRole("button", { name: SCHOOL }).click();

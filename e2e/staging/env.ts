@@ -11,5 +11,8 @@ export interface Account {
 }
 
 export function account(kind: "SINGLE" | "MULTI" | "OTHER"): Account {
-  return { email: need(`E2E_STAGING_${kind}_EMAIL`), password: need(`E2E_STAGING_${kind}_PASSWORD`) };
+  return {
+    email: need(`E2E_STAGING_${kind}_EMAIL`),
+    password: need(`E2E_STAGING_${kind}_PASSWORD`),
+  };
 }

@@ -35,18 +35,30 @@ test.describe("RLS probe on staging", () => {
     const a = await token(url, key, account("SINGLE"));
     const b = await token(url, key, account("OTHER"));
 
-    const bInstitutions = await rest<{ id: string; slug: string }>(url, key, b, "institutions?select=id,slug");
+    const bInstitutions = await rest<{ id: string; slug: string }>(
+      url,
+      key,
+      b,
+      "institutions?select=id,slug",
+    );
     expect(bInstitutions.map((i) => i.slug)).toEqual(["staging-madrasa"]);
     const bId = bInstitutions[0]?.id ?? "";
 
-    const aInstitutions = await rest<{ id: string; slug: string }>(url, key, a, "institutions?select=id,slug");
+    const aInstitutions = await rest<{ id: string; slug: string }>(
+      url,
+      key,
+      a,
+      "institutions?select=id,slug",
+    );
     expect(aInstitutions.map((i) => i.slug)).toEqual(["staging-school"]);
     expect(await rest(url, key, a, `institutions?id=eq.${bId}&select=id`)).toEqual([]);
     expect(await rest(url, key, a, `memberships?institution_id=eq.${bId}&select=id`)).toEqual([]);
 
     const bProfiles = await rest<{ id: string }>(url, key, b, "profiles?select=id");
     expect(bProfiles).toHaveLength(1);
-    expect(await rest(url, key, a, `profiles?id=eq.${bProfiles[0]?.id ?? ""}&select=id`)).toEqual([]);
+    expect(await rest(url, key, a, `profiles?id=eq.${bProfiles[0]?.id ?? ""}&select=id`)).toEqual(
+      [],
+    );
   });
 
   test("a client cannot write tenancy tables, and anonymous requests are refused", async () => {
