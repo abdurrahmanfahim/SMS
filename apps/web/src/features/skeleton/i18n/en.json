@@ -1,0 +1,29 @@
+{
+  "skeleton": {
+    "signIn": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "required": "Fill in this field.",
+      "invalid": "Email or password is not correct.",
+      "failed": "Could not sign in. Check your internet and try again."
+    },
+    "picker": {
+      "title": "Choose an institution",
+      "hint": "Which institution do you want to work in?"
+    },
+    "dashboard": {
+      "greeting": "Welcome, {name}",
+      "institution": "Institution",
+      "role": "Role",
+      "switch": "Switch institution",
+      "signOut": "Sign out",
+      "noInstitution": "You have no active institution. Contact your institution's admin."
+    },
+    "state": {
+      "unconfigured": "The app is not connected to the database yet."
+    }
+  }
+}
