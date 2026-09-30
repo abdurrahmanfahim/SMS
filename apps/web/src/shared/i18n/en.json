@@ -250,5 +250,16 @@
     "preview": {
       "alt": "Selected photo"
     }
+  },
+  "print": {
+    "action": {
+      "print": "Print"
+    },
+    "page": {
+      "number": "Page"
+    },
+    "preview": {
+      "label": "Print preview (A4)"
+    }
   }
 }
