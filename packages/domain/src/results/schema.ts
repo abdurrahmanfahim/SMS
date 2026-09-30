@@ -30,7 +30,11 @@ export const passRuleSchema = z.strictObject({
   groups: z.array(groupSchema).default([]),
 });
 
-const rankingSchema = z.strictObject({
+/**
+ * zod schema of the `ranking` block of a grade scheme (spec §6, §7): the ordered sort keys, how
+ * ties are numbered, which scopes to rank in and whether failed students are ranked.
+ */
+export const rankingSchema = z.strictObject({
   order: z.array(nonEmptyString).min(1),
   ties: z.enum(["competition", "dense"]),
   scopes: z.array(z.enum(["class", "section"])).min(1),

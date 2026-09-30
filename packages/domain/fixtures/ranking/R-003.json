@@ -1,0 +1,112 @@
+{
+  "id": "R-003",
+  "title": "include_failed: failed ranks after passed when outcome is first key",
+  "config": {
+    "ties": "competition",
+    "scopes": [
+      "class",
+      "section"
+    ],
+    "include_failed": true,
+    "order": [
+      "outcome",
+      "total_desc",
+      "roll_asc"
+    ]
+  },
+  "rows": [
+    {
+      "student_id": "a",
+      "roll": 1,
+      "section_id": "A",
+      "outcome": "passed",
+      "total": 50000,
+      "gpa": 500,
+      "subjects": {}
+    },
+    {
+      "student_id": "b",
+      "roll": 2,
+      "section_id": "A",
+      "outcome": "passed",
+      "total": 48000,
+      "gpa": 480,
+      "subjects": {}
+    },
+    {
+      "student_id": "c",
+      "roll": 3,
+      "section_id": "B",
+      "outcome": "passed",
+      "total": 48000,
+      "gpa": 480,
+      "subjects": {}
+    },
+    {
+      "student_id": "d",
+      "roll": 4,
+      "section_id": "B",
+      "outcome": "passed",
+      "total": 47000,
+      "gpa": 450,
+      "subjects": {}
+    },
+    {
+      "student_id": "e",
+      "roll": 5,
+      "section_id": "A",
+      "outcome": "failed",
+      "total": 52000,
+      "gpa": 0,
+      "subjects": {}
+    },
+    {
+      "student_id": "f",
+      "roll": 6,
+      "section_id": "B",
+      "outcome": "absent",
+      "total": null,
+      "gpa": null,
+      "subjects": {}
+    },
+    {
+      "student_id": "g",
+      "roll": 7,
+      "section_id": "A",
+      "outcome": "withheld",
+      "total": null,
+      "gpa": null,
+      "subjects": {}
+    }
+  ],
+  "expected": {
+    "a": [
+      1,
+      1
+    ],
+    "b": [
+      2,
+      2
+    ],
+    "c": [
+      3,
+      1
+    ],
+    "d": [
+      4,
+      2
+    ],
+    "e": [
+      5,
+      3
+    ],
+    "f": [
+      null,
+      null
+    ],
+    "g": [
+      null,
+      null
+    ]
+  }
+}
