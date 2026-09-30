@@ -3,16 +3,9 @@
   "title": "competition ties (1,2,2,4), failed/absent/withheld unranked",
   "config": {
     "ties": "competition",
-    "scopes": [
-      "class",
-      "section"
-    ],
+    "scopes": ["class", "section"],
     "include_failed": false,
-    "order": [
-      "outcome",
-      "total_desc",
-      "gpa_desc"
-    ]
+    "order": ["outcome", "total_desc", "gpa_desc"]
   },
   "rows": [
     {
@@ -80,33 +73,12 @@
     }
   ],
   "expected": {
-    "a": [
-      1,
-      1
-    ],
-    "b": [
-      2,
-      2
-    ],
-    "c": [
-      2,
-      1
-    ],
-    "d": [
-      4,
-      2
-    ],
-    "e": [
-      null,
-      null
-    ],
-    "f": [
-      null,
-      null
-    ],
-    "g": [
-      null,
-      null
-    ]
+    "a": [1, 1],
+    "b": [2, 2],
+    "c": [2, 1],
+    "d": [4, 2],
+    "e": [null, null],
+    "f": [null, null],
+    "g": [null, null]
   }
 }

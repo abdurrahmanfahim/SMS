@@ -3,16 +3,9 @@
   "title": "include_failed: failed ranks after passed when outcome is first key",
   "config": {
     "ties": "competition",
-    "scopes": [
-      "class",
-      "section"
-    ],
+    "scopes": ["class", "section"],
     "include_failed": true,
-    "order": [
-      "outcome",
-      "total_desc",
-      "roll_asc"
-    ]
+    "order": ["outcome", "total_desc", "roll_asc"]
   },
   "rows": [
     {
@@ -80,33 +73,12 @@
     }
   ],
   "expected": {
-    "a": [
-      1,
-      1
-    ],
-    "b": [
-      2,
-      2
-    ],
-    "c": [
-      3,
-      1
-    ],
-    "d": [
-      4,
-      2
-    ],
-    "e": [
-      5,
-      3
-    ],
-    "f": [
-      null,
-      null
-    ],
-    "g": [
-      null,
-      null
-    ]
+    "a": [1, 1],
+    "b": [2, 2],
+    "c": [3, 1],
+    "d": [4, 2],
+    "e": [5, 3],
+    "f": [null, null],
+    "g": [null, null]
   }
 }

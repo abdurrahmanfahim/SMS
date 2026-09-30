@@ -3,14 +3,9 @@
   "title": "same rows without roll_asc tie completely (competition)",
   "config": {
     "ties": "competition",
-    "scopes": [
-      "class"
-    ],
+    "scopes": ["class"],
     "include_failed": false,
-    "order": [
-      "total_desc",
-      "subject:math_desc"
-    ]
+    "order": ["total_desc", "subject:math_desc"]
   },
   "rows": [
     {
@@ -63,21 +58,9 @@
     }
   ],
   "expected": {
-    "p": [
-      1,
-      null
-    ],
-    "q": [
-      2,
-      null
-    ],
-    "r": [
-      2,
-      null
-    ],
-    "s": [
-      4,
-      null
-    ]
+    "p": [1, null],
+    "q": [2, null],
+    "r": [2, null],
+    "s": [4, null]
   }
 }

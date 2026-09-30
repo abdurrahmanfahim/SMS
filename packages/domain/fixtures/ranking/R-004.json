@@ -3,15 +3,9 @@
   "title": "include_failed without outcome key: failed mixed in by total",
   "config": {
     "ties": "competition",
-    "scopes": [
-      "class",
-      "section"
-    ],
+    "scopes": ["class", "section"],
     "include_failed": true,
-    "order": [
-      "total_desc",
-      "roll_asc"
-    ]
+    "order": ["total_desc", "roll_asc"]
   },
   "rows": [
     {
@@ -79,33 +73,12 @@
     }
   ],
   "expected": {
-    "e": [
-      1,
-      1
-    ],
-    "a": [
-      2,
-      2
-    ],
-    "b": [
-      3,
-      3
-    ],
-    "c": [
-      4,
-      1
-    ],
-    "d": [
-      5,
-      2
-    ],
-    "f": [
-      null,
-      null
-    ],
-    "g": [
-      null,
-      null
-    ]
+    "e": [1, 1],
+    "a": [2, 2],
+    "b": [3, 3],
+    "c": [4, 1],
+    "d": [5, 2],
+    "f": [null, null],
+    "g": [null, null]
   }
 }

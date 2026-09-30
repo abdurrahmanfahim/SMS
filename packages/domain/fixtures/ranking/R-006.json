@@ -3,15 +3,9 @@
   "title": "subject key decides, missing subject ranks last, roll breaks the final tie",
   "config": {
     "ties": "competition",
-    "scopes": [
-      "class"
-    ],
+    "scopes": ["class"],
     "include_failed": false,
-    "order": [
-      "total_desc",
-      "subject:math_desc",
-      "roll_asc"
-    ]
+    "order": ["total_desc", "subject:math_desc", "roll_asc"]
   },
   "rows": [
     {
@@ -64,21 +58,9 @@
     }
   ],
   "expected": {
-    "p": [
-      1,
-      null
-    ],
-    "q": [
-      2,
-      null
-    ],
-    "r": [
-      3,
-      null
-    ],
-    "s": [
-      4,
-      null
-    ]
+    "p": [1, null],
+    "q": [2, null],
+    "r": [3, null],
+    "s": [4, null]
   }
 }

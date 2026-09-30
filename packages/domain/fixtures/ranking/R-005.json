@@ -3,14 +3,9 @@
   "title": "class scope only",
   "config": {
     "ties": "competition",
-    "scopes": [
-      "class"
-    ],
+    "scopes": ["class"],
     "include_failed": false,
-    "order": [
-      "total_desc",
-      "roll_asc"
-    ]
+    "order": ["total_desc", "roll_asc"]
   },
   "rows": [
     {
@@ -78,33 +73,12 @@
     }
   ],
   "expected": {
-    "a": [
-      1,
-      null
-    ],
-    "b": [
-      2,
-      null
-    ],
-    "c": [
-      3,
-      null
-    ],
-    "d": [
-      4,
-      null
-    ],
-    "e": [
-      null,
-      null
-    ],
-    "f": [
-      null,
-      null
-    ],
-    "g": [
-      null,
-      null
-    ]
+    "a": [1, null],
+    "b": [2, null],
+    "c": [3, null],
+    "d": [4, null],
+    "e": [null, null],
+    "f": [null, null],
+    "g": [null, null]
   }
 }
