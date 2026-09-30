@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 
-import { computeExam, type ExamInput } from "./compute.js";
+import { computeExam } from "./compute.js";
 import { BD_GENERAL_GPA5 } from "./presets.js";
 import {
   rankResults,
@@ -13,6 +13,7 @@ import {
   type RankingConfig,
   type ResultRow,
 } from "./ranking.js";
+import { type ExamInput } from "./schema.js";
 import { makeRow, subject } from "./testing/rows.js";
 
 type FixtureRow = {
