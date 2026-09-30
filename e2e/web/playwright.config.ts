@@ -21,7 +21,7 @@ export default defineConfig({
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
     command:
-      "pnpm --filter @sms/web build && pnpm --filter @sms/web preview --port 4174 --strictPort",
+      "pnpm --filter @sms/web build && cd ../../apps/web && exec ./node_modules/.bin/vite preview --host 127.0.0.1 --port 4174 --strictPort",
     env: { VITE_ENABLE_DEV_TOOLS: "true" },
     url: "http://127.0.0.1:4174",
     // never reuse: a leftover server could serve a build without the dev tools this suite needs
