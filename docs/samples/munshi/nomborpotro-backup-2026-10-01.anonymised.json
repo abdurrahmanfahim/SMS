@@ -1,0 +1,3076 @@
+{
+ "app": "marksheet-mumtahin",
+ "version": 1,
+ "exportedAt": "2026-10-01T12:02:40.875Z",
+ "data": {
+  "years": [
+   {
+    "name": "২০২৬",
+    "createdAt": 1786910736163,
+    "id": 1
+   }
+  ],
+  "classes": [
+   {
+    "yearId": 1,
+    "name": "নাহবেমির",
+    "createdAt": 1786910742081,
+    "id": 1
+   },
+   {
+    "yearId": 1,
+    "name": "naseed",
+    "createdAt": 1787758730747,
+    "id": 2
+   }
+  ],
+  "roster": [
+   {
+    "classId": 1,
+    "name": "ছাত্র ১",
+    "admissionNo": "০১",
+    "rollNo": "১২",
+    "createdAt": 1786910755468,
+    "id": 1,
+    "union": "",
+    "thana": "",
+    "district": "",
+    "village": "",
+    "fatherName": "",
+    "guardianPhone": "01700000001",
+    "enrollmentType": "",
+    "residency": "",
+    "status": "active"
+   },
+   {
+    "classId": 1,
+    "name": "ছাত্র ২",
+    "admissionNo": "০২",
+    "rollNo": "১৩",
+    "createdAt": 1786910774555,
+    "id": 2,
+    "union": "",
+    "thana": "",
+    "district": "",
+    "village": "",
+    "fatherName": "",
+    "guardianPhone": "01700000002",
+    "enrollmentType": "",
+    "residency": "",
+    "status": "active"
+   },
+   {
+    "classId": 1,
+    "name": "ছাত্র ৩",
+    "admissionNo": "০৩",
+    "rollNo": "১৪",
+    "createdAt": 1786910792158,
+    "id": 3,
+    "union": "",
+    "thana": "",
+    "district": "",
+    "village": "",
+    "fatherName": "",
+    "guardianPhone": "",
+    "enrollmentType": "",
+    "residency": "",
+    "status": "left"
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৪",
+    "admissionNo": "প্রথম শ্রেণী",
+    "rollNo": "",
+    "createdAt": 1787758743706,
+    "id": 4,
+    "union": "",
+    "thana": "",
+    "district": "",
+    "village": "",
+    "fatherName": "",
+    "guardianPhone": "01700000004",
+    "enrollmentType": "",
+    "residency": "",
+    "status": "active"
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৫",
+    "admissionNo": "দ্বিতীয় শ্রেণি",
+    "rollNo": "",
+    "createdAt": 1787758752171,
+    "id": 5,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৬",
+    "admissionNo": "প্রথম শ্রেণী",
+    "rollNo": "",
+    "createdAt": 1787758776134,
+    "id": 6,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৭",
+    "admissionNo": "তৃতীয় শ্রেণি",
+    "rollNo": "",
+    "createdAt": 1787758790340,
+    "id": 7,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৮",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787758810963,
+    "id": 8,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৯",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787758831520,
+    "id": 9,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১০",
+    "admissionNo": "শরহে বেকায়া",
+    "rollNo": "",
+    "createdAt": 1787758842346,
+    "id": 10,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১১",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787758859612,
+    "id": 11,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১২",
+    "admissionNo": "শরহে বেকায়া",
+    "rollNo": "",
+    "createdAt": 1787758872327,
+    "id": 12,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১৩",
+    "admissionNo": "নাযেরা বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787758890074,
+    "id": 13,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১৪",
+    "admissionNo": "নাহবেমির ",
+    "rollNo": "",
+    "createdAt": 1787758906201,
+    "id": 14,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১৫",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787758925520,
+    "id": 15,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১৬",
+    "admissionNo": "শরহে বেকায়া",
+    "rollNo": "",
+    "createdAt": 1787758939277,
+    "id": 16,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১৮",
+    "admissionNo": "শরহে বেকায়া ",
+    "rollNo": "",
+    "createdAt": 1787759004063,
+    "id": 18,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ১৯",
+    "admissionNo": "কিতাব বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787759041457,
+    "id": 19,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২০",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787759102785,
+    "id": 20,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২১",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787759166391,
+    "id": 21,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২২",
+    "admissionNo": "নাজেরা বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787759529819,
+    "id": 22,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৩",
+    "admissionNo": "নাহবেমির ",
+    "rollNo": "",
+    "createdAt": 1787759902304,
+    "id": 23,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৪",
+    "admissionNo": "নাহবেমির ",
+    "rollNo": "",
+    "createdAt": 1787760998150,
+    "id": 24,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৫",
+    "admissionNo": "দ্বিতীয় শ্রেণি",
+    "rollNo": "",
+    "createdAt": 1787761015124,
+    "id": 25,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৬",
+    "admissionNo": "হিফজ বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787761032416,
+    "id": 26,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৭",
+    "admissionNo": "দ্বিতীয় শ্রেণি",
+    "rollNo": "",
+    "createdAt": 1787761051234,
+    "id": 27,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৮",
+    "admissionNo": "নাজেরা বিভাগ",
+    "rollNo": "",
+    "createdAt": 1787761064355,
+    "id": 28,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ২৯",
+    "admissionNo": "কাফিয়া ",
+    "rollNo": "",
+    "createdAt": 1787761090259,
+    "id": 29,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৩০",
+    "admissionNo": "উর্দু জামাত ",
+    "rollNo": "",
+    "createdAt": 1787761125816,
+    "id": 30,
+    "union": "",
+    "thana": "",
+    "district": ""
+   },
+   {
+    "classId": 2,
+    "name": "ছাত্র ৩১",
+    "admissionNo": "উর্দু জামাত",
+    "rollNo": "",
+    "createdAt": 1787761424704,
+    "id": 31,
+    "union": "",
+    "thana": "",
+    "district": ""
+   }
+  ],
+  "forms": [
+   {
+    "classId": 1,
+    "name": "প্রথম সাময়িক পরীক্ষা",
+    "fields": [
+     {
+      "id": "f_msw8lrfv_l39rj",
+      "type": "serial_no",
+      "label": "ক্রমিক নং",
+      "config": {
+       "start": 1,
+       "numberFormat": "bn"
+      }
+     },
+     {
+      "id": "f_msw8lyuu_4glap",
+      "type": "roster_admission",
+      "label": "ভর্তি নং",
+      "config": {}
+     },
+     {
+      "id": "f_msw8m37x_fcaxp",
+      "type": "roster_name",
+      "label": "নাম",
+      "config": {}
+     },
+     {
+      "id": "f_msw8m9if_6gdii",
+      "type": "raw_marks",
+      "label": "মিজান",
+      "config": {
+       "max": 150
+      }
+     },
+     {
+      "id": "f_msw8mfh0_opdfe",
+      "type": "raw_marks",
+      "label": "তারিখ",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_msw8msf6_0oqlu",
+      "type": "raw_marks",
+      "label": "মিয়াতে অমিল",
+      "config": {
+       "max": 50
+      }
+     },
+     {
+      "id": "f_msw8nu8f_hew86",
+      "type": "average",
+      "label": "গড় নাম্বার",
+      "config": {
+       "sourceFieldIds": [
+        "f_msw8m9if_6gdii",
+        "f_msw8mfh0_opdfe",
+        "f_msw8msf6_0oqlu"
+       ],
+       "divisor": null,
+       "numberFormat": "bn",
+       "usePercentage": true
+      }
+     },
+     {
+      "id": "f_msw8o16v_5cmfj",
+      "type": "total",
+      "label": "মোট নাম্বার",
+      "config": {
+       "sourceFieldIds": [
+        "f_msw8m9if_6gdii",
+        "f_msw8mfh0_opdfe",
+        "f_msw8msf6_0oqlu"
+       ],
+       "numberFormat": "bn",
+       "usePercentage": false
+      }
+     },
+     {
+      "id": "f_msw8o7hu_s0249",
+      "type": "grade",
+      "label": "স্তর (গ্রেড)",
+      "config": {
+       "sourceFieldId": "f_msw8nu8f_hew86",
+       "ranges": [
+        {
+         "min": 80,
+         "max": 100,
+         "label": "A+"
+        },
+        {
+         "min": 70,
+         "max": 79,
+         "label": "A"
+        },
+        {
+         "min": 60,
+         "max": 69,
+         "label": "A-"
+        },
+        {
+         "min": 33,
+         "max": 59,
+         "label": "পাস"
+        },
+        {
+         "min": 0,
+         "max": 32,
+         "label": "ফেল"
+        }
+       ]
+      }
+     }
+    ],
+    "createdAt": 1786910879661,
+    "id": 1
+   },
+   {
+    "classId": 2,
+    "name": "নাশীদ",
+    "fields": [
+     {
+      "id": "f_mtaa40jq_yzpbd",
+      "type": "serial_no",
+      "label": "ক্রমিক নং",
+      "config": {
+       "start": 1,
+       "numberFormat": "bn"
+      }
+     },
+     {
+      "id": "f_mtaa457k_aa5f4",
+      "type": "roster_name",
+      "label": "নাম",
+      "config": {}
+     },
+     {
+      "id": "f_mtaa4eba_cmm1j",
+      "type": "roster_admission",
+      "label": "শ্রেণি",
+      "config": {}
+     },
+     {
+      "id": "f_mtaa4t9h_zvqz0",
+      "type": "raw_marks",
+      "label": "বিচারক ১",
+      "config": {
+       "max": 10
+      }
+     },
+     {
+      "id": "f_mtaa5pez_9ehwr",
+      "type": "raw_marks",
+      "label": "বিচারক ২",
+      "config": {
+       "max": 10
+      }
+     },
+     {
+      "id": "f_mtaa67be_t4s7z",
+      "type": "raw_marks",
+      "label": "বিচারক ৩",
+      "config": {
+       "max": 10
+      }
+     },
+     {
+      "id": "f_mtaa6h1x_p0btn",
+      "type": "total",
+      "label": "মোট নাম্বার",
+      "config": {
+       "sourceFieldIds": [
+        "f_mtaa4t9h_zvqz0",
+        "f_mtaa5pez_9ehwr",
+        "f_mtaa67be_t4s7z"
+       ],
+       "numberFormat": "bn"
+      }
+     },
+     {
+      "id": "f_mtaa6nei_ki6km",
+      "type": "merit_rank",
+      "label": "মেধাস্থান",
+      "config": {
+       "sourceFieldId": "f_mtaa6h1x_p0btn",
+       "topN": 10,
+       "numberFormat": "bn"
+      }
+     }
+    ],
+    "createdAt": 1787759937044,
+    "id": 2,
+    "reportSettings": {
+     "headerOrientation": "btt"
+    }
+   },
+   {
+    "classId": 1,
+    "name": "প্রথম সাময়িক পরীক্ষা",
+    "fields": [],
+    "createdAt": 1788000516993,
+    "id": 3
+   },
+   {
+    "classId": 1,
+    "name": "দ্বিতীয় সাময়িক পরীক্ষা",
+    "fields": [
+     {
+      "id": "f_mte9rr7i_hqs5e",
+      "type": "serial_no",
+      "label": "ক্রমিক",
+      "config": {
+       "start": 1,
+       "numberFormat": "bn"
+      }
+     },
+     {
+      "id": "f_mte9sazl_kts39",
+      "type": "roster_admission",
+      "label": "দাখেলা নং",
+      "config": {}
+     },
+     {
+      "id": "f_mte9smhe_lp38q",
+      "type": "roster_name",
+      "label": "পরীক্ষার্থীর নাম",
+      "config": {}
+     },
+     {
+      "id": "f_mte9uucq_f5r2z",
+      "type": "raw_marks",
+      "label": "নাহবেমির",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9wdwg_9ouws",
+      "type": "raw_marks",
+      "label": "ইলমুস সরফ",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9xdxs_o1mqm",
+      "type": "raw_marks",
+      "label": "মিয়াতে অমিল",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9ueki_2a9u6",
+      "type": "raw_marks",
+      "label": "ফিকহুল মুয়াসসার",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9wwfv_jy72u",
+      "type": "raw_marks",
+      "label": "রওজাতুল আদব",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9tc41_nm6rj",
+      "type": "raw_marks",
+      "label": "গুলিস্তা",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9vnrl_6ywue",
+      "type": "raw_marks",
+      "label": "সীরাতে খাতামুল আম্বিয়া",
+      "config": {
+       "max": 100
+      }
+     },
+     {
+      "id": "f_mte9zkal_rzxuh",
+      "type": "average",
+      "label": "গড় নাম্বার",
+      "config": {
+       "sourceFieldIds": [
+        "f_mte9uucq_f5r2z",
+        "f_mte9wdwg_9ouws",
+        "f_mte9xdxs_o1mqm",
+        "f_mte9ueki_2a9u6",
+        "f_mte9wwfv_jy72u",
+        "f_mte9tc41_nm6rj",
+        "f_mte9vnrl_6ywue"
+       ],
+       "divisor": null,
+       "numberFormat": "bn",
+       "usePercentage": false
+      }
+     },
+     {
+      "id": "f_mte9zwkw_54hbe",
+      "type": "total",
+      "label": "মোট নাম্বার",
+      "config": {
+       "sourceFieldIds": [
+        "f_mte9uucq_f5r2z",
+        "f_mte9wdwg_9ouws",
+        "f_mte9xdxs_o1mqm",
+        "f_mte9ueki_2a9u6",
+        "f_mte9wwfv_jy72u",
+        "f_mte9tc41_nm6rj",
+        "f_mte9vnrl_6ywue"
+       ],
+       "numberFormat": "bn"
+      }
+     },
+     {
+      "id": "f_mtea2z05_4b4na",
+      "type": "grade",
+      "label": "স্তর (গ্রেড)",
+      "config": {
+       "sourceFieldId": "f_mte9zkal_rzxuh",
+       "ranges": [
+        {
+         "min": 80,
+         "max": 100,
+         "label": "মুমতাজ"
+        },
+        {
+         "min": 65,
+         "max": 79,
+         "label": "জায়্যিদ জিদ্দা"
+        },
+        {
+         "min": 45,
+         "max": 65,
+         "label": "জায়্যিদ"
+        },
+        {
+         "min": 33,
+         "max": 44,
+         "label": "মাকবুল "
+        },
+        {
+         "min": 0,
+         "max": 32,
+         "label": "রাসিব"
+        }
+       ]
+      }
+     },
+     {
+      "id": "f_mtea3l9y_wuc7a",
+      "type": "merit_rank",
+      "label": "মেধাস্থান",
+      "config": {
+       "sourceFieldId": "f_mte9zwkw_54hbe",
+       "topN": 3,
+       "numberFormat": "bn"
+      }
+     }
+    ],
+    "createdAt": 1788001178227,
+    "id": 4,
+    "instituteOverride": {
+     "id": "main",
+     "name": "পরীক্ষামূলক মাদরাসা",
+     "address": "ঠিকানা গোপন",
+     "footnote": "যেকোনো পরিস্থিতিতে ফলাফল পরিবর্তন হতে পারে।"
+    },
+    "reportSettings": {
+     "headerOrientation": "btt"
+    }
+   },
+   {
+    "classId": 1,
+    "name": "বার্ষিক পরীক্ষা",
+    "fields": [
+     {
+      "id": "f_mthfa6t7_udqic",
+      "type": "serial_no",
+      "label": "ক্রমিক নং",
+      "config": {
+       "start": 1,
+       "numberFormat": "bn"
+      }
+     },
+     {
+      "id": "f_mthfaa43_3c4oc",
+      "type": "roster_name",
+      "label": "নাম",
+      "config": {}
+     },
+     {
+      "id": "f_mthfahik_lr57w",
+      "type": "raw_marks",
+      "label": "ইলমুস সরফ",
+      "config": {
+       "max": 100
+      }
+     }
+    ],
+    "createdAt": 1788191888033,
+    "id": 5
+   }
+  ],
+  "responses": [
+   {
+    "formId": 1,
+    "studentId": 1,
+    "values": {
+     "f_msw8m9if_6gdii": "৯০",
+     "f_msw8mfh0_opdfe": "৮৫",
+     "f_msw8msf6_0oqlu": "৪০"
+    },
+    "checkedFieldIds": [
+     "f_msw8m9if_6gdii",
+     "f_msw8mfh0_opdfe",
+     "f_msw8msf6_0oqlu"
+    ],
+    "isDraft": false,
+    "updatedAt": 1786911083864,
+    "id": 1
+   },
+   {
+    "formId": 1,
+    "studentId": 2,
+    "values": {
+     "f_msw8m9if_6gdii": "৫৮",
+     "f_msw8mfh0_opdfe": "৬৫",
+     "f_msw8msf6_0oqlu": "২৫"
+    },
+    "checkedFieldIds": [
+     "f_msw8m9if_6gdii",
+     "f_msw8mfh0_opdfe",
+     "f_msw8msf6_0oqlu"
+    ],
+    "isDraft": false,
+    "updatedAt": 1786911100191,
+    "id": 2
+   },
+   {
+    "formId": 1,
+    "studentId": 3,
+    "values": {
+     "f_msw8m9if_6gdii": "৫৮",
+     "f_msw8mfh0_opdfe": "৬৫",
+     "f_msw8msf6_0oqlu": "২৫"
+    },
+    "checkedFieldIds": [
+     "f_msw8m9if_6gdii",
+     "f_msw8mfh0_opdfe",
+     "f_msw8msf6_0oqlu"
+    ],
+    "isDraft": false,
+    "updatedAt": 1786911113143,
+    "id": 3
+   },
+   {
+    "formId": 2,
+    "studentId": 4,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৫",
+     "f_mtaa5pez_9ehwr": "৮",
+     "f_mtaa67be_t4s7z": "৬"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762790202,
+    "id": 4
+   },
+   {
+    "formId": 2,
+    "studentId": 5,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৫",
+     "f_mtaa5pez_9ehwr": "৯",
+     "f_mtaa67be_t4s7z": "৭"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762791270,
+    "id": 5
+   },
+   {
+    "formId": 2,
+    "studentId": 6,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "৮",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762792095,
+    "id": 6
+   },
+   {
+    "formId": 2,
+    "studentId": 7,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৩",
+     "f_mtaa5pez_9ehwr": "৯",
+     "f_mtaa67be_t4s7z": "৬"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762792868,
+    "id": 7
+   },
+   {
+    "formId": 2,
+    "studentId": 8,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৯",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৯"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762796486,
+    "id": 8
+   },
+   {
+    "formId": 2,
+    "studentId": 9,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "৯",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762797279,
+    "id": 9
+   },
+   {
+    "formId": 2,
+    "studentId": 10,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৯"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762797847,
+    "id": 10
+   },
+   {
+    "formId": 2,
+    "studentId": 11,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787762798392,
+    "id": 11
+   },
+   {
+    "formId": 2,
+    "studentId": 12,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৫",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761730351,
+    "id": 12
+   },
+   {
+    "formId": 2,
+    "studentId": 13,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "১০",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৯"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761734868,
+    "id": 13
+   },
+   {
+    "formId": 2,
+    "studentId": 14,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761740722,
+    "id": 14
+   },
+   {
+    "formId": 2,
+    "studentId": 15,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৭"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761743072,
+    "id": 15
+   },
+   {
+    "formId": 2,
+    "studentId": 16,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৭"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761746894,
+    "id": 16
+   },
+   {
+    "formId": 2,
+    "studentId": 18,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761749086,
+    "id": 17
+   },
+   {
+    "formId": 2,
+    "studentId": 19,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৯"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761755099,
+    "id": 18
+   },
+   {
+    "formId": 2,
+    "studentId": 20,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৯",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761760149,
+    "id": 19
+   },
+   {
+    "formId": 2,
+    "studentId": 21,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৮",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৭"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761764690,
+    "id": 20
+   },
+   {
+    "formId": 2,
+    "studentId": 22,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "১০",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৯"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761770117,
+    "id": 21
+   },
+   {
+    "formId": 2,
+    "studentId": 23,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "৯",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761777007,
+    "id": 22
+   },
+   {
+    "formId": 2,
+    "studentId": 24,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৬"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761780691,
+    "id": 23
+   },
+   {
+    "formId": 2,
+    "studentId": 25,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৫",
+     "f_mtaa5pez_9ehwr": "৯",
+     "f_mtaa67be_t4s7z": "৬"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761782925,
+    "id": 24
+   },
+   {
+    "formId": 2,
+    "studentId": 26,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "৯",
+     "f_mtaa67be_t4s7z": "৫"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761785677,
+    "id": 25
+   },
+   {
+    "formId": 2,
+    "studentId": 27,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৫"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761790576,
+    "id": 26
+   },
+   {
+    "formId": 2,
+    "studentId": 28,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৬"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761793949,
+    "id": 27
+   },
+   {
+    "formId": 2,
+    "studentId": 29,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "১০",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৮"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761801376,
+    "id": 28
+   },
+   {
+    "formId": 2,
+    "studentId": 30,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৭",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৬"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761804273,
+    "id": 29
+   },
+   {
+    "formId": 2,
+    "studentId": 31,
+    "values": {
+     "f_mtaa4t9h_zvqz0": "৬",
+     "f_mtaa5pez_9ehwr": "১০",
+     "f_mtaa67be_t4s7z": "৫"
+    },
+    "checkedFieldIds": [
+     "f_mtaa67be_t4s7z"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1787761806962,
+    "id": 30
+   },
+   {
+    "formId": 4,
+    "studentId": 1,
+    "values": {
+     "f_mte9uucq_f5r2z": "৮৫",
+     "f_mte9wdwg_9ouws": "৬৫",
+     "f_mte9xdxs_o1mqm": "৮৯",
+     "f_mte9ueki_2a9u6": "৯৮",
+     "f_mte9wwfv_jy72u": "৫৬",
+     "f_mte9tc41_nm6rj": "৫৬",
+     "f_mte9vnrl_6ywue": "৫৮"
+    },
+    "checkedFieldIds": [
+     "f_mte9ueki_2a9u6",
+     "f_mte9wwfv_jy72u",
+     "f_mte9tc41_nm6rj",
+     "f_mte9vnrl_6ywue"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1788001983588,
+    "id": 31
+   },
+   {
+    "formId": 4,
+    "studentId": 2,
+    "values": {
+     "f_mte9uucq_f5r2z": "৯৮",
+     "f_mte9wdwg_9ouws": "৪৫",
+     "f_mte9xdxs_o1mqm": "৮৫",
+     "f_mte9ueki_2a9u6": "৬৫",
+     "f_mte9wwfv_jy72u": "৮৯",
+     "f_mte9tc41_nm6rj": "৭৮",
+     "f_mte9vnrl_6ywue": "৫৭"
+    },
+    "checkedFieldIds": [
+     "f_mte9ueki_2a9u6",
+     "f_mte9wwfv_jy72u",
+     "f_mte9tc41_nm6rj",
+     "f_mte9vnrl_6ywue"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1788001992623,
+    "id": 32
+   },
+   {
+    "formId": 4,
+    "studentId": 3,
+    "values": {
+     "f_mte9uucq_f5r2z": "৮৯",
+     "f_mte9wdwg_9ouws": "৫৮",
+     "f_mte9xdxs_o1mqm": "৯৫",
+     "f_mte9ueki_2a9u6": "৯৫",
+     "f_mte9wwfv_jy72u": "৬৫",
+     "f_mte9tc41_nm6rj": "৮৫",
+     "f_mte9vnrl_6ywue": "৫৮"
+    },
+    "checkedFieldIds": [
+     "f_mte9ueki_2a9u6",
+     "f_mte9wwfv_jy72u",
+     "f_mte9tc41_nm6rj",
+     "f_mte9vnrl_6ywue"
+    ],
+    "isDraft": false,
+    "remark": "",
+    "updatedAt": 1788002000685,
+    "id": 33
+   }
+  ],
+  "gradePresets": [
+   {
+    "name": "মাদ্রাসা গ্রেড",
+    "ranges": [
+     {
+      "min": 80,
+      "max": 100,
+      "label": "মুমতাজ"
+     },
+     {
+      "min": 65,
+      "max": 79,
+      "label": "জায়্যিদ জিদ্দা"
+     },
+     {
+      "min": 45,
+      "max": 65,
+      "label": "জায়্যিদ"
+     },
+     {
+      "min": 33,
+      "max": 44,
+      "label": "মাকবুল "
+     },
+     {
+      "min": 0,
+      "max": 32,
+      "label": "রাসিব"
+     }
+    ],
+    "createdAt": 1788001724278,
+    "id": 1
+   }
+  ],
+  "instituteInfo": [
+   {
+    "id": "main",
+    "name": "পরীক্ষামূলক মাদরাসা",
+    "address": "ঠিকানা গোপন",
+    "footnote": "যেকোনো পরিস্থিতিতে ফলাফল পরিবর্তন হতে পারে।",
+    "smsToken": "REDACTED",
+    "smsPhone": "01700000000",
+    "smsDeviceToken": "REDACTED",
+    "smsMethod": "own-sim"
+   }
+  ],
+  "subjectPresets": [
+   {
+    "classId": 1,
+    "name": "মিজান",
+    "createdAt": 1786910825719,
+    "id": 2
+   },
+   {
+    "classId": 1,
+    "name": "তারিখ",
+    "createdAt": 1786910833014,
+    "id": 3
+   },
+   {
+    "classId": 1,
+    "name": "মিয়াতে অমিল",
+    "createdAt": 1786910858506,
+    "id": 4
+   },
+   {
+    "classId": 2,
+    "name": "বিচারক ১",
+    "createdAt": 1787759980413,
+    "id": 5
+   },
+   {
+    "classId": 2,
+    "name": "বিচারক ২",
+    "createdAt": 1787760022144,
+    "id": 6
+   },
+   {
+    "classId": 2,
+    "name": "বিচারক ৩",
+    "createdAt": 1787760045281,
+    "id": 7
+   },
+   {
+    "classId": 1,
+    "name": "গুলিস্তা",
+    "createdAt": 1788001309701,
+    "id": 8
+   },
+   {
+    "classId": 1,
+    "name": "ফিকহুল মুয়াসসার",
+    "createdAt": 1788001359545,
+    "id": 9
+   },
+   {
+    "classId": 1,
+    "name": "নাহবেমির",
+    "createdAt": 1788001380039,
+    "id": 10
+   },
+   {
+    "classId": 1,
+    "name": "সীরাতে খাতামুল আম্বিয়া",
+    "createdAt": 1788001418116,
+    "id": 11
+   },
+   {
+    "classId": 1,
+    "name": "ইলমুস সরফ",
+    "createdAt": 1788001452100,
+    "id": 12
+   },
+   {
+    "classId": 1,
+    "name": "রওজাতুল আদব",
+    "createdAt": 1788001476091,
+    "id": 13
+   }
+  ],
+  "teachers": [
+   {
+    "yearId": 1,
+    "name": "শিক্ষক ১",
+    "createdAt": 1787730967933,
+    "id": 1
+   },
+   {
+    "yearId": 1,
+    "name": "শিক্ষক ২",
+    "createdAt": 1787730975697,
+    "id": 2
+   },
+   {
+    "yearId": 1,
+    "name": "শিক্ষক ৩",
+    "createdAt": 1787730981224,
+    "id": 3
+   },
+   {
+    "yearId": 1,
+    "name": "শিক্ষক ৪",
+    "createdAt": 1787730986315,
+    "id": 4
+   }
+  ],
+  "teacherAssignments": [
+   {
+    "teacherId": 3,
+    "classId": 1,
+    "subjectName": "গুলিস্তা",
+    "createdAt": 1788191955618,
+    "id": 1
+   }
+  ],
+  "attendance": [
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-08-31",
+    "status": "present",
+    "createdAt": 1788191916038,
+    "updatedAt": 1788191916038,
+    "id": 1,
+    "session": "সকাল"
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-08-31",
+    "status": "absent",
+    "createdAt": 1788191916598,
+    "updatedAt": 1788191916598,
+    "id": 2,
+    "session": "সকাল"
+   },
+   {
+    "classId": 1,
+    "studentId": 3,
+    "date": "2026-08-31",
+    "status": "leave",
+    "createdAt": 1788191917141,
+    "updatedAt": 1788191917141,
+    "id": 3,
+    "session": "সকাল"
+   },
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-08-26",
+    "status": "present",
+    "createdAt": 1788191920142,
+    "updatedAt": 1788191920142,
+    "id": 4,
+    "session": "সকাল"
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-08-26",
+    "status": "present",
+    "createdAt": 1788191920454,
+    "updatedAt": 1788191920454,
+    "id": 5,
+    "session": "সকাল"
+   },
+   {
+    "classId": 1,
+    "studentId": 3,
+    "date": "2026-08-26",
+    "status": "absent",
+    "createdAt": 1788191921190,
+    "updatedAt": 1788191921190,
+    "id": 6,
+    "session": "সকাল"
+   },
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-09-17",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789637524713,
+    "updatedAt": 1789637524713,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789637524713
+     }
+    ],
+    "id": 7
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-09-17",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789637525609,
+    "updatedAt": 1789637525609,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789637525609
+     }
+    ],
+    "id": 8
+   },
+   {
+    "classId": 1,
+    "studentId": 3,
+    "date": "2026-09-17",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789637526649,
+    "updatedAt": 1789637526649,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789637526649
+     }
+    ],
+    "id": 9
+   },
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705528583,
+    "updatedAt": 1789705528583,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705528583
+     }
+    ],
+    "id": 10
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705531160,
+    "updatedAt": 1789705544258,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705531160
+     },
+     {
+      "status": null,
+      "at": 1789705534136
+     },
+     {
+      "status": "leave",
+      "at": 1789705539362
+     },
+     {
+      "status": "present",
+      "at": 1789705544258
+     }
+    ],
+    "id": 11
+   },
+   {
+    "classId": 2,
+    "studentId": 4,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705613289,
+    "updatedAt": 1789705613289,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705613289
+     }
+    ],
+    "id": 12
+   },
+   {
+    "classId": 2,
+    "studentId": 5,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705614033,
+    "updatedAt": 1789705614033,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705614033
+     }
+    ],
+    "id": 13
+   },
+   {
+    "classId": 2,
+    "studentId": 6,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705614794,
+    "updatedAt": 1789705614794,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705614794
+     }
+    ],
+    "id": 14
+   },
+   {
+    "classId": 2,
+    "studentId": 7,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705616850,
+    "updatedAt": 1789705616850,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705616850
+     }
+    ],
+    "id": 15
+   },
+   {
+    "classId": 2,
+    "studentId": 8,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705618274,
+    "updatedAt": 1789705618274,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705618274
+     }
+    ],
+    "id": 16
+   },
+   {
+    "classId": 2,
+    "studentId": 9,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705618891,
+    "updatedAt": 1789705618891,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705618891
+     }
+    ],
+    "id": 17
+   },
+   {
+    "classId": 2,
+    "studentId": 10,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705619986,
+    "updatedAt": 1789705619986,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705619986
+     }
+    ],
+    "id": 18
+   },
+   {
+    "classId": 2,
+    "studentId": 11,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705621459,
+    "updatedAt": 1789705621459,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705621459
+     }
+    ],
+    "id": 19
+   },
+   {
+    "classId": 2,
+    "studentId": 12,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705622275,
+    "updatedAt": 1789705622275,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705622275
+     }
+    ],
+    "id": 20
+   },
+   {
+    "classId": 2,
+    "studentId": 13,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705623771,
+    "updatedAt": 1789705623771,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705623771
+     }
+    ],
+    "id": 21
+   },
+   {
+    "classId": 2,
+    "studentId": 14,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705624443,
+    "updatedAt": 1789705624443,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705624443
+     }
+    ],
+    "id": 22
+   },
+   {
+    "classId": 2,
+    "studentId": 15,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705625683,
+    "updatedAt": 1789705625683,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705625683
+     }
+    ],
+    "id": 23
+   },
+   {
+    "classId": 2,
+    "studentId": 16,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705627316,
+    "updatedAt": 1789705627316,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705627316
+     }
+    ],
+    "id": 24
+   },
+   {
+    "classId": 2,
+    "studentId": 18,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705628739,
+    "updatedAt": 1789705628739,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705628739
+     }
+    ],
+    "id": 25
+   },
+   {
+    "classId": 2,
+    "studentId": 19,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705630060,
+    "updatedAt": 1789705630060,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705630060
+     }
+    ],
+    "id": 26
+   },
+   {
+    "classId": 2,
+    "studentId": 20,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705630733,
+    "updatedAt": 1789705630733,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705630733
+     }
+    ],
+    "id": 27
+   },
+   {
+    "classId": 2,
+    "studentId": 21,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705632388,
+    "updatedAt": 1789705632388,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705632388
+     }
+    ],
+    "id": 28
+   },
+   {
+    "classId": 2,
+    "studentId": 22,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705633044,
+    "updatedAt": 1789705633044,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705633044
+     }
+    ],
+    "id": 29
+   },
+   {
+    "classId": 2,
+    "studentId": 23,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705634437,
+    "updatedAt": 1789705634437,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705634437
+     }
+    ],
+    "id": 30
+   },
+   {
+    "classId": 2,
+    "studentId": 24,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705635614,
+    "updatedAt": 1789705635614,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705635614
+     }
+    ],
+    "id": 31
+   },
+   {
+    "classId": 2,
+    "studentId": 25,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705636957,
+    "updatedAt": 1789705636957,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705636957
+     }
+    ],
+    "id": 32
+   },
+   {
+    "classId": 2,
+    "studentId": 26,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705638420,
+    "updatedAt": 1789705638420,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705638420
+     }
+    ],
+    "id": 33
+   },
+   {
+    "classId": 2,
+    "studentId": 27,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705640237,
+    "updatedAt": 1789705640237,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705640237
+     }
+    ],
+    "id": 34
+   },
+   {
+    "classId": 2,
+    "studentId": 28,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705641229,
+    "updatedAt": 1789705642897,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705641229
+     },
+     {
+      "status": "present",
+      "at": 1789705642897
+     }
+    ],
+    "id": 35
+   },
+   {
+    "classId": 2,
+    "studentId": 29,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1789705643853,
+    "updatedAt": 1789705643853,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1789705643853
+     }
+    ],
+    "id": 36
+   },
+   {
+    "classId": 2,
+    "studentId": 30,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789705645053,
+    "updatedAt": 1789705645053,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789705645053
+     }
+    ],
+    "id": 37
+   },
+   {
+    "classId": 2,
+    "studentId": 31,
+    "date": "2026-09-18",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789705646621,
+    "updatedAt": 1789705646621,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789705646621
+     }
+    ],
+    "id": 38
+   },
+   {
+    "classId": 2,
+    "studentId": 4,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220079,
+    "updatedAt": 1789807220079,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220079
+     }
+    ],
+    "id": 39
+   },
+   {
+    "classId": 2,
+    "studentId": 5,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220079,
+    "updatedAt": 1789807220079,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220079
+     }
+    ],
+    "id": 40
+   },
+   {
+    "classId": 2,
+    "studentId": 6,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220079,
+    "updatedAt": 1789807220079,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220079
+     }
+    ],
+    "id": 41
+   },
+   {
+    "classId": 2,
+    "studentId": 7,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220079,
+    "updatedAt": 1789807220079,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220079
+     }
+    ],
+    "id": 42
+   },
+   {
+    "classId": 2,
+    "studentId": 8,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220079,
+    "updatedAt": 1789807220079,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220079
+     }
+    ],
+    "id": 43
+   },
+   {
+    "classId": 2,
+    "studentId": 9,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 44
+   },
+   {
+    "classId": 2,
+    "studentId": 10,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 45
+   },
+   {
+    "classId": 2,
+    "studentId": 11,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 46
+   },
+   {
+    "classId": 2,
+    "studentId": 12,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 47
+   },
+   {
+    "classId": 2,
+    "studentId": 13,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 48
+   },
+   {
+    "classId": 2,
+    "studentId": 14,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 49
+   },
+   {
+    "classId": 2,
+    "studentId": 15,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 50
+   },
+   {
+    "classId": 2,
+    "studentId": 16,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220080,
+    "updatedAt": 1789807220080,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220080
+     }
+    ],
+    "id": 51
+   },
+   {
+    "classId": 2,
+    "studentId": 18,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 52
+   },
+   {
+    "classId": 2,
+    "studentId": 19,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 53
+   },
+   {
+    "classId": 2,
+    "studentId": 20,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 54
+   },
+   {
+    "classId": 2,
+    "studentId": 21,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 55
+   },
+   {
+    "classId": 2,
+    "studentId": 22,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 56
+   },
+   {
+    "classId": 2,
+    "studentId": 23,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 57
+   },
+   {
+    "classId": 2,
+    "studentId": 24,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 58
+   },
+   {
+    "classId": 2,
+    "studentId": 25,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 59
+   },
+   {
+    "classId": 2,
+    "studentId": 26,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220081,
+    "updatedAt": 1789807220081,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220081
+     }
+    ],
+    "id": 60
+   },
+   {
+    "classId": 2,
+    "studentId": 27,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220082,
+    "updatedAt": 1789807220082,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220082
+     }
+    ],
+    "id": 61
+   },
+   {
+    "classId": 2,
+    "studentId": 28,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220082,
+    "updatedAt": 1789807220082,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220082
+     }
+    ],
+    "id": 62
+   },
+   {
+    "classId": 2,
+    "studentId": 29,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220082,
+    "updatedAt": 1789807220082,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220082
+     }
+    ],
+    "id": 63
+   },
+   {
+    "classId": 2,
+    "studentId": 30,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220082,
+    "updatedAt": 1789807220082,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220082
+     }
+    ],
+    "id": 64
+   },
+   {
+    "classId": 2,
+    "studentId": 31,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807220082,
+    "updatedAt": 1789807220082,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807220082
+     }
+    ],
+    "id": 65
+   },
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789807285941,
+    "updatedAt": 1789807285941,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789807285941
+     }
+    ],
+    "id": 66
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-09-19",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1789807286782,
+    "updatedAt": 1789807286782,
+    "history": [
+     {
+      "status": "leave",
+      "at": 1789807286782
+     }
+    ],
+    "id": 67
+   },
+   {
+    "classId": 2,
+    "studentId": 4,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634036,
+    "updatedAt": 1789976634036,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634036
+     }
+    ],
+    "id": 68
+   },
+   {
+    "classId": 2,
+    "studentId": 5,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634037,
+    "updatedAt": 1789976634037,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634037
+     }
+    ],
+    "id": 69
+   },
+   {
+    "classId": 2,
+    "studentId": 6,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634037,
+    "updatedAt": 1789976634037,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634037
+     }
+    ],
+    "id": 70
+   },
+   {
+    "classId": 2,
+    "studentId": 7,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634037,
+    "updatedAt": 1789976634037,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634037
+     }
+    ],
+    "id": 71
+   },
+   {
+    "classId": 2,
+    "studentId": 8,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634037,
+    "updatedAt": 1789976634037,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634037
+     }
+    ],
+    "id": 72
+   },
+   {
+    "classId": 2,
+    "studentId": 9,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634037,
+    "updatedAt": 1789976634037,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634037
+     }
+    ],
+    "id": 73
+   },
+   {
+    "classId": 2,
+    "studentId": 10,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 74
+   },
+   {
+    "classId": 2,
+    "studentId": 11,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 75
+   },
+   {
+    "classId": 2,
+    "studentId": 12,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 76
+   },
+   {
+    "classId": 2,
+    "studentId": 13,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 77
+   },
+   {
+    "classId": 2,
+    "studentId": 14,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 78
+   },
+   {
+    "classId": 2,
+    "studentId": 15,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 79
+   },
+   {
+    "classId": 2,
+    "studentId": 16,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634038,
+    "updatedAt": 1789976634038,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634038
+     }
+    ],
+    "id": 80
+   },
+   {
+    "classId": 2,
+    "studentId": 18,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 81
+   },
+   {
+    "classId": 2,
+    "studentId": 19,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 82
+   },
+   {
+    "classId": 2,
+    "studentId": 20,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 83
+   },
+   {
+    "classId": 2,
+    "studentId": 21,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 84
+   },
+   {
+    "classId": 2,
+    "studentId": 22,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 85
+   },
+   {
+    "classId": 2,
+    "studentId": 23,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 86
+   },
+   {
+    "classId": 2,
+    "studentId": 24,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 87
+   },
+   {
+    "classId": 2,
+    "studentId": 25,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 88
+   },
+   {
+    "classId": 2,
+    "studentId": 26,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634039,
+    "updatedAt": 1789976634039,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634039
+     }
+    ],
+    "id": 89
+   },
+   {
+    "classId": 2,
+    "studentId": 27,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634040,
+    "updatedAt": 1789976634040,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634040
+     }
+    ],
+    "id": 90
+   },
+   {
+    "classId": 2,
+    "studentId": 28,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634040,
+    "updatedAt": 1789976634040,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634040
+     }
+    ],
+    "id": 91
+   },
+   {
+    "classId": 2,
+    "studentId": 29,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634040,
+    "updatedAt": 1789976634040,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634040
+     }
+    ],
+    "id": 92
+   },
+   {
+    "classId": 2,
+    "studentId": 30,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634040,
+    "updatedAt": 1789976634040,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634040
+     }
+    ],
+    "id": 93
+   },
+   {
+    "classId": 2,
+    "studentId": 31,
+    "date": "2026-09-21",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1789976634040,
+    "updatedAt": 1789976634040,
+    "history": [
+     {
+      "status": "present",
+      "at": 1789976634040
+     }
+    ],
+    "id": 94
+   },
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-09-22",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1790070234899,
+    "updatedAt": 1790070234899,
+    "history": [
+     {
+      "status": "present",
+      "at": 1790070234899
+     }
+    ],
+    "id": 95
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-09-22",
+    "session": "সকাল",
+    "status": "absent",
+    "createdAt": 1790070236500,
+    "updatedAt": 1790070236500,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1790070236500
+     }
+    ],
+    "id": 96
+   },
+   {
+    "classId": 1,
+    "studentId": 1,
+    "date": "2026-09-23",
+    "session": "সকাল",
+    "status": "present",
+    "createdAt": 1790100991817,
+    "updatedAt": 1790100991817,
+    "history": [
+     {
+      "status": "present",
+      "at": 1790100991817
+     }
+    ],
+    "id": 97
+   },
+   {
+    "classId": 1,
+    "studentId": 2,
+    "date": "2026-09-23",
+    "session": "সকাল",
+    "status": "leave",
+    "createdAt": 1790100992354,
+    "updatedAt": 1790101015388,
+    "history": [
+     {
+      "status": "absent",
+      "at": 1790100992354
+     },
+     {
+      "status": "present",
+      "at": 1790100996658
+     },
+     {
+      "status": "leave",
+      "at": 1790100997490
+     },
+     {
+      "status": "absent",
+      "at": 1790100998202
+     },
+     {
+      "status": "present",
+      "at": 1790100998626
+     },
+     {
+      "status": "leave",
+      "at": 1790101015388
+     }
+    ],
+    "id": 98
+   }
+  ],
+  "teacherConstraints": [],
+  "timetableEntries": []
+ }
+}
