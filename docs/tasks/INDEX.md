@@ -53,6 +53,7 @@ Generated from the task briefs. `README.md` §6 holds the master board and miles
 - [`M1-A1`](M1-A1.md) — Academic structure: years, levels, sections, subjects, assignments (ACAD, M)
 - [`M1-Q1`](M1-Q1.md) — E2E harness, RLS registry and CI gates (QA, M)
 - [`M2-P4`](M2-P4.md) — Production sync RPC apply_ops for attendance and marks (PLAT, M)
+- [`M2-D3`](M2-D3.md) — Munshi parity tests (DOM, S)
 - [`M2-C1`](M2-C1.md) — Notices v0 (COMM, S)
 - [`M3-U1`](M3-U1.md) — Flows, prototypes and test plan: fees, text alerts, guardian portal (UX, M)
 - [`M4-S2`](M4-S2.md) — Data lifecycle: export, offboarding, deletion, retention (PLAT, M)
@@ -170,12 +171,13 @@ Generated from the task briefs. `README.md` §6 holds the master board and miles
 | [M2-P4](M2-P4.md) | PLAT | Production sync RPC apply_ops for attendance and marks | M | 6 | M0-S2, M1-P1 | TODO |
 | [M2-D1](M2-D1.md) | DOM | Result engine core | M | 4 | M1-L1, M1-D1 | TODO |
 | [M2-D2](M2-D2.md) | DOM | Ranking, analytics and Munshi parity tests | M | 5 | M2-D1 | TODO |
+| [M2-D3](M2-D3.md) | DOM | Munshi parity tests | S | 6 | M2-D2 | TODO |
 | [M2-E1](M2-E1.md) | EXAM | Exam setup: exams, subjects, components, grade schemes | M | 7 | M1-A1, M2-D1, M1-U4 | TODO |
 | [M2-E2](M2-E2.md) | EXAM | Marks entry: subject-wise grid, offline queue, locks | M | 8 | M2-E1, M2-P4, M1-W4, M1-U4, M1-W5 | TODO |
 | [M2-E3](M2-E3.md) | EXAM | Results: preview, tabulation, publish snapshots | M | 9 | M2-E2, M2-D2, M1-U4, M1-W5 | TODO |
 | [M2-E4](M2-E4.md) | EXAM | Marksheet PDFs: templates, batch, share from a phone | M | 10 | M2-E3, M0-S1 | TODO |
 | [M2-A5](M2-A5.md) | ACAD | Attendance: daily marking, offline, corrections, summaries | M | 8 | M1-A2, M2-P4, M1-U4, M1-W5 | TODO |
-| [M2-I1](M2-I1.md) | EXAM | Munshi importer | M | 9 | M1-A3, M2-E1, M2-D2 | TODO |
+| [M2-I1](M2-I1.md) | EXAM | Munshi importer | M | 9 | M1-A3, M2-E1, M2-D2, M2-D3 | TODO |
 | [M2-C1](M2-C1.md) | COMM | Notices v0 | S | 6 | M1-P1, M1-W3 | TODO |
 | [M2-Q2](M2-Q2.md) | QA | E2E full exam cycle, performance, accessibility, phone acceptance kit | M | 11 | M2-E4, M2-A5, M1-Q1, M1-W2 | TODO |
 | [M2-Q3](M2-Q3.md) | OWN | ফোন-অনলি অ্যাকসেপ্টেন্স রান | M | 12 | M2-Q2 | TODO |

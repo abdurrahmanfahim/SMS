@@ -18,12 +18,24 @@ export default defineConfig({
     trace: "on-first-retry",
     ...(executablePath ? { launchOptions: { executablePath, args: ["--no-sandbox"] } } : {}),
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    {
+      name: "chromium",
+      testIgnore: /perf.*\.spec\.ts/,
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      // Timing tests run alone, after everything else has finished, so they do not compete for CPU.
+      name: "perf",
+      testMatch: /perf.*\.spec\.ts/,
+      dependencies: ["chromium"],
+      fullyParallel: false,
+      use: { ...devices["Desktop Chrome"] },
+    },
+  ],
   webServer: {
-    // `exec` makes vite itself the process Playwright supervises. Going through `pnpm ... preview`
-    // left an orphan child that kept the run alive (see e2e/playwright.config.ts).
     command:
-      "pnpm --filter @sms/web build && cd ../../apps/web && exec ./node_modules/.bin/vite preview --port 4174 --strictPort",
+      "pnpm --filter @sms/web build && cd ../../apps/web && exec ./node_modules/.bin/vite preview --host 127.0.0.1 --port 4174 --strictPort",
     env: { VITE_ENABLE_DEV_TOOLS: "true" },
     url: "http://127.0.0.1:4174",
     // never reuse: a leftover server could serve a build without the dev tools this suite needs
