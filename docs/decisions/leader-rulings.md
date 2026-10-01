@@ -19,3 +19,15 @@ Decisions the Leader (Claude) made in answer to questions raised in agent report
 **R-07 — CI (from M1-D1, M0-S2, M2-D1, M3-D1).** Root cause of the Actions minutes exhaustion found by M0-S2: the E2E web-server command left an orphan process, so runs hung for hours (about 1,850 billable minutes). Fixed on `main`: `exec` vite directly, `timeout-minutes` on jobs and on the E2E step. `ci / db` now publishes the freshly generated `packages/db/src/types.ts` on branch `bot/db-types` when it detects drift on a push, so it can be merged without running Docker.
 
 **R-08 — Open item for the Owner.** A Cloudflare Pages project (`mms-munshee`) is connected to this repository and its build fails on every push. Either disconnect it, or set it up for this monorepo: root directory empty, build command `corepack enable && pnpm install --frozen-lockfile && pnpm --filter @sms/web build`, output directory `apps/web/dist`, Node version from `.nvmrc`. The deployment task `M0-P3` names Netlify; the host is the Owner's choice.
+
+## Batch 2 (after the reports of M2-D2 and M0-P3)
+
+**R-09 - Ranking and statistics definitions (from M2-D2).** Accepted as implemented: "top N" is every student with `class_rank <= N`, so ties can return more than N; pass rate is `passed / appeared` (absent students excluded); a subject's averages are over students who appeared; failed students count in overall averages with their stored total and GPA. Ranks use the stored hundredths. These follow common school practice; confirm against `M0-O1` and Munshi parity (`M2-D2` step 3) and change by request, not by silent edit.
+
+**R-10 - Performance guard (from M2-D2, M0-P3).** The results-engine performance test limit is 1,000 ms, not 200 ms: the engine takes tens of milliseconds locally, shared CI runners are several times slower, and the guard exists to catch order-of-magnitude regressions, not to measure speed. The 200 ms figure in the `M2-D1` brief was a local target.
+
+**R-11 - CI-generated types (from M0-P3).** Drift in `packages/db/src/types.ts` is published by CI on the branch `bot/types-<branch name with / replaced by ->` (one branch per source branch, so branches do not overwrite each other). An agent without Docker takes the file from that branch. The older shared branch `bot/db-types` is obsolete.
+
+**R-12 - Skeleton placeholder (from M0-P3).** The shell `/app` placeholder yields to real features; `M1-W2` replaces the skeleton feature and removes it, as its brief already says.
+
+**R-13 - Munshi parity is its own task.** `M2-D2` is accepted without its step 3; the parity tests and `docs/research/munshi-parity.md` are the new task `M2-D3`, which needs the Owner to copy the Munshi source into `docs/samples/munshi/` first. `M2-I1` depends on `M2-D3`.

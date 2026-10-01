@@ -19,6 +19,7 @@
     "@hookform/resolvers": "^5.9.1",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/react-virtual": "^3.14.13",
+    "@sms/db": "workspace:*",
     "lucide-react": "^1.48.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

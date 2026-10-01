@@ -1,0 +1,9 @@
+{
+  "extends": "@sms/config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../dist-staging",
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": ["."]
+}

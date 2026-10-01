@@ -6,8 +6,9 @@
   "scripts": {
     "e2e": "playwright test && playwright test -c web/playwright.config.ts",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
-    "test": "echo 'e2e has no unit tests; see pnpm e2e'"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p staging",
+    "test": "echo 'e2e has no unit tests; see pnpm e2e'",
+    "e2e:staging": "playwright test -c staging/playwright.config.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

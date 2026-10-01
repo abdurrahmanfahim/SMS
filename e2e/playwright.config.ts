@@ -16,7 +16,7 @@ export default defineConfig({
     // `pnpm ... preview` left an orphan child that kept the run alive for hours
     // (found by M0-S2). Do not put a pnpm wrapper back in front of vite here.
     command:
-      "pnpm --filter @sms/web build && cd ../apps/web && exec ./node_modules/.bin/vite preview --port 4173 --strictPort",
+      "pnpm --filter @sms/web build && cd ../apps/web && exec ./node_modules/.bin/vite preview --host 127.0.0.1 --port 4173 --strictPort",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
