@@ -314,5 +314,31 @@
     "preview": {
       "label": "Print preview (A4)"
     }
+  },
+  "entryGrid": {
+    "cell": {
+      "label": "{row}, {column}"
+    },
+    "grid": {
+      "keyboardHint": "Arrow keys and Tab move between cells. Enter saves and moves down. Escape undoes what you typed.",
+      "saveFailed": "Could not save. The value stays in the cell; press Enter to try again."
+    },
+    "error": {
+      "code": "Use one of these codes: {codes}."
+    },
+    "state": {
+      "saved": "Saved",
+      "saving": "Saving",
+      "pending": "Pending {count}",
+      "error": "Error"
+    },
+    "phone": {
+      "barLabel": "Entry controls",
+      "progress": "{done} of {total} entered",
+      "cellProgress": "Cell {n} of {total}",
+      "next": "Next",
+      "previous": "Previous",
+      "rowSummary": "All fields of {row}"
+    }
   }
 }
