@@ -3,6 +3,98 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          action: string;
+          actor_profile_id: string | null;
+          actor_role: string;
+          after: Json | null;
+          before: Json | null;
+          created_at: string;
+          entity_id: string | null;
+          entity_type: string;
+          id: number;
+          institution_id: string | null;
+          meta: Json;
+        };
+        Insert: {
+          action: string;
+          actor_profile_id?: string | null;
+          actor_role: string;
+          after?: Json | null;
+          before?: Json | null;
+          created_at?: string;
+          entity_id?: string | null;
+          entity_type: string;
+          id?: never;
+          institution_id?: string | null;
+          meta?: Json;
+        };
+        Update: {
+          action?: string;
+          actor_profile_id?: string | null;
+          actor_role?: string;
+          after?: Json | null;
+          before?: Json | null;
+          created_at?: string;
+          entity_id?: string | null;
+          entity_type?: string;
+          id?: never;
+          institution_id?: string | null;
+          meta?: Json;
+        };
+        Relationships: [];
+      };
+      institution_settings: {
+        Row: {
+          academic_year_style: string;
+          attendance_edit_window_days: number;
+          created_at: string;
+          created_by: string | null;
+          default_grade_scheme_id: string | null;
+          institution_id: string;
+          letterhead: Json;
+          updated_at: string;
+          updated_by: string | null;
+          use_bangla_digits: boolean;
+          weekly_holidays: number[];
+        };
+        Insert: {
+          academic_year_style?: string;
+          attendance_edit_window_days?: number;
+          created_at?: string;
+          created_by?: string | null;
+          default_grade_scheme_id?: string | null;
+          institution_id: string;
+          letterhead?: Json;
+          updated_at?: string;
+          updated_by?: string | null;
+          use_bangla_digits?: boolean;
+          weekly_holidays?: number[];
+        };
+        Update: {
+          academic_year_style?: string;
+          attendance_edit_window_days?: number;
+          created_at?: string;
+          created_by?: string | null;
+          default_grade_scheme_id?: string | null;
+          institution_id?: string;
+          letterhead?: Json;
+          updated_at?: string;
+          updated_by?: string | null;
+          use_bangla_digits?: boolean;
+          weekly_holidays?: number[];
+        };
+        Relationships: [
+          {
+            foreignKeyName: "institution_settings_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: true;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       institutions: {
         Row: {
           created_at: string;
@@ -101,6 +193,38 @@ export type Database = {
             foreignKeyName: "memberships_profile_id_fkey";
             columns: ["profile_id"];
             isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      platform_admins: {
+        Row: {
+          created_at: string;
+          created_by: string | null;
+          profile_id: string;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          created_at?: string;
+          created_by?: string | null;
+          profile_id: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          created_at?: string;
+          created_by?: string | null;
+          profile_id?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "platform_admins_profile_id_fkey";
+            columns: ["profile_id"];
+            isOneToOne: true;
             referencedRelation: "profiles";
             referencedColumns: ["id"];
           },
