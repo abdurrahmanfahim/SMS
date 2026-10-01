@@ -1,0 +1,234 @@
+{
+  "id": "P-2026-10-01-form4",
+  "source": {
+    "backup": "docs/samples/munshi/nomborpotro-backup-2026-10-01.anonymised.json",
+    "form_id": 4,
+    "synthetic": false,
+    "form_name": "দ্বিতীয় সাময়িক পরীক্ষা",
+    "munshi_code": "docs/samples/munshi/compute.js",
+    "munshi_functions": ["computeDerivedValues", "computeMeritRanks", "markIssue"],
+    "average_uses_percentage": false,
+    "has_merit_rank": true,
+    "merit_top_n": 3
+  },
+  "scheme": {
+    "version": 1,
+    "kind": "percentage_bands",
+    "bands": [
+      {
+        "min": 0,
+        "grade": "রাসিব"
+      },
+      {
+        "min": 33,
+        "grade": "মাকবুল "
+      },
+      {
+        "min": 45,
+        "grade": "জায়্যিদ"
+      },
+      {
+        "min": 65,
+        "grade": "জায়্যিদ জিদ্দা"
+      },
+      {
+        "min": 80,
+        "grade": "মুমতাজ"
+      }
+    ],
+    "fail": {
+      "grade": "রাসিব"
+    },
+    "pass": {
+      "min_percent_total": 33,
+      "groups": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "ff_mte9uucq_f5r2z",
+      "label": "নাহবেমির",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_mte9wdwg_9ouws",
+      "label": "ইলমুস সরফ",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_mte9xdxs_o1mqm",
+      "label": "মিয়াতে অমিল",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_mte9ueki_2a9u6",
+      "label": "ফিকহুল মুয়াসসার",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_mte9wwfv_jy72u",
+      "label": "রওজাতুল আদব",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_mte9tc41_nm6rj",
+      "label": "গুলিস্তা",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_mte9vnrl_6ywue",
+      "label": "সীরাতে খাতামুল আম্বিয়া",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    }
+  ],
+  "students": [
+    {
+      "id": "s1",
+      "roll": 12,
+      "marks": {
+        "ff_mte9uucq_f5r2z": {
+          "written": 8500
+        },
+        "ff_mte9wdwg_9ouws": {
+          "written": 6500
+        },
+        "ff_mte9xdxs_o1mqm": {
+          "written": 8900
+        },
+        "ff_mte9ueki_2a9u6": {
+          "written": 9800
+        },
+        "ff_mte9wwfv_jy72u": {
+          "written": 5600
+        },
+        "ff_mte9tc41_nm6rj": {
+          "written": 5600
+        },
+        "ff_mte9vnrl_6ywue": {
+          "written": 5800
+        }
+      },
+      "munshi": {
+        "total": 507,
+        "average": 72.42857142857143,
+        "grade": "জায়্যিদ জিদ্দা",
+        "merit_rank": 3
+      }
+    },
+    {
+      "id": "s2",
+      "roll": 13,
+      "marks": {
+        "ff_mte9uucq_f5r2z": {
+          "written": 9800
+        },
+        "ff_mte9wdwg_9ouws": {
+          "written": 4500
+        },
+        "ff_mte9xdxs_o1mqm": {
+          "written": 8500
+        },
+        "ff_mte9ueki_2a9u6": {
+          "written": 6500
+        },
+        "ff_mte9wwfv_jy72u": {
+          "written": 8900
+        },
+        "ff_mte9tc41_nm6rj": {
+          "written": 7800
+        },
+        "ff_mte9vnrl_6ywue": {
+          "written": 5700
+        }
+      },
+      "munshi": {
+        "total": 517,
+        "average": 73.85714285714286,
+        "grade": "জায়্যিদ জিদ্দা",
+        "merit_rank": 2
+      }
+    },
+    {
+      "id": "s3",
+      "roll": 14,
+      "marks": {
+        "ff_mte9uucq_f5r2z": {
+          "written": 8900
+        },
+        "ff_mte9wdwg_9ouws": {
+          "written": 5800
+        },
+        "ff_mte9xdxs_o1mqm": {
+          "written": 9500
+        },
+        "ff_mte9ueki_2a9u6": {
+          "written": 9500
+        },
+        "ff_mte9wwfv_jy72u": {
+          "written": 6500
+        },
+        "ff_mte9tc41_nm6rj": {
+          "written": 8500
+        },
+        "ff_mte9vnrl_6ywue": {
+          "written": 5800
+        }
+      },
+      "munshi": {
+        "total": 545,
+        "average": 77.85714285714286,
+        "grade": "জায়্যিদ জিদ্দা",
+        "merit_rank": 1
+      }
+    }
+  ]
+}

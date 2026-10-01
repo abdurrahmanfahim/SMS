@@ -1,0 +1,275 @@
+{
+  "id": "P-probe-rules",
+  "source": {
+    "backup": null,
+    "synthetic": true,
+    "form_name": "probe: grade rules",
+    "munshi_code": "docs/samples/munshi/compute.js",
+    "munshi_functions": ["computeDerivedValues", "computeMeritRanks", "markIssue"],
+    "average_uses_percentage": false,
+    "has_merit_rank": true,
+    "merit_top_n": 3
+  },
+  "scheme": {
+    "version": 1,
+    "kind": "percentage_bands",
+    "bands": [
+      {
+        "min": 0,
+        "grade": "ফেল"
+      },
+      {
+        "min": 33,
+        "grade": "পাস"
+      },
+      {
+        "min": 60,
+        "grade": "A-"
+      },
+      {
+        "min": 70,
+        "grade": "A"
+      },
+      {
+        "min": 80,
+        "grade": "A+"
+      }
+    ],
+    "fail": {
+      "grade": "ফেল"
+    },
+    "pass": {
+      "min_percent_total": 33,
+      "groups": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "fa",
+      "label": "subject a",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "fb",
+      "label": "subject b",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "fc",
+      "label": "subject c",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    }
+  ],
+  "students": [
+    {
+      "id": "s101",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 7900
+        },
+        "fb": {
+          "written": 8000
+        },
+        "fc": {
+          "written": 7900
+        }
+      },
+      "munshi": {
+        "total": 238,
+        "average": 79.33333333333333,
+        "grade": "",
+        "merit_rank": 3
+      }
+    },
+    {
+      "id": "s102",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 10000
+        },
+        "fb": {
+          "written": 10000
+        },
+        "fc": {
+          "written": 2000
+        }
+      },
+      "munshi": {
+        "total": 220,
+        "average": 73.33333333333333,
+        "grade": "A",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s103",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 8000
+        },
+        "fb": {
+          "written": 8000
+        },
+        "fc": {
+          "written": 8000
+        }
+      },
+      "munshi": {
+        "total": 240,
+        "average": 80,
+        "grade": "A+",
+        "merit_rank": 2
+      }
+    },
+    {
+      "id": "s104",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 3300
+        },
+        "fb": {
+          "written": 3300
+        },
+        "fc": {
+          "written": 3300
+        }
+      },
+      "munshi": {
+        "total": 99,
+        "average": 33,
+        "grade": "পাস",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s105",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 7000
+        },
+        "fb": {
+          "written": 6000
+        },
+        "fc": {
+          "written": 6500
+        }
+      },
+      "munshi": {
+        "total": 195,
+        "average": 65,
+        "grade": "A-",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s106",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 9000
+        },
+        "fb": {
+          "written": 9500
+        },
+        "fc": {
+          "written": 8500
+        }
+      },
+      "munshi": {
+        "total": 270,
+        "average": 90,
+        "grade": "A+",
+        "merit_rank": 1
+      }
+    },
+    {
+      "id": "s107",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 3200
+        },
+        "fb": {
+          "written": 3200
+        },
+        "fc": {
+          "written": 3200
+        }
+      },
+      "munshi": {
+        "total": 96,
+        "average": 32,
+        "grade": "ফেল",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s108",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 7000
+        },
+        "fb": {
+          "written": 7000
+        },
+        "fc": {
+          "written": 6900
+        }
+      },
+      "munshi": {
+        "total": 209,
+        "average": 69.66666666666667,
+        "grade": "",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s109",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 8000
+        },
+        "fb": {
+          "written": 8000
+        },
+        "fc": {
+          "written": 8000
+        }
+      },
+      "munshi": {
+        "total": 240,
+        "average": 80,
+        "grade": "A+",
+        "merit_rank": 2
+      }
+    }
+  ]
+}

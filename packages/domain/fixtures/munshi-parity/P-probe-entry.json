@@ -1,0 +1,149 @@
+{
+  "id": "P-probe-entry",
+  "source": {
+    "backup": null,
+    "synthetic": true,
+    "form_name": "probe: entry problems",
+    "munshi_code": "docs/samples/munshi/compute.js",
+    "munshi_functions": ["computeDerivedValues", "computeMeritRanks", "markIssue"],
+    "average_uses_percentage": false,
+    "has_merit_rank": false,
+    "merit_top_n": null
+  },
+  "scheme": {
+    "version": 1,
+    "kind": "percentage_bands",
+    "bands": [
+      {
+        "min": 0,
+        "grade": "ফেল"
+      },
+      {
+        "min": 33,
+        "grade": "পাস"
+      },
+      {
+        "min": 60,
+        "grade": "A-"
+      },
+      {
+        "min": 70,
+        "grade": "A"
+      },
+      {
+        "min": 80,
+        "grade": "A+"
+      }
+    ],
+    "fail": {
+      "grade": "ফেল"
+    },
+    "pass": {
+      "min_percent_total": 33,
+      "groups": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "fa",
+      "label": "subject a",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "fb",
+      "label": "subject b",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "fc",
+      "label": "subject c",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    }
+  ],
+  "students": [
+    {
+      "id": "s201",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 9000
+        },
+        "fb": {
+          "written": 9000
+        }
+      },
+      "munshi": {
+        "total": 180,
+        "average": 60,
+        "grade": "A-",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s202",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 12000
+        },
+        "fb": {
+          "written": 5000
+        },
+        "fc": {
+          "written": 5000
+        }
+      },
+      "munshi": {
+        "total": 220,
+        "average": 73.33333333333333,
+        "grade": "A",
+        "merit_rank": null,
+        "mark_issues": {
+          "fa": "over"
+        }
+      }
+    },
+    {
+      "id": "s203",
+      "roll": null,
+      "marks": {
+        "fa": {
+          "written": 5000
+        },
+        "fb": {
+          "written": 6000
+        },
+        "fc": {
+          "written": 7000
+        }
+      },
+      "munshi": {
+        "total": 180,
+        "average": 60,
+        "grade": "A-",
+        "merit_rank": null
+      }
+    }
+  ]
+}

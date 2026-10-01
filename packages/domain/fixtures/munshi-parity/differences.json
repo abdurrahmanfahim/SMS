@@ -1,0 +1,66 @@
+[
+  {
+    "fixture": "P-2026-10-01-form1",
+    "student": "s1",
+    "metric": "average",
+    "cause": "D-1",
+    "munshi": 7500,
+    "sms": 7167
+  },
+  {
+    "fixture": "P-2026-10-01-form1",
+    "student": "s2",
+    "metric": "average",
+    "cause": "D-1",
+    "munshi": 5122,
+    "sms": 4933
+  },
+  {
+    "fixture": "P-2026-10-01-form1",
+    "student": "s3",
+    "metric": "average",
+    "cause": "D-1",
+    "munshi": 5122,
+    "sms": 4933
+  },
+  {
+    "fixture": "P-probe-rules",
+    "student": "s101",
+    "metric": "grade",
+    "cause": "D-2",
+    "munshi": "",
+    "sms": "A"
+  },
+  {
+    "fixture": "P-probe-rules",
+    "student": "s108",
+    "metric": "grade",
+    "cause": "D-2",
+    "munshi": "",
+    "sms": "A-"
+  },
+  {
+    "fixture": "P-probe-rules",
+    "student": "s102",
+    "metric": "grade",
+    "cause": "D-3",
+    "munshi": "A",
+    "sms": "ফেল"
+  },
+  {
+    "fixture": "P-probe-entry",
+    "student": "s201",
+    "metric": "status",
+    "cause": "D-4",
+    "munshi": "computed",
+    "sms": "error:missing_marks"
+  },
+  {
+    "fixture": "P-probe-entry",
+    "student": "s202",
+    "metric": "status",
+    "cause": "D-5",
+    "munshi": "computed",
+    "sms": "error:mark_out_of_range"
+  }
+]

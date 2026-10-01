@@ -1,0 +1,150 @@
+{
+  "id": "P-2026-10-01-form1",
+  "source": {
+    "backup": "docs/samples/munshi/nomborpotro-backup-2026-10-01.anonymised.json",
+    "form_id": 1,
+    "synthetic": false,
+    "form_name": "প্রথম সাময়িক পরীক্ষা",
+    "munshi_code": "docs/samples/munshi/compute.js",
+    "munshi_functions": ["computeDerivedValues", "computeMeritRanks", "markIssue"],
+    "average_uses_percentage": true,
+    "has_merit_rank": false,
+    "merit_top_n": null
+  },
+  "scheme": {
+    "version": 1,
+    "kind": "percentage_bands",
+    "bands": [
+      {
+        "min": 0,
+        "grade": "ফেল"
+      },
+      {
+        "min": 33,
+        "grade": "পাস"
+      },
+      {
+        "min": 60,
+        "grade": "A-"
+      },
+      {
+        "min": 70,
+        "grade": "A"
+      },
+      {
+        "min": 80,
+        "grade": "A+"
+      }
+    ],
+    "fail": {
+      "grade": "ফেল"
+    },
+    "pass": {
+      "min_percent_total": 33,
+      "groups": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "ff_msw8m9if_6gdii",
+      "label": "মিজান",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 150
+        }
+      ]
+    },
+    {
+      "id": "ff_msw8mfh0_opdfe",
+      "label": "তারিখ",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 100
+        }
+      ]
+    },
+    {
+      "id": "ff_msw8msf6_0oqlu",
+      "label": "মিয়াতে অমিল",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 50
+        }
+      ]
+    }
+  ],
+  "students": [
+    {
+      "id": "s1",
+      "roll": 12,
+      "marks": {
+        "ff_msw8m9if_6gdii": {
+          "written": 9000
+        },
+        "ff_msw8mfh0_opdfe": {
+          "written": 8500
+        },
+        "ff_msw8msf6_0oqlu": {
+          "written": 4000
+        }
+      },
+      "munshi": {
+        "total": 215,
+        "average": 75,
+        "grade": "A",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s2",
+      "roll": 13,
+      "marks": {
+        "ff_msw8m9if_6gdii": {
+          "written": 5800
+        },
+        "ff_msw8mfh0_opdfe": {
+          "written": 6500
+        },
+        "ff_msw8msf6_0oqlu": {
+          "written": 2500
+        }
+      },
+      "munshi": {
+        "total": 148,
+        "average": 51.22222222222222,
+        "grade": "পাস",
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s3",
+      "roll": 14,
+      "marks": {
+        "ff_msw8m9if_6gdii": {
+          "written": 5800
+        },
+        "ff_msw8mfh0_opdfe": {
+          "written": 6500
+        },
+        "ff_msw8msf6_0oqlu": {
+          "written": 2500
+        }
+      },
+      "munshi": {
+        "total": 148,
+        "average": 51.22222222222222,
+        "grade": "পাস",
+        "merit_rank": null
+      }
+    }
+  ]
+}
