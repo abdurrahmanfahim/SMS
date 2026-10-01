@@ -4,9 +4,11 @@ export function cssString(text: string): string {
 }
 
 /**
- * CSS that prints "Page 2 / 3" in the bottom margin of every page. It uses page margin boxes,
+ * CSS that prints "Page 2 / 3" in the bottom margin of every page, with Bangla digits when `digits`
+ * is `"bengali"`. It uses page margin boxes,
  * which Chromium supports from version 131; other browsers ignore the rule and print no number.
  */
-export function pageNumberCss(label: string): string {
-  return `@page { @bottom-center { content: ${cssString(`${label} `)} counter(page) " / " counter(pages); font-size: 9pt; } }`;
+export function pageNumberCss(label: string, digits: "latn" | "bengali" = "latn"): string {
+  const style = digits === "bengali" ? ", bengali" : "";
+  return `@page { @bottom-center { content: ${cssString(`${label} `)} counter(page${style}) " / " counter(pages${style}); font-size: 9pt; } }`;
 }

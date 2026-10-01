@@ -2,7 +2,7 @@ import { Button } from "@sms/ui";
 import { Printer } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { useT } from "../i18n";
+import { useLocale, useT } from "../i18n";
 
 import { pageNumberCss } from "./pageNumberCss";
 import "./print.css";
@@ -46,6 +46,7 @@ export function PrintLayout({
   children,
 }: PrintLayoutProps) {
   const t = useT();
+  const locale = useLocale();
   const body = (
     <>
       {children}
@@ -54,7 +55,9 @@ export function PrintLayout({
   );
   return (
     <div className="sms-print-preview" role="region" aria-label={label ?? t("print.preview.label")}>
-      {pageNumbers ? <style>{pageNumberCss(t("print.page.number"))}</style> : null}
+      {pageNumbers ? (
+        <style>{pageNumberCss(t("print.page.number"), locale === "bn" ? "bengali" : "latn")}</style>
+      ) : null}
       <div className="sms-print-sheet" data-testid="print-sheet">
         <table className="sms-print-frame" role="presentation">
           {header && repeatHeaderFooter ? (

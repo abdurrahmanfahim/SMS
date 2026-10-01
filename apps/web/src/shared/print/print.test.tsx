@@ -18,6 +18,12 @@ describe("pageNumberCss", () => {
     expect(css).toContain("counter(pages)");
   });
 
+  it("can print Bangla digits", () => {
+    expect(pageNumberCss("পাতা", "bengali")).toContain("counter(page, bengali)");
+    expect(pageNumberCss("পাতা", "bengali")).toContain("counter(pages, bengali)");
+    expect(pageNumberCss("Page")).not.toContain("bengali");
+  });
+
   it("escapes quotes, backslashes and newlines in the label", () => {
     expect(cssString('a"b\\c\nd')).toBe('"a\\"b\\\\c\\A d"');
     expect(pageNumberCss('x"}@page{')).not.toContain('x"}');
@@ -67,7 +73,7 @@ describe("PrintLayout", () => {
 
   it("includes the page-number style unless turned off", () => {
     const { container, rerender } = render(<PrintLayout>x</PrintLayout>);
-    expect(container.querySelector("style")?.textContent).toContain("counter(page)");
+    expect(container.querySelector("style")?.textContent).toContain("counter(page, bengali)");
     rerender(<PrintLayout pageNumbers={false}>x</PrintLayout>);
     expect(container.querySelector("style")).toBeNull();
   });
