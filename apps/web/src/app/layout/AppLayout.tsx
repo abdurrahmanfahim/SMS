@@ -35,11 +35,11 @@ export function AppLayout() {
           main?.focus();
           main?.scrollIntoView?.();
         }}
-        className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-tooltip focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg"
+        className="sms-no-print sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-tooltip focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-fg"
       >
         {t("shell.a11y.skip")}
       </a>
-      <header className="sticky top-0 z-sticky border-b border-line bg-surface px-4 py-2">
+      <header className="sms-no-print sticky top-0 z-sticky border-b border-line bg-surface px-4 py-2">
         {/* One fixed row: it must never wrap, or a font swap would push the whole page down (CLS). */}
         <div className="flex flex-nowrap items-center justify-between gap-2">
           <span className="shrink-0 text-lg font-semibold">{t("shell.brand.name")}</span>
@@ -57,7 +57,7 @@ export function AppLayout() {
       <OfflineNotice />
       <div className="flex flex-1">
         <Sidebar items={items} />
-        <main id="main" tabIndex={-1} className="min-w-0 flex-1 p-4 pb-24 md:pb-4">
+        <main id="main" tabIndex={-1} className="sms-app-main min-w-0 flex-1 p-4 pb-24 md:pb-4">
           <ErrorBoundary resetKey={pathname}>
             <Suspense fallback={<PageLoading />}>
               <Outlet />

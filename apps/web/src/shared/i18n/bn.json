@@ -96,7 +96,60 @@
       "reorderItem2": "দ্বিতীয় বিষয়",
       "reorderItem3": "তৃতীয় বিষয়",
       "moveUp": "{name} উপরে সরান",
-      "moveDown": "{name} নিচে সরান"
+      "moveDown": "{name} নিচে সরান",
+      "tableSection": "ডাটা টেবিল",
+      "tableDesc": "DataTable: সাজানো, ফিল্টার, কলাম দেখানো/লুকানো, সারি বাছাই, ভার্চুয়াল সারি। ফোনে কার্ড। সার্ভার মোডে rowCount দিলে সাজানো/ফিল্টার/পাতা সার্ভারে হয়।",
+      "tableClientTitle": "১০,০০০ শিক্ষার্থী (ব্রাউজারে)",
+      "tableServerTitle": "সার্ভার-স্টাইল তালিকা",
+      "tableLabelClient": "শিক্ষার্থীর তালিকা (১০,০০০)",
+      "tableLabelServer": "শিক্ষার্থীর তালিকা (সার্ভার)",
+      "tableSimulateError": "ত্রুটি দেখান",
+      "tableClearError": "ত্রুটি সরান",
+      "tableOpened": "{name} খোলা হয়েছে",
+      "colName": "নাম",
+      "colRoll": "রোল",
+      "colSection": "শাখা",
+      "colPhone": "অভিভাবকের মোবাইল",
+      "colStatus": "উপস্থিতি",
+      "formSection": "ফর্ম কিট",
+      "formDesc": "useAppForm, Form, TextField, NumberField, PhoneField, DateField, SelectField। বাংলা অঙ্ক ইংরেজি অঙ্কে বদলে যায়; সাবমিটে পার্স করা মান পাওয়া যায়।",
+      "formResult": "পার্স করা মান",
+      "formName": "শিক্ষার্থীর নাম",
+      "formMarks": "প্রাপ্ত নম্বর",
+      "formPhone": "অভিভাবকের মোবাইল",
+      "formBorn": "জন্ম তারিখ",
+      "formSectionField": "শাখা",
+      "formNote": "মন্তব্য",
+      "formActions": "ফর্মের বাটন",
+      "uploadSection": "ফাইল আপলোড",
+      "uploadDesc": "FileUpload: ক্যামেরা বা গ্যালারি, কেটে ঠিক করা, ফোনেই ছবি ছোট করা, অগ্রগতি, বাতিল ও আবার চেষ্টা। এখানে আপলোডটি নকল।",
+      "uploadPhoto": "প্রতিষ্ঠানের লোগো (চারকোণা করে কাটা হবে)",
+      "uploadDoc": "পিডিএফ ফাইল",
+      "uploadFail": "আপলোড ব্যর্থ হোক",
+      "uploaded": "আপলোড হয়েছে: {path}",
+      "printSection": "প্রিন্ট",
+      "printDesc": "PrintLayout: A4 পাতা, প্রতি পাতায় হেডার/ফুটার, সই, পাতা ভাঙা। নমুনায় ৩টি A4 পাতা আছে।",
+      "printOpen": "৩ পাতার A4 নমুনা খুলুন",
+      "printTitle": "মার্কশিট নমুনা",
+      "printInstitution": "নমুনা উচ্চ বিদ্যালয়",
+      "printTeacher": "শ্রেণি শিক্ষক",
+      "printHead": "প্রধান শিক্ষক",
+      "printPart": "অংশ {part}",
+      "printFooter": "এটি একটি নমুনা প্রিন্ট",
+      "shareSection": "শেয়ার",
+      "shareDesc": "shareFile, whatsappLink, smsLink, copyToClipboard। ফাইল শেয়ার না চললে ফাইলটি সংরক্ষণ হয়।",
+      "shareFile": "ফাইল শেয়ার করুন",
+      "shareWhatsapp": "হোয়াটসঅ্যাপে পাঠান",
+      "shareSms": "এসএমএসে পাঠান",
+      "shareCopy": "লেখা কপি করুন",
+      "shareMessage": "ফলাফল প্রকাশ হয়েছে। বিস্তারিত অ্যাপে দেখুন।",
+      "shareTitle": "নমুনা ফাইল",
+      "shareCopied": "কপি হয়েছে",
+      "shareCopyFailed": "কপি করা যায়নি",
+      "shareDownloaded": "ফাইলটি সংরক্ষণ করা হয়েছে",
+      "shareShared": "শেয়ার করা হয়েছে",
+      "uploadPhotoPlain": "ছবি (কাটা ছাড়া, শুধু ছোট করা)",
+      "uploadedSize": "আপলোড করা ছবির আকার: {bytes} বাইট"
     }
   },
   "common": {
@@ -144,6 +197,122 @@
         "step3": "নিচে স্ক্রল করে “হোম স্ক্রিনে যোগ করুন” (Add to Home Screen) চাপুন।",
         "step4": "উপরের ডানদিকে “যোগ করুন” (Add) চাপুন।"
       }
+    }
+  },
+  "table": {
+    "toolbar": {
+      "search": "অনুসন্ধান",
+      "filters": "ফিল্টার",
+      "filtersActive": "ফিল্টার ({count})",
+      "sort": "সাজান",
+      "sortNone": "সাজানো নেই",
+      "sortAsc": "{column}: ক্রমানুসারে",
+      "sortDesc": "{column}: উল্টো ক্রমে",
+      "clearFilters": "ফিল্টার মুছুন"
+    },
+    "panel": {
+      "title": "ফিল্টার ও কলাম",
+      "filtersTitle": "ফিল্টার",
+      "columnsTitle": "কলাম দেখান",
+      "all": "সব",
+      "done": "সম্পন্ন"
+    },
+    "state": {
+      "loading": "তালিকা লোড হচ্ছে",
+      "emptyTitle": "কোনো তথ্য পাওয়া যায়নি।",
+      "emptyDescription": "অনুসন্ধান বা ফিল্টার বদলে দেখুন।",
+      "errorTitle": "তালিকা লোড করা যায়নি।",
+      "errorDescription": "আবার চেষ্টা করুন।",
+      "retry": "আবার চেষ্টা করুন"
+    },
+    "select": {
+      "row": "{name} বাছাই করুন",
+      "rowFallback": "সারি {number} বাছাই করুন",
+      "all": "এই পাতার সবগুলো বাছাই করুন",
+      "count": "{count}টি বাছাই করা হয়েছে",
+      "clear": "বাছাই মুছুন",
+      "column": "বাছাই"
+    },
+    "page": {
+      "previous": "আগের পাতা",
+      "next": "পরের পাতা",
+      "info": "{from}–{to} / {total}",
+      "of": "পাতা {page} / {pages}",
+      "size": "প্রতি পাতায়"
+    },
+    "sortState": {
+      "ascending": "ক্রমানুসারে সাজানো",
+      "descending": "উল্টো ক্রমে সাজানো"
+    }
+  },
+  "forms": {
+    "error": {
+      "required": "এই ঘরটি পূরণ করতে হবে।",
+      "invalidNumber": "সংখ্যা লিখুন।",
+      "integer": "দশমিক ছাড়া পূর্ণসংখ্যা লিখুন।",
+      "min": "{min} বা তার বেশি হতে হবে।",
+      "max": "{max} এর বেশি হতে পারবে না।",
+      "tooLong": "সর্বোচ্চ {max}টি অক্ষর লেখা যাবে।",
+      "phone": "১১ সংখ্যার সঠিক মোবাইল নম্বর দিন (যেমন ০১৭XXXXXXXX)।",
+      "date": "সঠিক তারিখ দিন।",
+      "dateMin": "{min} বা তার পরের তারিখ দিন।",
+      "dateMax": "{max} বা তার আগের তারিখ দিন।",
+      "choose": "একটি বেছে নিন।",
+      "invalid": "ঘরটি সঠিকভাবে পূরণ করুন।",
+      "saveFailed": "সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।"
+    },
+    "summary": {
+      "errors": "{count}টি ঘরে সমস্যা আছে। ঠিক করে আবার চেষ্টা করুন।"
+    },
+    "field": {
+      "optional": "(ঐচ্ছিক)"
+    }
+  },
+  "upload": {
+    "action": {
+      "camera": "ক্যামেরা দিয়ে তুলুন",
+      "gallery": "গ্যালারি থেকে নিন",
+      "file": "ফাইল বেছে নিন",
+      "replace": "অন্য ফাইল দিন",
+      "retry": "আবার চেষ্টা করুন",
+      "cancel": "বাতিল"
+    },
+    "state": {
+      "preparing": "ছবি ছোট করা হচ্ছে",
+      "uploading": "আপলোড হচ্ছে: {percent}",
+      "done": "আপলোড হয়েছে",
+      "cancelled": "আপলোড বাতিল করা হয়েছে",
+      "selected": "বেছে নেওয়া ফাইল: {name}",
+      "progress": "আপলোডের অগ্রগতি"
+    },
+    "error": {
+      "type": "এই ধরনের ফাইল নেওয়া যায় না। শুধু {types} দিন।",
+      "size": "ফাইলটি {size} এর চেয়ে বড়। ছোট ফাইল দিন।",
+      "empty": "ফাইলটি খালি। অন্য ফাইল দিন।",
+      "failed": "আপলোড করা যায়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।",
+      "decode": "ছবিটি খোলা যায়নি। অন্য ছবি দিন।"
+    },
+    "crop": {
+      "title": "ছবি কেটে ঠিক করুন",
+      "zoom": "বড় করুন",
+      "horizontal": "ডানে-বামে সরান",
+      "vertical": "উপরে-নিচে সরান",
+      "confirm": "এই অংশটি নিন",
+      "preview": "কাটা অংশের প্রিভিউ"
+    },
+    "preview": {
+      "alt": "বেছে নেওয়া ছবি"
+    }
+  },
+  "print": {
+    "action": {
+      "print": "প্রিন্ট করুন"
+    },
+    "page": {
+      "number": "পাতা"
+    },
+    "preview": {
+      "label": "প্রিন্ট প্রিভিউ (A4)"
     }
   }
 }

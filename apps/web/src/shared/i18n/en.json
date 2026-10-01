@@ -96,7 +96,60 @@
       "reorderItem2": "Second subject",
       "reorderItem3": "Third subject",
       "moveUp": "Move {name} up",
-      "moveDown": "Move {name} down"
+      "moveDown": "Move {name} down",
+      "tableSection": "Data table",
+      "tableDesc": "DataTable: sorting, filters, show/hide columns, row selection, virtual rows. Cards on phones. Passing rowCount switches to server mode where sorting, filtering and paging happen on the server.",
+      "tableClientTitle": "10,000 students (in the browser)",
+      "tableServerTitle": "Server-style list",
+      "tableLabelClient": "Student list (10,000)",
+      "tableLabelServer": "Student list (server)",
+      "tableSimulateError": "Show an error",
+      "tableClearError": "Clear the error",
+      "tableOpened": "Opened {name}",
+      "colName": "Name",
+      "colRoll": "Roll",
+      "colSection": "Section",
+      "colPhone": "Guardian mobile",
+      "colStatus": "Attendance",
+      "formSection": "Form kit",
+      "formDesc": "useAppForm, Form, TextField, NumberField, PhoneField, DateField, SelectField. Bangla digits become ASCII; submit gives the parsed values.",
+      "formResult": "Parsed values",
+      "formName": "Student name",
+      "formMarks": "Marks obtained",
+      "formPhone": "Guardian mobile",
+      "formBorn": "Date of birth",
+      "formSectionField": "Section",
+      "formNote": "Remarks",
+      "formActions": "Form buttons",
+      "uploadSection": "File upload",
+      "uploadDesc": "FileUpload: camera or gallery, crop, on-device compression, progress, cancel and retry. The upload here is simulated.",
+      "uploadPhoto": "Institution logo (cropped to a square)",
+      "uploadDoc": "PDF file",
+      "uploadFail": "Make the upload fail",
+      "uploaded": "Uploaded: {path}",
+      "printSection": "Print",
+      "printDesc": "PrintLayout: A4 pages, header and footer on every page, signatures, page breaks. The sample has 3 A4 pages.",
+      "printOpen": "Open the 3-page A4 sample",
+      "printTitle": "Sample marksheet",
+      "printInstitution": "Sample High School",
+      "printTeacher": "Class teacher",
+      "printHead": "Headmaster",
+      "printPart": "Part {part}",
+      "printFooter": "This is a sample print",
+      "shareSection": "Share",
+      "shareDesc": "shareFile, whatsappLink, smsLink, copyToClipboard. Where file sharing is missing the file is saved instead.",
+      "shareFile": "Share a file",
+      "shareWhatsapp": "Send on WhatsApp",
+      "shareSms": "Send by SMS",
+      "shareCopy": "Copy the text",
+      "shareMessage": "Results are published. See details in the app.",
+      "shareTitle": "Sample file",
+      "shareCopied": "Copied",
+      "shareCopyFailed": "Could not copy",
+      "shareDownloaded": "The file was saved",
+      "shareShared": "Shared",
+      "uploadPhotoPlain": "Photo (no crop, only made smaller)",
+      "uploadedSize": "Uploaded photo size: {bytes} bytes"
     }
   },
   "common": {
@@ -144,6 +197,122 @@
         "step3": "Scroll down and tap “Add to Home Screen”.",
         "step4": "Tap “Add” at the top right."
       }
+    }
+  },
+  "table": {
+    "toolbar": {
+      "search": "Search",
+      "filters": "Filters",
+      "filtersActive": "Filters ({count})",
+      "sort": "Sort by",
+      "sortNone": "Not sorted",
+      "sortAsc": "{column}: ascending",
+      "sortDesc": "{column}: descending",
+      "clearFilters": "Clear filters"
+    },
+    "panel": {
+      "title": "Filters and columns",
+      "filtersTitle": "Filters",
+      "columnsTitle": "Show columns",
+      "all": "All",
+      "done": "Done"
+    },
+    "state": {
+      "loading": "Loading the list",
+      "emptyTitle": "Nothing found.",
+      "emptyDescription": "Try changing the search or filters.",
+      "errorTitle": "Could not load the list.",
+      "errorDescription": "Please try again.",
+      "retry": "Try again"
+    },
+    "select": {
+      "row": "Select {name}",
+      "rowFallback": "Select row {number}",
+      "all": "Select all on this page",
+      "count": "{count} selected",
+      "clear": "Clear selection",
+      "column": "Select"
+    },
+    "page": {
+      "previous": "Previous page",
+      "next": "Next page",
+      "info": "{from}–{to} of {total}",
+      "of": "Page {page} of {pages}",
+      "size": "Per page"
+    },
+    "sortState": {
+      "ascending": "Sorted ascending",
+      "descending": "Sorted descending"
+    }
+  },
+  "forms": {
+    "error": {
+      "required": "This field is required.",
+      "invalidNumber": "Enter a number.",
+      "integer": "Enter a whole number without decimals.",
+      "min": "Must be {min} or more.",
+      "max": "Must not be more than {max}.",
+      "tooLong": "At most {max} characters are allowed.",
+      "phone": "Enter a valid 11-digit mobile number (for example 017XXXXXXXX).",
+      "date": "Enter a valid date.",
+      "dateMin": "Enter {min} or a later date.",
+      "dateMax": "Enter {max} or an earlier date.",
+      "choose": "Choose one.",
+      "invalid": "Please fill this field correctly.",
+      "saveFailed": "Could not save. Please try again."
+    },
+    "summary": {
+      "errors": "{count} fields need attention. Please fix them and try again."
+    },
+    "field": {
+      "optional": "(optional)"
+    }
+  },
+  "upload": {
+    "action": {
+      "camera": "Take a photo",
+      "gallery": "Choose from gallery",
+      "file": "Choose a file",
+      "replace": "Choose another file",
+      "retry": "Try again",
+      "cancel": "Cancel"
+    },
+    "state": {
+      "preparing": "Making the photo smaller",
+      "uploading": "Uploading: {percent}",
+      "done": "Uploaded",
+      "cancelled": "Upload cancelled",
+      "selected": "Selected file: {name}",
+      "progress": "Upload progress"
+    },
+    "error": {
+      "type": "This type of file is not accepted. Use only {types}.",
+      "size": "The file is larger than {size}. Choose a smaller file.",
+      "empty": "The file is empty. Choose another file.",
+      "failed": "Could not upload. Check your internet and try again.",
+      "decode": "The photo could not be opened. Choose another photo."
+    },
+    "crop": {
+      "title": "Crop the photo",
+      "zoom": "Zoom",
+      "horizontal": "Move left or right",
+      "vertical": "Move up or down",
+      "confirm": "Use this part",
+      "preview": "Preview of the cropped part"
+    },
+    "preview": {
+      "alt": "Selected photo"
+    }
+  },
+  "print": {
+    "action": {
+      "print": "Print"
+    },
+    "page": {
+      "number": "Page"
+    },
+    "preview": {
+      "label": "Print preview (A4)"
     }
   }
 }

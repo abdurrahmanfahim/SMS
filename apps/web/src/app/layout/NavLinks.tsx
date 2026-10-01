@@ -9,7 +9,7 @@ export function BottomTabBar({ items }: { items: NavItem[] }) {
   return (
     <nav
       aria-label={t("shell.nav.label")}
-      className="sms-hide-when-keyboard fixed inset-x-0 bottom-0 z-sticky border-t border-line bg-surface md:hidden"
+      className="sms-no-print sms-hide-when-keyboard fixed inset-x-0 bottom-0 z-sticky border-t border-line bg-surface md:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
       <ul className="m-0 flex list-none p-0">
@@ -47,7 +47,7 @@ export function Sidebar({ items }: { items: NavItem[] }) {
   return (
     <nav
       aria-label={t("shell.nav.label")}
-      className="hidden w-[240px] shrink-0 border-r border-line bg-surface-subtle md:block"
+      className="sms-no-print hidden w-[240px] shrink-0 border-r border-line bg-surface-subtle md:block"
     >
       <ul className="m-0 flex list-none flex-col gap-2 p-4">
         {items.map((item) => (

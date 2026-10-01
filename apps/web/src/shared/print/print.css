@@ -1,0 +1,135 @@
+/*
+ * A4 print base. Pages are built as one frame table: <thead> and <tfoot> repeat on every printed
+ * page (headers and footers), the signature block never splits across pages, table rows never
+ * split, and long tables repeat their own header row. Margins live in @page so the browser
+ * prints them the same on every page.
+ *
+ * Page-number text comes from an <style> element rendered by PrintLayout (translated).
+ */
+@page {
+  size: A4 portrait;
+  margin: 12mm 14mm 18mm;
+}
+
+.sms-print-preview {
+  /* On screen the sheet is a real A4 width; the preview scrolls sideways inside itself on phones. */
+  overflow-x: auto;
+  background: var(--color-surface-subtle);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+}
+
+.sms-print-sheet {
+  box-sizing: border-box;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 12mm 14mm 18mm;
+  background: #fff;
+  color: #000;
+  font-family: var(--font-print, var(--font-bangla));
+  font-size: 11pt;
+  line-height: 1.6;
+  box-shadow: var(--shadow-md);
+}
+
+.sms-print-frame {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.sms-print-frame > thead {
+  display: table-header-group;
+}
+.sms-print-frame > tfoot {
+  display: table-footer-group;
+}
+.sms-print-frame > * > tr > td {
+  padding: 0;
+  vertical-align: top;
+}
+
+/* Long tables inside the content: header row repeats, rows do not split. */
+.sms-print-sheet table:not(.sms-print-frame) {
+  width: 100%;
+  border-collapse: collapse;
+}
+.sms-print-sheet table:not(.sms-print-frame) thead {
+  display: table-header-group;
+}
+.sms-print-sheet table:not(.sms-print-frame) tr {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.sms-print-sheet table:not(.sms-print-frame) th,
+.sms-print-sheet table:not(.sms-print-frame) td {
+  border: 0.3mm solid #000;
+  padding: 1.2mm 2mm;
+  text-align: left;
+}
+.sms-print-sheet h1,
+.sms-print-sheet h2,
+.sms-print-sheet h3 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* Page-break helpers. */
+.sms-page-break {
+  break-after: page;
+  page-break-after: always;
+  height: 0;
+}
+.sms-avoid-break {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.sms-signatures {
+  display: flex;
+  justify-content: space-between;
+  gap: 8mm;
+  margin-top: 18mm;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.sms-signature {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+.sms-signature-line {
+  border-top: 0.3mm solid #000;
+  padding-top: 1.5mm;
+}
+
+/* Screen / print switches. */
+.sms-print-only {
+  display: none;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+  }
+  .sms-print-preview {
+    overflow: visible;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+  .sms-print-sheet {
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  .sms-print-only {
+    display: block;
+  }
+  .sms-no-print {
+    display: none !important;
+  }
+}

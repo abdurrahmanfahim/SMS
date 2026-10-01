@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
-const PAGES = ["/app", "/install", "/dev/kit", "/dev/form"] as const;
+const PAGES = ["/app", "/install", "/dev/kit", "/dev/form", "/dev/print"] as const;
 const PHONE = { width: 360, height: 740 };
 const DESKTOP = { width: 1280, height: 800 };
 
