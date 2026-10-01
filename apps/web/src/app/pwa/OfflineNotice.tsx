@@ -30,7 +30,7 @@ export function OfflineNotice() {
     <div
       role="status"
       data-testid="offline-notice"
-      className="flex items-center gap-2 border-b-2 border-warning bg-surface-subtle px-4 py-2"
+      className="sms-no-print flex items-center gap-2 border-b-2 border-warning bg-surface-subtle px-4 py-2"
     >
       <WifiOff aria-hidden className="h-5 w-5 shrink-0" />
       <span>{t("pwa.offline.message")}</span>

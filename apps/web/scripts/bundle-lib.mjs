@@ -16,7 +16,9 @@ export function initialAssets(html) {
   const css = new Set();
   const clean = (href) => href.replace(/^\//, "").replace(/^\.\//, "");
   for (const m of html.matchAll(/<script\b[^>]*\bsrc="([^"]+\.js)"[^>]*>/g)) js.add(clean(m[1]));
-  for (const m of html.matchAll(/<link\b[^>]*\brel="modulepreload"[^>]*\bhref="([^"]+\.js)"[^>]*>/g))
+  for (const m of html.matchAll(
+    /<link\b[^>]*\brel="modulepreload"[^>]*\bhref="([^"]+\.js)"[^>]*>/g,
+  ))
     js.add(clean(m[1]));
   for (const m of html.matchAll(/<link\b[^>]*\brel="stylesheet"[^>]*\bhref="([^"]+\.css)"[^>]*>/g))
     css.add(clean(m[1]));

@@ -15,8 +15,14 @@ import {
 } from "@sms/ui";
 import { CalendarX, Plus } from "lucide-react";
 import { useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 import { useT } from "../../shared/i18n";
+
+import { FormDemo } from "./kit/FormDemo";
+import { ShareDemo } from "./kit/ShareDemo";
+import { TableDemo } from "./kit/TableDemo";
+import { UploadDemo } from "./kit/UploadDemo";
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -41,7 +47,7 @@ export function DevKit() {
   ]);
 
   return (
-    <div className="flex max-w-2xl flex-col gap-6">
+    <div className="flex max-w-4xl flex-col gap-6">
       <h1 className="m-0 text-2xl font-semibold">{t("devkit.kit.title")}</h1>
 
       <Section title={t("devkit.kit.buttons")}>
@@ -130,6 +136,35 @@ export function DevKit() {
           moveUpLabel={(key) => t("devkit.kit.moveUp", { name: t(key) })}
           moveDownLabel={(key) => t("devkit.kit.moveDown", { name: t(key) })}
         />
+      </Section>
+
+      <Section title={t("devkit.kit.tableSection")}>
+        <p className="m-0 text-content-secondary">{t("devkit.kit.tableDesc")}</p>
+        <TableDemo />
+      </Section>
+
+      <Section title={t("devkit.kit.formSection")}>
+        <p className="m-0 text-content-secondary">{t("devkit.kit.formDesc")}</p>
+        <FormDemo />
+      </Section>
+
+      <Section title={t("devkit.kit.uploadSection")}>
+        <p className="m-0 text-content-secondary">{t("devkit.kit.uploadDesc")}</p>
+        <UploadDemo />
+      </Section>
+
+      <Section title={t("devkit.kit.printSection")}>
+        <p className="m-0 text-content-secondary">{t("devkit.kit.printDesc")}</p>
+        <div>
+          <Link to="/dev/print" className="inline-flex min-h-tap items-center text-link underline">
+            {t("devkit.kit.printOpen")}
+          </Link>
+        </div>
+      </Section>
+
+      <Section title={t("devkit.kit.shareSection")}>
+        <p className="m-0 text-content-secondary">{t("devkit.kit.shareDesc")}</p>
+        <ShareDemo />
       </Section>
 
       <Section title={t("devkit.kit.overlays")}>
