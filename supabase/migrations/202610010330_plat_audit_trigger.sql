@@ -15,7 +15,8 @@ set search_path = ''
 as $$
 declare
   uid uuid := auth.uid();
-  excluded text[] := tg_argv;
+  -- tg_argv is null (not empty) when the trigger has no arguments
+  excluded text[] := coalesce(tg_argv, array[]::text[]);
   new_j jsonb;
   old_j jsonb;
   row_j jsonb;
