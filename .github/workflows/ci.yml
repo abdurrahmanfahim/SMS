@@ -48,6 +48,13 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Script tests (staging seed, bundle check)
+        run: pnpm test:scripts
+
+      # Fails the build if the web bundle contains the service-role key (or the text service_role).
+      - name: Bundle must not contain the service-role key
+        run: node scripts/check-bundle-secrets.mjs apps/web/dist
+
       - name: E2E smoke test
         timeout-minutes: 10
         run: pnpm e2e
@@ -92,9 +99,9 @@ jobs:
         run: |
           pnpm db:types
           if ! git diff --exit-code -- packages/db/src/types.ts; then
-            # On pushes, publish the freshly generated file on a bot branch so it can be
+            # On pushes and same-repo pull requests, publish the freshly generated file on a bot branch so it can be
             # merged without running Docker locally.
-            if [ "${{ github.event_name }}" = "push" ]; then
+            if [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "pull_request" ]; then
               git config user.name "ci-bot"
               git config user.email "ci-bot@users.noreply.github.com"
               git add packages/db/src/types.ts

@@ -16,6 +16,7 @@
   "dependencies": {
     "@fontsource/hind-siliguri": "^5.3.0",
     "@fontsource/noto-sans-bengali": "^5.3.0",
+    "@sms/db": "workspace:*",
     "lucide-react": "^1.48.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

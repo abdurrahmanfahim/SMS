@@ -1,0 +1,146 @@
+name: plat-deploy-staging
+
+# Push to main -> 1) apply database migrations to STAGING, 2) only if that succeeded, trigger the
+# static host's staging build, 3) smoke-test the deployed site. A failed migration stops here, so
+# the deploy job never runs. Needs the secrets listed in docs/runbooks/deploy.md; a missing secret
+# fails the job with the secret's NAME (never a value).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: plat-deploy-staging
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    name: deploy / migrate staging database
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required secrets are set
+        shell: bash
+        run: |
+          missing=0
+          for name in SUPABASE_ACCESS_TOKEN SUPABASE_PROJECT_REF SUPABASE_DB_PASSWORD; do
+            if [ -z "${!name}" ]; then echo "::error::Secret $name is not set (docs/runbooks/deploy.md)"; missing=1; fi
+          done
+          exit $missing
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Link the staging project
+        run: pnpm exec supabase link --project-ref "$SUPABASE_PROJECT_REF"
+
+      # Forward-only: applies only migrations staging has not seen. Any SQL error fails this step.
+      - name: Apply migrations to staging
+        run: pnpm exec supabase db push --linked --yes
+
+  deploy:
+    name: deploy / trigger staging build
+    needs: migrate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      hook_used: ${{ steps.hook.outputs.hook_used }}
+    steps:
+      # Without a deploy hook the host builds main by itself and cannot be held back by a failed
+      # migration. See docs/runbooks/deploy.md, "Making a failed migration block the deploy".
+      - name: Trigger the staging build through the deploy hook
+        id: hook
+        env:
+          STAGING_DEPLOY_HOOK_URL: ${{ secrets.STAGING_DEPLOY_HOOK_URL }}
+        shell: bash
+        run: |
+          if [ -z "$STAGING_DEPLOY_HOOK_URL" ]; then
+            echo "::warning::STAGING_DEPLOY_HOOK_URL is not set. The host builds main on its own, so a failed migration cannot block the deploy. See docs/runbooks/deploy.md."
+            echo "hook_used=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          curl --fail --silent --show-error --output /dev/null -X POST "$STAGING_DEPLOY_HOOK_URL"
+          echo "hook_used=true" >> "$GITHUB_OUTPUT"
+
+  smoke:
+    name: deploy / smoke test staging
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      STAGING_URL: ${{ secrets.STAGING_URL }}
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+      E2E_STAGING_SINGLE_EMAIL: ${{ secrets.E2E_STAGING_SINGLE_EMAIL }}
+      E2E_STAGING_SINGLE_PASSWORD: ${{ secrets.E2E_STAGING_SINGLE_PASSWORD }}
+      E2E_STAGING_MULTI_EMAIL: ${{ secrets.E2E_STAGING_MULTI_EMAIL }}
+      E2E_STAGING_MULTI_PASSWORD: ${{ secrets.E2E_STAGING_MULTI_PASSWORD }}
+      E2E_STAGING_OTHER_EMAIL: ${{ secrets.E2E_STAGING_OTHER_EMAIL }}
+      E2E_STAGING_OTHER_PASSWORD: ${{ secrets.E2E_STAGING_OTHER_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required secrets are set
+        shell: bash
+        run: |
+          missing=0
+          for name in STAGING_URL VITE_SUPABASE_URL VITE_SUPABASE_ANON_KEY \
+            E2E_STAGING_SINGLE_EMAIL E2E_STAGING_SINGLE_PASSWORD \
+            E2E_STAGING_MULTI_EMAIL E2E_STAGING_MULTI_PASSWORD \
+            E2E_STAGING_OTHER_EMAIL E2E_STAGING_OTHER_PASSWORD; do
+            if [ -z "${!name}" ]; then echo "::error::Secret $name is not set (docs/runbooks/deploy.md)"; missing=1; fi
+          done
+          exit $missing
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm --filter @sms/e2e exec playwright install --with-deps chromium
+
+      # The host has no "deploy finished" signal we can read, so after the hook we give the build
+      # time to finish, then wait until the site answers.
+      - name: Wait for the staging deploy
+        shell: bash
+        run: |
+          if [ "${{ needs.deploy.outputs.hook_used }}" = "true" ]; then sleep 150; fi
+          for i in $(seq 1 30); do
+            if curl --fail --silent --output /dev/null "$STAGING_URL/"; then exit 0; fi
+            sleep 10
+          done
+          echo "::error::Staging site did not answer in 5 minutes"; exit 1
+
+      - name: Smoke test and RLS probe against staging
+        run: pnpm e2e:staging
+        env:
+          CI: true
