@@ -1,0 +1,638 @@
+{
+  "id": "P-2026-10-01-form2",
+  "source": {
+    "backup": "docs/samples/munshi/nomborpotro-backup-2026-10-01.anonymised.json",
+    "form_id": 2,
+    "synthetic": false,
+    "form_name": "নাশীদ",
+    "munshi_code": "docs/samples/munshi/compute.js",
+    "munshi_functions": ["computeDerivedValues", "computeMeritRanks", "markIssue"],
+    "average_uses_percentage": null,
+    "has_merit_rank": true,
+    "merit_top_n": 10
+  },
+  "scheme": {
+    "version": 1,
+    "kind": "percentage_bands",
+    "bands": [
+      {
+        "min": 0,
+        "grade": "-"
+      }
+    ],
+    "fail": {
+      "grade": "F"
+    },
+    "pass": {
+      "min_percent_total": 0,
+      "groups": []
+    }
+  },
+  "subjects": [
+    {
+      "id": "ff_mtaa4t9h_zvqz0",
+      "label": "বিচারক ১",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 10
+        }
+      ]
+    },
+    {
+      "id": "ff_mtaa5pez_9ehwr",
+      "label": "বিচারক ২",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 10
+        }
+      ]
+    },
+    {
+      "id": "ff_mtaa67be_t4s7z",
+      "label": "বিচারক ৩",
+      "components": [
+        {
+          "id": "written",
+          "paper": 1,
+          "code": "written",
+          "full": 10
+        }
+      ]
+    }
+  ],
+  "students": [
+    {
+      "id": "s4",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 500
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 800
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 600
+        }
+      },
+      "munshi": {
+        "total": 19,
+        "average": null,
+        "grade": null,
+        "merit_rank": 10
+      }
+    },
+    {
+      "id": "s5",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 500
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 900
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 700
+        }
+      },
+      "munshi": {
+        "total": 21,
+        "average": null,
+        "grade": null,
+        "merit_rank": 8
+      }
+    },
+    {
+      "id": "s6",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 800
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s7",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 300
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 900
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 600
+        }
+      },
+      "munshi": {
+        "total": 18,
+        "average": null,
+        "grade": null,
+        "merit_rank": null
+      }
+    },
+    {
+      "id": "s8",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 900
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 900
+        }
+      },
+      "munshi": {
+        "total": 28,
+        "average": null,
+        "grade": null,
+        "merit_rank": 2
+      }
+    },
+    {
+      "id": "s9",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 900
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s10",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 900
+        }
+      },
+      "munshi": {
+        "total": 26,
+        "average": null,
+        "grade": null,
+        "merit_rank": 4
+      }
+    },
+    {
+      "id": "s11",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 24,
+        "average": null,
+        "grade": null,
+        "merit_rank": 6
+      }
+    },
+    {
+      "id": "s12",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 500
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s13",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 1000
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 900
+        }
+      },
+      "munshi": {
+        "total": 29,
+        "average": null,
+        "grade": null,
+        "merit_rank": 1
+      }
+    },
+    {
+      "id": "s14",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 25,
+        "average": null,
+        "grade": null,
+        "merit_rank": 5
+      }
+    },
+    {
+      "id": "s15",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 700
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s16",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 700
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s18",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 25,
+        "average": null,
+        "grade": null,
+        "merit_rank": 5
+      }
+    },
+    {
+      "id": "s19",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 900
+        }
+      },
+      "munshi": {
+        "total": 25,
+        "average": null,
+        "grade": null,
+        "merit_rank": 5
+      }
+    },
+    {
+      "id": "s20",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 900
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 27,
+        "average": null,
+        "grade": null,
+        "merit_rank": 3
+      }
+    },
+    {
+      "id": "s21",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 800
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 700
+        }
+      },
+      "munshi": {
+        "total": 25,
+        "average": null,
+        "grade": null,
+        "merit_rank": 5
+      }
+    },
+    {
+      "id": "s22",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 1000
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 900
+        }
+      },
+      "munshi": {
+        "total": 29,
+        "average": null,
+        "grade": null,
+        "merit_rank": 1
+      }
+    },
+    {
+      "id": "s23",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 900
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s24",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 600
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s25",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 500
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 900
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 600
+        }
+      },
+      "munshi": {
+        "total": 20,
+        "average": null,
+        "grade": null,
+        "merit_rank": 9
+      }
+    },
+    {
+      "id": "s26",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 900
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 500
+        }
+      },
+      "munshi": {
+        "total": 21,
+        "average": null,
+        "grade": null,
+        "merit_rank": 8
+      }
+    },
+    {
+      "id": "s27",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 500
+        }
+      },
+      "munshi": {
+        "total": 21,
+        "average": null,
+        "grade": null,
+        "merit_rank": 8
+      }
+    },
+    {
+      "id": "s28",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 600
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s29",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 1000
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 800
+        }
+      },
+      "munshi": {
+        "total": 28,
+        "average": null,
+        "grade": null,
+        "merit_rank": 2
+      }
+    },
+    {
+      "id": "s30",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 700
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 600
+        }
+      },
+      "munshi": {
+        "total": 23,
+        "average": null,
+        "grade": null,
+        "merit_rank": 7
+      }
+    },
+    {
+      "id": "s31",
+      "roll": null,
+      "marks": {
+        "ff_mtaa4t9h_zvqz0": {
+          "written": 600
+        },
+        "ff_mtaa5pez_9ehwr": {
+          "written": 1000
+        },
+        "ff_mtaa67be_t4s7z": {
+          "written": 500
+        }
+      },
+      "munshi": {
+        "total": 21,
+        "average": null,
+        "grade": null,
+        "merit_rank": 8
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "backups": [
+    {
+      "file": "docs/samples/munshi/nomborpotro-backup-2026-09-01.anonymised.json",
+      "forms": [
+        {
+          "form_id": 1,
+          "name": "প্রথম সাময়িক পরীক্ষা",
+          "fields": 0,
+          "responses": 0,
+          "compared": false
+        }
+      ]
+    },
+    {
+      "file": "docs/samples/munshi/nomborpotro-backup-2026-10-01.anonymised.json",
+      "forms": [
+        {
+          "form_id": 1,
+          "name": "প্রথম সাময়িক পরীক্ষা",
+          "fields": 9,
+          "responses": 3,
+          "compared": true
+        },
+        {
+          "form_id": 2,
+          "name": "নাশীদ",
+          "fields": 8,
+          "responses": 27,
+          "compared": true
+        },
+        {
+          "form_id": 3,
+          "name": "প্রথম সাময়িক পরীক্ষা",
+          "fields": 0,
+          "responses": 0,
+          "compared": false
+        },
+        {
+          "form_id": 4,
+          "name": "দ্বিতীয় সাময়িক পরীক্ষা",
+          "fields": 14,
+          "responses": 3,
+          "compared": true
+        },
+        {
+          "form_id": 5,
+          "name": "বার্ষিক পরীক্ষা",
+          "fields": 3,
+          "responses": 0,
+          "compared": false
+        }
+      ]
+    }
+  ]
+}
