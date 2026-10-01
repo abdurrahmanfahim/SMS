@@ -5,7 +5,7 @@ import { BD_GENERAL_GPA5 } from "./presets.js";
 import type { ExamInput } from "./schema.js";
 
 describe("performance", () => {
-  it("computes 1,000 students by 12 subjects in under 200 ms", () => {
+  it("computes 1,000 students by 12 subjects in under 1,000 ms", () => {
     const rule = {
       min_percent_total: 33,
       groups: [
@@ -52,6 +52,8 @@ describe("performance", () => {
     console.info(
       `1000 students x 12 subjects: best ${best.toFixed(1)} ms, runs ${runs.map((r) => r.toFixed(1)).join(", ")}`,
     );
-    expect(best).toBeLessThan(200);
+    // Leader ruling R-10: the engine takes about 40 to 80 ms here; shared CI runners are several
+    // times slower, so the guard is 1,000 ms. It still catches an order-of-magnitude regression.
+    expect(best).toBeLessThan(1000);
   });
 });

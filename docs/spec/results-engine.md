@@ -46,6 +46,8 @@ Status: v0. The general-education GPA-5 rules below are cross-checked against se
 - `ranking.ties`: `competition` (1, 2, 2, 4) or `dense` (1, 2, 2, 3). Scopes: `class` and `section`. `include_failed`: false by default, so failed students get no rank.
 - Withheld and absent students get no rank.
 
+**Implemented definitions (M2-D2, accepted; see `docs/decisions/leader-rulings.md` R-09).** Ranks are computed on the stored hundredths. "Top N" returns every student with `class_rank <= N`, so ties may return more than N. Pass rate is `passed / appeared`. Subject averages cover students who appeared. Failed students count in overall averages with their stored total and GPA. `withheld` and `absent` students are never ranked.
+
 ## 7. Config schema (`grade_schemes.config`, version 1)
 
 ```json
@@ -54,12 +56,12 @@ Status: v0. The general-education GPA-5 rules below are cross-checked against se
   "kind": "gpa_bands",
   "bands": [
     { "min": 80, "grade": "A+", "point": 5.0, "remark_bn": "অসাধারণ" },
-    { "min": 70, "grade": "A",  "point": 4.0 },
+    { "min": 70, "grade": "A", "point": 4.0 },
     { "min": 60, "grade": "A-", "point": 3.5 },
-    { "min": 50, "grade": "B",  "point": 3.0 },
-    { "min": 40, "grade": "C",  "point": 2.0 },
-    { "min": 33, "grade": "D",  "point": 1.0 },
-    { "min": 0,  "grade": "F",  "point": 0.0 }
+    { "min": 50, "grade": "B", "point": 3.0 },
+    { "min": 40, "grade": "C", "point": 2.0 },
+    { "min": 33, "grade": "D", "point": 1.0 },
+    { "min": 0, "grade": "F", "point": 0.0 }
   ],
   "fail": { "grade": "F", "point": 0.0 },
   "pass": { "min_percent_total": 33, "groups": [] },
@@ -69,14 +71,23 @@ Status: v0. The general-education GPA-5 rules below are cross-checked against se
     "fail_if_any_compulsory_fails": true,
     "fail_gpa_value": 0.0,
     "grade_bands": [
-      { "min": 5.0, "grade": "A+" }, { "min": 4.0, "grade": "A" }, { "min": 3.5, "grade": "A-" },
-      { "min": 3.0, "grade": "B" },  { "min": 2.0, "grade": "C" }, { "min": 1.0, "grade": "D" },
+      { "min": 5.0, "grade": "A+" },
+      { "min": 4.0, "grade": "A" },
+      { "min": 3.5, "grade": "A-" },
+      { "min": 3.0, "grade": "B" },
+      { "min": 2.0, "grade": "C" },
+      { "min": 1.0, "grade": "D" },
       { "min": 0.0, "grade": "F" }
     ]
   },
   "missing": "block",
   "rounding": { "marks_decimals": 2, "gpa_decimals": 2, "mode": "half_up" },
-  "ranking": { "order": ["outcome", "total_desc", "gpa_desc", "roll_asc"], "ties": "competition", "scopes": ["class", "section"], "include_failed": false }
+  "ranking": {
+    "order": ["outcome", "total_desc", "gpa_desc", "roll_asc"],
+    "ties": "competition",
+    "scopes": ["class", "section"],
+    "include_failed": false
+  }
 }
 ```
 
@@ -93,15 +104,15 @@ Presets shipped in `@sms/domain`: `bd-general-gpa5` (the config above; bands ver
 
 From a public government-college test-exam marksheet (names removed; see §11). Components per subject: MCQ, CQ, practical for paper 1 and paper 2. The college maps the subject total on 200 marks to points with the same bands as percent (160–200 → 5, 140–159 → 4, 120–139 → 3.5, 100–119 → 3, 80–99 → 2, 66–79 → 1, 0–65 → 0), so percent bands reproduce it. Component full marks below are inferred where the sheet does not show them; confirm before using the fixture.
 
-| Subject | Total / full | Percent | Point | Note |
-|---|---|---|---|---|
-| Bangla | 133 / 200 | 66.5 | 3.5 | |
-| English | 151 / 200 | 75.5 | 4 | |
-| ICT | 53 / 100 | 53 | 3 | |
-| Physics | 145 / 200 | 72.5 | 4 | |
-| Chemistry | 134 / 200 | 67 | 3.5 | |
-| Biology | 140 / 200 | 70 | 4 | |
-| Mathematics (optional) | 93 / 200 | 46.5 | 0 | fails the CQ group (27 marks over two papers is under 33%), so F; bonus 0 |
+| Subject                | Total / full | Percent | Point | Note                                                                      |
+| ---------------------- | ------------ | ------- | ----- | ------------------------------------------------------------------------- |
+| Bangla                 | 133 / 200    | 66.5    | 3.5   |                                                                           |
+| English                | 151 / 200    | 75.5    | 4     |                                                                           |
+| ICT                    | 53 / 100     | 53      | 3     |                                                                           |
+| Physics                | 145 / 200    | 72.5    | 4     |                                                                           |
+| Chemistry              | 134 / 200    | 67      | 3.5   |                                                                           |
+| Biology                | 140 / 200    | 70      | 4     |                                                                           |
+| Mathematics (optional) | 93 / 200     | 46.5    | 0     | fails the CQ group (27 marks over two papers is under 33%), so F; bonus 0 |
 
 GPA = (3.5 + 4 + 3 + 4 + 3.5 + 4) / 6 = 22 / 6 = 3.666… → **3.67**, overall grade **A-**, outcome **passed** (failing the optional subject does not fail the student). This matches the sheet. It tests: group pass rule, optional subject, half-up rounding, two-paper subjects.
 
