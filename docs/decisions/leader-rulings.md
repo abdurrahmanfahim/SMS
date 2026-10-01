@@ -31,3 +31,9 @@ Decisions the Leader (Claude) made in answer to questions raised in agent report
 **R-12 - Skeleton placeholder (from M0-P3).** The shell `/app` placeholder yields to real features; `M1-W2` replaces the skeleton feature and removes it, as its brief already says.
 
 **R-13 - Munshi parity is its own task.** `M2-D2` is accepted without its step 3; the parity tests and `docs/research/munshi-parity.md` are the new task `M2-D3`, which needs the Owner to copy the Munshi source into `docs/samples/munshi/` first. `M2-I1` depends on `M2-D3`.
+
+## Batch 3 (after the reports of M1-P1, M2-D3, M1-W3, M1-U3b)
+
+**R-14 - Answers to M1-P1 and M2-D3.** (1) `has_role_write` and `impersonating` are now in `permissions.md` section 3, and write policies use `has_role_write`. (2) `students.profile_id` (nullable) is added to the domain model and to `M1-A2`. (3) `M1-P2` owns the admin policies on `memberships` and `profiles`. (4) `M1-Q1`'s registry check ignores `helpers.sql`. (5) The independent review of `rls-patterns.md` is a report item of `M1-A1`. (6) Averages: SMS keeps total over full marks; Munshi's mean-of-percents is a known difference that the importer flags (`M2-I1`); an `average_method` option is added to the engine only if `M0-O1` shows schools use mean-of-percents. (7) Ranking ties and failed students keep the spec defaults (competition ties, failed students not ranked) until `M0-O1` says otherwise; whether a failed subject fails the student in a percentage scheme also waits for `M0-O1`.
+
+**R-15 - What "smooth" means for the data table (from M1-W3).** Every interaction (scroll, sort, filter, selection) responds within 200 ms at 4x CPU slowdown in a Chromium profile, and scrolling never shows blank rows for more than one frame. The agent cannot measure this without a browser; it is checked on the Owner's real low-end phone in `M1-O4`. Accepted as is for now so `M1-W4` could start.

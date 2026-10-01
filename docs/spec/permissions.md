@@ -8,25 +8,26 @@
 
 `F` full · `R` read · `R*` read, scoped · `W*` write, scoped · `—` none. Scopes are explained below the table.
 
-| Resource | Platform owner | Institution admin | Teacher | Accountant | Guardian | Student |
-|---|---|---|---|---|---|---|
-| institutions, settings | F (audited) | R, update settings | R | R | R (name) | R (name) |
-| memberships, profiles, invites | R (audited) | F | R own | R own | R own | R own |
-| academic structure | R (audited) | F | R | R | R* | R |
-| students, guardians, enrollments | R (audited) | F | R* (assigned sections) | R | R* (own children) | R* (self) |
-| attendance | R (audited) | F | W* (assigned sections, within the edit window) | — | R* (own children) | R* (self) |
-| exams setup, grade schemes | R (audited) | F | R* (own subjects) | — | — | — |
-| marks | R (audited) | F | W* (own subjects, only while exam is `marks_open`) | — | — | — |
-| result snapshots and rows | R (audited) | F (publish, revoke) | R* (own classes, published) | — | R* (own children, published) | R* (self, published) |
-| notices | R (audited) | F | W* (own sections), R | R | R* (audience) | R* (audience) |
-| import_jobs | R (audited) | F | — | — | — | — |
-| fee structure, invoices, payments, locks (M3) | R (audited) | F | — | F | R* (own children, invoices and receipts) | — |
-| text templates, outbox (M3) | R (audited) | F | — | R (outbox) | — | — |
-| credit ledger (M3) | F | R | — | — | — | — |
-| audit_log | R | R (own institution) | — | — | — | — |
-| platform tables (plans, subscriptions, credits, impersonation) | F | — | — | — | — | — |
+| Resource                                                       | Platform owner | Institution admin   | Teacher                                            | Accountant | Guardian                                 | Student              |
+| -------------------------------------------------------------- | -------------- | ------------------- | -------------------------------------------------- | ---------- | ---------------------------------------- | -------------------- |
+| institutions, settings                                         | F (audited)    | R, update settings  | R                                                  | R          | R (name)                                 | R (name)             |
+| memberships, profiles, invites                                 | R (audited)    | F                   | R own                                              | R own      | R own                                    | R own                |
+| academic structure                                             | R (audited)    | F                   | R                                                  | R          | R*                                       | R                    |
+| students, guardians, enrollments                               | R (audited)    | F                   | R* (assigned sections)                             | R          | R* (own children)                        | R* (self)            |
+| attendance                                                     | R (audited)    | F                   | W* (assigned sections, within the edit window)     | —          | R* (own children)                        | R* (self)            |
+| exams setup, grade schemes                                     | R (audited)    | F                   | R* (own subjects)                                  | —          | —                                        | —                    |
+| marks                                                          | R (audited)    | F                   | W* (own subjects, only while exam is `marks_open`) | —          | —                                        | —                    |
+| result snapshots and rows                                      | R (audited)    | F (publish, revoke) | R* (own classes, published)                        | —          | R* (own children, published)             | R* (self, published) |
+| notices                                                        | R (audited)    | F                   | W* (own sections), R                               | R          | R* (audience)                            | R* (audience)        |
+| import_jobs                                                    | R (audited)    | F                   | —                                                  | —          | —                                        | —                    |
+| fee structure, invoices, payments, locks (M3)                  | R (audited)    | F                   | —                                                  | F          | R* (own children, invoices and receipts) | —                    |
+| text templates, outbox (M3)                                    | R (audited)    | F                   | —                                                  | R (outbox) | —                                        | —                    |
+| credit ledger (M3)                                             | F              | R                   | —                                                  | —          | —                                        | —                    |
+| audit_log                                                      | R              | R (own institution) | —                                                  | —          | —                                        | —                    |
+| platform tables (plans, subscriptions, credits, impersonation) | F              | —                   | —                                                  | —          | —                                        | —                    |
 
 Scopes:
+
 - **Assigned sections and own subjects:** through `teacher_assignments` (a null `subject_id` means class teacher, who sees the whole section).
 - **Edit window:** teachers may edit attendance for today and the previous `attendance_edit_window_days` days; admins may edit any date.
 - **Own children:** through `student_guardians` and `guardians.profile_id`.
@@ -41,6 +42,9 @@ All are `SECURITY DEFINER`, `STABLE`, with `set search_path = ''`. Policies call
 - `private.has_role(inst uuid, roles text[])`: an active membership with one of the roles, or a platform owner with an active impersonation session for `inst` (read only unless the session has `write_access`).
 - `private.is_teacher_of_section(inst uuid, section uuid)` and `private.teaches(inst uuid, section uuid, subject uuid)`.
 - `private.guardian_of_student(inst uuid, student uuid)` and `private.is_student_self(inst uuid, student uuid)`.
+- `private.impersonating(inst uuid, need_write boolean)`: true when the caller is a platform owner with an active impersonation session for `inst` (and, when `need_write`, a session with `write_access`). Added by `M1-P1`.
+- `private.has_role_write(inst uuid, roles text[])`: like `has_role`, but a platform owner counts only through a session with `write_access`. **Write policies (insert, update, delete) use `has_role_write`; read policies use `has_role`.** Added by `M1-P1`.
+- `private.is_student_self` works through the nullable `students.profile_id` (a student is "self" when their profile is linked to the student row); no v1 screen uses it.
 
 ## 4. Policy rules
 

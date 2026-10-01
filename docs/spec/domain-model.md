@@ -39,7 +39,7 @@ Scope: everything needed for M1 and M2. Fees, text alerts and the parent portal 
 
 ## 4. Students (owner: WS-ACAD)
 
-- `students`: `id`, `institution_id`, `student_code` (unique per institution), `name_bn`, `name_en`, `gender` (`male|female|other`, null), `date_of_birth null`, `phone_e164 null`, `address jsonb null`, `photo_path null`, `admission_date null`, `status` (`active|left|graduated|transferred`), `status_reason null`, `deleted_at null`.
+- `students`: `id`, `institution_id`, `student_code` (unique per institution), `name_bn`, `name_en`, `gender` (`male|female|other`, null), `date_of_birth null`, `phone_e164 null`, `address jsonb null`, `photo_path null`, `admission_date null`, `status` (`active|left|graduated|transferred`), `status_reason null`, `profile_id uuid null` (links a student to their own login; unique per institution when set; not used by any v1 screen), `deleted_at null`.
 - `guardians`: `id`, `institution_id`, `name_bn`, `name_en`, `phone_e164 null`, `alt_phone_e164 null`, `occupation null`, `address jsonb null`, `profile_id null` (set when the guardian accepts an invite), `deleted_at null`.
 - `student_guardians`: `institution_id`, `student_id`, `guardian_id`, `relation` (`father|mother|other`), `is_primary`, `receive_alerts default true`. Pk `(student_id, guardian_id)`.
 - `enrollments`: `id`, `institution_id`, `student_id`, `academic_year_id`, `section_id`, `roll int null`, `status` (`enrolled|promoted|held|left`), `joined_on null`, `left_on null`. Unique `(institution_id, student_id, academic_year_id)`; unique `(institution_id, section_id, roll)` where `roll is not null`.
@@ -68,12 +68,12 @@ Scope: everything needed for M1 and M2. Fees, text alerts and the parent portal 
 
 ## 8. Table ownership and package rules
 
-| Workstream | Owns tables |
-|---|---|
-| PLAT | sections 2 (tenancy, people, platform, audit, invites, import_jobs) |
-| ACAD | sections 3, 4, 5 |
-| EXAM | section 6 |
-| COMM | section 7 and the alert tables in `fees-and-alerts.md` |
-| FIN | the fee tables in `fees-and-alerts.md` |
+| Workstream | Owns tables                                                         |
+| ---------- | ------------------------------------------------------------------- |
+| PLAT       | sections 2 (tenancy, people, platform, audit, invites, import_jobs) |
+| ACAD       | sections 3, 4, 5                                                    |
+| EXAM       | section 6                                                           |
+| COMM       | section 7 and the alert tables in `fees-and-alerts.md`              |
+| FIN        | the fee tables in `fees-and-alerts.md`                              |
 
 Import rules: `@sms/domain` imports only `zod` (no React, no Supabase, no I/O). `@sms/db` imports supabase-js and generated types only. `@sms/ui` imports React, Radix and styling utilities, never domain or db. `apps/web` may import all packages, but a feature must not import another feature; shared needs go to `apps/web/src/shared/` or a package. Edge Functions may import `@sms/domain`.
