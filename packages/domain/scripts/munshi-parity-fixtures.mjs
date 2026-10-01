@@ -5,7 +5,6 @@
 // This script is a one-off tool, not part of the shipped engine: it may use floating point because
 // it reproduces Munshi, which does.
 import { Buffer } from "node:buffer";
-import console from "node:console";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { URL, fileURLToPath } from "node:url";
 
@@ -107,7 +106,6 @@ function buildFixture({ id, source, form, responses, rollOf }) {
 
 function save(fixture) {
   writeFileSync(outDir + fixture.id + ".json", JSON.stringify(fixture, null, 2) + "\n");
-  console.log(fixture.id, "students", fixture.students.length, "subjects", fixture.subjects.length);
 }
 
 // 1) The anonymised backups: every Munshi exam that has marks.
