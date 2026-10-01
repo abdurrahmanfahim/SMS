@@ -56,13 +56,14 @@ for (const c of cases) {
   }
 
   if (c.dir === "marks") {
-    let firstInput = doc.querySelector('input[data-idx="0"]');
+    // Real focus()/blur() and a kept node reference: the grid must update the
+    // cell in place (see marks-typing.test.mjs for the full focus regression).
+    const firstInput = doc.querySelector('input[data-idx="0"]');
+    firstInput.focus();
     firstInput.value = "150";
     firstInput.dispatchEvent(new window.Event("input", { bubbles: true }));
-    firstInput.dispatchEvent(new window.Event("blur", { bubbles: true }));
-    // commitCell() re-renders the grid (replaces the <input> nodes), so
-    // re-query the live DOM rather than reuse the now-detached reference.
-    firstInput = doc.querySelector('input[data-idx="0"]');
+    firstInput.blur();
+    check(doc.querySelector('input[data-idx="0"]') === firstInput, "marks grid keeps the same input node after blur (no re-render)");
     check(firstInput.closest("td").classList.contains("cell-error"), "marks grid rejects a value above full marks (150 > 100)");
     check(firstInput.value === "150", "typed value is kept on validation error, not cleared");
   }
