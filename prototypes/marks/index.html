@@ -11,7 +11,17 @@
   .counter-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--sp-2); flex-wrap: wrap; gap: var(--sp-2); }
   .counter-pill { font-weight: 600; }
   .lock-toggle { font-size: 0.75rem; }
-  .cell-note { font-size: 0.7rem; color: var(--text-secondary); }
+  .cell-note { font-size: 0.72rem; color: var(--danger-base); margin-top: 2px; white-space: normal; }
+  /* 360px: name | roll | mark + absent button must all fit without sideways scroll */
+  table.entry-grid td:first-child, table.entry-grid th:first-child { max-width: 112px; }
+  table.entry-grid th, table.entry-grid td { padding: var(--sp-2); }
+  .mark-wrap { display: flex; align-items: center; gap: 6px; }
+  table.entry-grid input.mark-input { width: 64px; min-width: 0; min-height: 44px; text-align: center; font-size: 1rem; padding: 0 4px; }
+  /* Numeric keypad has no Bangla letters, so absent is its own 44px button */
+  .absent-btn { min-width: 44px; min-height: 44px; padding: 0; border-radius: var(--radius); border: 1px solid var(--border-default); background: var(--surface-raised); color: var(--text-secondary); font-weight: 600; }
+  .absent-btn.is-on { background: var(--primary-base); color: var(--primary-fg); border-color: var(--primary-base); }
+  /* Keep the focused row clear of the fixed action bar + bottom nav */
+  table.entry-grid input.mark-input { scroll-margin-block: 140px; }
 </style>
 </head>
 <body>
@@ -19,7 +29,7 @@
 <header class="app-header">
   <a class="back" href="../index.html" aria-label="পেছনে যান">←</a>
   <h1>নম্বর এন্ট্রি</h1>
-  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: প্রতি ঘরে নম্বর লিখুন, ট্যাব বা এন্টারে পরের ঘরে যাবে।'); return false;">❓</a>
+  <a class="help-link" href="#" aria-label="সাহায্য" onclick="showToast('সাহায্য: প্রতি ঘরে নম্বর লিখুন, পরের ঘরে ট্যাপ করুন বা কীবোর্ডের পরবর্তী বোতাম চাপুন। অনুপস্থিত হলে অ বোতাম চাপুন।'); return false;">❓</a>
 </header>
 <main>
   <p class="helper">অর্ধবার্ষিক পরীক্ষা ২০২৬ · গণিত · ৬ক শ্রেণি · পূর্ণমান ১০০</p>
@@ -43,7 +53,7 @@
       <tbody id="grid-body"></tbody>
     </table>
   </div>
-  <p class="helper">অনুপস্থিত শিক্ষার্থীর জন্য ঘরে <strong>অ</strong> লিখুন — এটি অনুপস্থিত কোড হিসেবে সংরক্ষিত হবে।</p>
+  <p class="helper">অনুপস্থিত শিক্ষার্থীর পাশের <strong>অ</strong> বোতামে ট্যাপ করুন — এটি অনুপস্থিত কোড হিসেবে সংরক্ষিত হবে।</p>
 </main>
 
 <div class="action-bar">
@@ -76,81 +86,141 @@
     return String(num).split("").map(function (d) { return /[0-9]/.test(d) ? map[d] : d; }).join("");
   }
 
+  // The grid is built ONCE. It is never rebuilt while someone is typing:
+  // replacing the <input> nodes on blur destroyed the cell the person had
+  // just tapped, so the keyboard closed and focus snapped back (M1-U3b).
+  // Every later change updates the one affected row in place.
   function renderGrid() {
     var body = document.getElementById("grid-body");
     body.innerHTML = roster.map(function (s, idx) {
-      var m = marks[s.id];
-      var errCls = m.status === "error" ? " cell-error" : "";
       return (
-        '<tr>' +
+        '<tr data-row="' + s.id + '">' +
         '<td title="' + s.name + '">' + s.name + '</td>' +
         '<td>' + toBnDigits(s.roll) + '</td>' +
-        '<td class="' + errCls.trim() + '">' +
-        '<input type="text" inputmode="numeric" aria-label="' + s.name + '-এর গণিত নম্বর, পূর্ণমান ১০০"' +
-        ' value="' + m.value + '" data-idx="' + idx + '" data-id="' + s.id + '"' +
-        ' onkeydown="handleKey(event,' + idx + ')" oninput="handleInput(event,\'' + s.id + '\')" onblur="commitCell(\'' + s.id + '\')" />' +
-        (m.status === "error" ? '<div class="cell-note">১০০-এর বেশি নয়</div>' : '') +
+        '<td class="mark-cell">' +
+        '<div class="mark-wrap">' +
+        '<input class="mark-input" type="text" inputmode="numeric" enterkeyhint="next" autocomplete="off"' +
+        ' aria-label="' + s.name + '-এর গণিত নম্বর, পূর্ণমান ১০০" value=""' +
+        ' data-idx="' + idx + '" data-id="' + s.id + '" />' +
+        '<button type="button" class="absent-btn" data-id="' + s.id + '" aria-pressed="false"' +
+        ' aria-label="' + s.name + ' অনুপস্থিত হিসেবে চিহ্নিত করুন">অ</button>' +
+        '</div>' +
+        '<div class="cell-note" hidden></div>' +
         '</td></tr>'
       );
     }).join("");
   }
 
+  function rowParts(id) {
+    var tr = document.querySelector('tr[data-row="' + id + '"]');
+    return {
+      td: tr.querySelector("td.mark-cell"),
+      input: tr.querySelector("input.mark-input"),
+      btn: tr.querySelector(".absent-btn"),
+      note: tr.querySelector(".cell-note")
+    };
+  }
+
+  // Update one row in place. Never touches focus, never replaces nodes.
+  function paintCell(id) {
+    var m = marks[id];
+    var r = rowParts(id);
+    r.td.classList.toggle("cell-error", m.status === "error");
+    r.input.setAttribute("aria-invalid", m.status === "error" ? "true" : "false");
+    r.note.hidden = m.status !== "error";
+    r.note.textContent = m.status === "error" ? "০ থেকে ১০০-এর মধ্যে লিখুন" : "";
+    r.btn.setAttribute("aria-pressed", m.absent ? "true" : "false");
+    r.btn.classList.toggle("is-on", m.absent);
+    if (m.absent) {
+      r.input.value = "";
+      r.input.placeholder = "অনুপস্থিত";
+    } else {
+      r.input.placeholder = "";
+    }
+  }
+
   function handleInput(e, id) {
-    marks[id].value = e.target.value;
-    marks[id].status = "empty";
+    var m = marks[id];
+    m.value = e.target.value;
+    m.absent = false;
+    m.status = "empty";
+    paintCell(id);
+    updateCounter();
   }
 
   function commitCell(id) {
     var m = marks[id];
+    if (m.absent) { m.status = "saved"; paintCell(id); updateCounter(); return; }
     var raw = m.value.trim();
-    if (raw === "") return;
+    if (raw === "") { m.status = "empty"; paintCell(id); updateCounter(); return; }
     if (raw === "অ" || raw.toLowerCase() === "a") {
-      m.absent = true;
-      m.status = "saved";
-      m.value = "অনুপস্থিত";
-      updateCounter();
-      renderGrid();
+      setAbsent(id, true);
       return;
     }
     var num = Number(raw);
-    if (isNaN(num) || num < 0 || num > FULL_MARKS) {
-      m.status = "error";
-      renderGrid();
-      // keep typed value on validation error, per ux-standard.md §7
-      var input = document.querySelector('input[data-id="' + id + '"]');
-      if (input) { input.focus(); input.select(); }
-      return;
-    }
-    m.status = "saved";
-    m.absent = false;
+    // Keep what was typed on a validation error (ux-standard.md §7); do NOT
+    // pull focus back — the person may be tapping somewhere else on purpose.
+    m.status = (raw === "" || isNaN(num) || num < 0 || num > FULL_MARKS) ? "error" : "saved";
+    paintCell(id);
     updateCounter();
-    renderGrid();
-    var input2 = document.querySelector('input[data-id="' + id + '"]');
-    if (input2) input2.focus();
+  }
+
+  function setAbsent(id, on) {
+    var m = marks[id];
+    m.absent = on;
+    m.value = "";
+    m.status = on ? "saved" : "empty";
+    paintCell(id);
+    updateCounter();
+  }
+
+  function focusCell(idx) {
+    var el = document.querySelector('input[data-idx="' + idx + '"]');
+    if (el) el.focus();
+    return el;
   }
 
   function handleKey(e, idx) {
-    if (e.key === "Enter" || e.key === "Tab") {
-      if (e.key === "Enter") e.preventDefault();
-      var id = roster[idx].id;
-      commitCell(id);
-      var next = document.querySelector('input[data-idx="' + (idx + 1) + '"]');
-      if (next && e.key === "Enter") { e.preventDefault(); next.focus(); }
-    }
-    if (e.key === "ArrowDown") {
+    if (e.key === "Enter") {
       e.preventDefault();
-      var d = document.querySelector('input[data-idx="' + (idx + 1) + '"]');
-      if (d) d.focus();
-    }
-    if (e.key === "ArrowUp") {
+      commitCell(roster[idx].id);
+      focusCell(idx + 1);
+    } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      var u = document.querySelector('input[data-idx="' + (idx - 1) + '"]');
-      if (u) u.focus();
+      focusCell(idx + 1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      focusCell(idx - 1);
     }
+    // Tab: leave it to the browser; blur commits the cell.
   }
   window.handleKey = handleKey;
   window.handleInput = handleInput;
   window.commitCell = commitCell;
+
+  // Event delegation on the stable <tbody> — survives any future repaint.
+  var gridBody = document.getElementById("grid-body");
+  gridBody.addEventListener("input", function (e) {
+    if (e.target.classList.contains("mark-input")) handleInput(e, e.target.dataset.id);
+  });
+  gridBody.addEventListener("focusout", function (e) {
+    if (e.target.classList.contains("mark-input")) commitCell(e.target.dataset.id);
+  });
+  gridBody.addEventListener("focusin", function (e) {
+    var t = e.target;
+    if (!t.classList.contains("mark-input")) return;
+    // Keep the active cell clear of the fixed action bar / on-screen keyboard.
+    if (t.scrollIntoView) t.scrollIntoView({ block: "center" });
+  });
+  gridBody.addEventListener("keydown", function (e) {
+    if (e.target.classList.contains("mark-input")) handleKey(e, Number(e.target.dataset.idx));
+  });
+  gridBody.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest(".absent-btn") : null;
+    if (!b) return;
+    var id = b.dataset.id;
+    setAbsent(id, !marks[id].absent);
+  });
 
   document.getElementById("save-all").addEventListener("click", function () {
     var lockedNow = document.getElementById("lock-sim").checked;
@@ -172,7 +242,7 @@
 
   document.getElementById("lock-sim").addEventListener("change", function (e) {
     document.getElementById("locked-banner").style.display = e.target.checked ? "flex" : "none";
-    document.querySelectorAll("#grid-body input").forEach(function (i) { i.disabled = e.target.checked; });
+    document.querySelectorAll("#grid-body input, #grid-body button").forEach(function (i) { i.disabled = e.target.checked; });
     document.getElementById("save-all").disabled = e.target.checked;
   });
 
