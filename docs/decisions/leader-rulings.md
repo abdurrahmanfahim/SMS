@@ -29,3 +29,5 @@ Decisions the Leader (Claude) made in answer to questions raised in agent report
 **R-11 - CI-generated types (from M0-P3).** Drift in `packages/db/src/types.ts` is published by CI on the branch `bot/types-<branch name with / replaced by ->` (one branch per source branch, so branches do not overwrite each other). An agent without Docker takes the file from that branch. The older shared branch `bot/db-types` is obsolete.
 
 **R-12 - Skeleton placeholder (from M0-P3).** The shell `/app` placeholder yields to real features; `M1-W2` replaces the skeleton feature and removes it, as its brief already says.
+
+**R-13 - Munshi parity is its own task.** `M2-D2` is accepted without its step 3; the parity tests and `docs/research/munshi-parity.md` are the new task `M2-D3`, which needs the Owner to copy the Munshi source into `docs/samples/munshi/` first. `M2-I1` depends on `M2-D3`.
