@@ -149,7 +149,21 @@
       "shareDownloaded": "ফাইলটি সংরক্ষণ করা হয়েছে",
       "shareShared": "শেয়ার করা হয়েছে",
       "uploadPhotoPlain": "ছবি (কাটা ছাড়া, শুধু ছোট করা)",
-      "uploadedSize": "আপলোড করা ছবির আকার: {bytes} বাইট"
+      "uploadedSize": "আপলোড করা ছবির আকার: {bytes} বাইট",
+      "entryGridSection": "এন্ট্রি গ্রিড",
+      "entryGridDesc": "নম্বর, ফি ও উপস্থিতির জন্য কিবোর্ড-কেন্দ্রিক গ্রিড। ১০০ জন শিক্ষার্থী, ১২টি ঘর; সংরক্ষণ নকল করা। ফোনে এটি একটি কলামের তালিকা বা এক ঘরের এডিটর হয়ে যায়।",
+      "entryGridLabel": "নম্বর এন্ট্রি (১০০ জন)",
+      "entrySubject": "বিষয় {n}",
+      "entryAttendance": "উপস্থিতি",
+      "entryAbsent": "অনুপস্থিত",
+      "entryNote": "মন্তব্য",
+      "entryStatus": "অবস্থা",
+      "entryColumn": "একটি কলাম পূরণ করুন (ফোন)",
+      "entryAllFields": "সব ঘর, একবারে একটি",
+      "entryFailOn": "সংরক্ষণ ব্যর্থ: চালু",
+      "entryFailOff": "সংরক্ষণ ব্যর্থ: বন্ধ",
+      "entrySaved": "নকল সার্ভারে সংরক্ষিত: {count}",
+      "entryStates": "সংরক্ষণের অবস্থা"
     }
   },
   "common": {

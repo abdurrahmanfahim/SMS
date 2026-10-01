@@ -4,6 +4,14 @@ import { t } from "../i18n";
 
 import type { CellError, CellResult, EntryColumn } from "./types";
 
+/** Length as a person counts it: a Bangla conjunct such as ক্ষি is one character. */
+function characterCount(text: string): number {
+  if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
+    return [...new Intl.Segmenter("bn", { granularity: "grapheme" }).segment(text)].length;
+  }
+  return [...text].length;
+}
+
 const err = (key: string, params?: CellError["params"]): CellResult => ({
   ok: false,
   error: { key, params },
@@ -36,7 +44,7 @@ export function validateCell(column: EntryColumn, raw: string): CellResult {
       ? { ok: true, value: found.value }
       : err("entryGrid.error.code", { codes: column.codes.map((c) => c.value).join(", ") });
   }
-  if (column.maxLength !== undefined && [...text].length > column.maxLength)
+  if (column.maxLength !== undefined && characterCount(text) > column.maxLength)
     return err("forms.error.tooLong", { max: column.maxLength });
   return { ok: true, value: text };
 }

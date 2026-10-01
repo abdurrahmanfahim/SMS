@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 
 import { useT } from "../../shared/i18n";
 
+import { EntryGridDemo } from "./kit/EntryGridDemo";
 import { FormDemo } from "./kit/FormDemo";
 import { ShareDemo } from "./kit/ShareDemo";
 import { TableDemo } from "./kit/TableDemo";
@@ -146,6 +147,11 @@ export function DevKit() {
       <Section title={t("devkit.kit.formSection")}>
         <p className="m-0 text-content-secondary">{t("devkit.kit.formDesc")}</p>
         <FormDemo />
+      </Section>
+
+      <Section title={t("devkit.kit.entryGridSection")}>
+        <p className="m-0 text-content-secondary">{t("devkit.kit.entryGridDesc")}</p>
+        <EntryGridDemo />
       </Section>
 
       <Section title={t("devkit.kit.uploadSection")}>

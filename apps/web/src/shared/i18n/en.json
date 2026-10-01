@@ -149,7 +149,21 @@
       "shareDownloaded": "The file was saved",
       "shareShared": "Shared",
       "uploadPhotoPlain": "Photo (no crop, only made smaller)",
-      "uploadedSize": "Uploaded photo size: {bytes} bytes"
+      "uploadedSize": "Uploaded photo size: {bytes} bytes",
+      "entryGridSection": "Entry grid",
+      "entryGridDesc": "Keyboard-first grid for marks, fees and attendance. 100 students by 12 fields; saving is simulated. On a phone it becomes a list for one column or a one-cell editor.",
+      "entryGridLabel": "Marks entry (100 students)",
+      "entrySubject": "Subject {n}",
+      "entryAttendance": "Attendance",
+      "entryAbsent": "Absent",
+      "entryNote": "Note",
+      "entryStatus": "Status",
+      "entryColumn": "Fill one column (phone)",
+      "entryAllFields": "All fields, one cell at a time",
+      "entryFailOn": "Saving fails: on",
+      "entryFailOff": "Saving fails: off",
+      "entrySaved": "Saved by the fake server: {count}",
+      "entryStates": "Save states"
     }
   },
   "common": {
