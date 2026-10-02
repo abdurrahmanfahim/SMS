@@ -65,7 +65,7 @@ function LevelForm({
       <TextField name="nameEn" label={t("academic.field.nameEn")} optional maxLength={60} />
       <SelectField
         name="category"
-        label={t("academic.levels.category")}
+        label={t("academic.levels.categoryLabel")}
         optional
         placeholderOption={t("academic.levels.categoryNone")}
         options={CATEGORIES.map((c) => ({ value: c, label: t(`academic.levels.category.${c}`) }))}

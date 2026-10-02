@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 
+import { formatNumber } from "../../../shared/format";
 import {
   Form,
   NumberField,
@@ -13,7 +14,6 @@ import {
   requiredText,
   useAppForm,
 } from "../../../shared/forms";
-import { formatNumber } from "../../../shared/format";
 import { useT } from "../../../shared/i18n";
 import { useAcademic } from "../context";
 import type { AcademicErrorKey } from "../data/errors";

@@ -1,7 +1,7 @@
 import type { SmsClient } from "@sms/db";
 
-import { matchByName, planPreset } from "../rules";
 import type { Preset } from "../presets/types";
+import { matchByName, planPreset } from "../rules";
 
 import { toAcademicError } from "./errors";
 import type {
