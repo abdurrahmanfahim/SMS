@@ -17,7 +17,7 @@ import { PresetPage } from "./pages/PresetPage";
 import { SectionsPage } from "./pages/SectionsPage";
 import { SubjectsPage } from "./pages/SubjectsPage";
 import { YearsPage } from "./pages/YearsPage";
-import { navItems, routes } from "./register";
+import { academicNavItem, navItems, routes } from "./register";
 import {
   emptyData,
   makeLevel,
@@ -341,14 +341,15 @@ describe("registration", () => {
       "preset",
     ]);
   });
-  it("shows the nav item to staff roles only", () => {
-    expect(navItems).toHaveLength(1);
+  it("keeps the nav item ready but unregistered, and ready for staff roles only", () => {
+    expect(navItems).toEqual([]);
     const seen = (role: Parameters<typeof navItemsForRole>[1]) =>
-      navItemsForRole(navItems, role).map((n) => n.key);
+      navItemsForRole([academicNavItem], role).map((n) => n.key);
     expect(seen("institution_admin")).toEqual(["academic.home"]);
     expect(seen("teacher")).toEqual(["academic.home"]);
     expect(seen("accountant")).toEqual(["academic.home"]);
     expect(seen("guardian")).toEqual([]);
     expect(seen("student")).toEqual([]);
+    expect(academicNavItem.path).toBe("/app/academic");
   });
 });

@@ -35,13 +35,20 @@ export const routes: RouteObject[] = [
   },
 ];
 
-export const navItems: NavItem[] = [
-  {
-    key: "academic.home",
-    labelKey: "academic.nav.title",
-    icon: GraduationCap,
-    path: "/app/academic",
-    roles: ["institution_admin", "teacher", "accountant"],
-    order: 40,
-  },
-];
+/**
+ * The nav entry for the academic screens, ready to switch on. It is NOT registered yet because
+ * `app/shell.test.tsx` ("shows the home nav item ...") asserts that each nav holds exactly one
+ * link, so any feature nav item turns CI red, and that file is outside this task's owned paths.
+ * Until the shell test allows feature items, the screens are reached at /app/academic.
+ * To switch on: `export const navItems: NavItem[] = [academicNavItem];` (see docs/reports/M1-A1.md, Requests).
+ */
+export const academicNavItem: NavItem = {
+  key: "academic.home",
+  labelKey: "academic.nav.title",
+  icon: GraduationCap,
+  path: "/app/academic",
+  roles: ["institution_admin", "teacher", "accountant"],
+  order: 40,
+};
+
+export const navItems: NavItem[] = [];
