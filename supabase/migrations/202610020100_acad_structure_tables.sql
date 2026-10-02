@@ -221,6 +221,10 @@ begin
   select m.role into member_role
   from public.memberships m
   where m.institution_id = new.institution_id and m.id = new.membership_id;
+  if member_role is null then
+    -- Same effect as the composite foreign key, raised here because this BEFORE trigger runs first.
+    raise exception 'membership does not belong to this institution' using errcode = '23503';
+  end if;
   if member_role is distinct from 'teacher' then
     raise exception 'only a teacher can be assigned to a section' using errcode = '23514';
   end if;
@@ -229,7 +233,7 @@ end;
 $$;
 
 comment on function private.acad_teacher_assignment_check() is
-  'BEFORE INSERT OR UPDATE trigger on teacher_assignments: the membership must have role teacher.';
+  'BEFORE INSERT OR UPDATE trigger on teacher_assignments: the membership must exist in the institution and have role teacher.';
 
 create function private.acad_sync_class_teacher()
 returns trigger

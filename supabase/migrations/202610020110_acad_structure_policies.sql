@@ -107,14 +107,14 @@ declare
 begin
   select y.institution_id into inst from public.academic_years y where y.id = p_year_id;
   if inst is null then
-    raise exception 'academic year not found' using errcode = 'P0002';
+    raise exception 'academic year not found or not allowed' using errcode = 'P0002';
   end if;
   update public.academic_years set is_current = false
   where institution_id = inst and is_current and id <> p_year_id;
   update public.academic_years set is_current = true
   where institution_id = inst and id = p_year_id;
   if not found then
-    raise exception 'academic year not found' using errcode = 'P0002';
+    raise exception 'academic year not found or not allowed' using errcode = 'P0002';
   end if;
 end;
 $$;
