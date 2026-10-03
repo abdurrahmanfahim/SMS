@@ -50,24 +50,34 @@ values (tests.inst('b'), tests.user_id('a', 'teacher'), 'accountant', 'active');
 select is(pg_temp.as_user('a', 'teacher', 'private.has_role(tests.inst(''b''), array[''accountant''])'), true, 'a second membership grants its role in its own institution');
 select is(pg_temp.as_user('a', 'teacher', 'private.has_role(tests.inst(''b''), array[''teacher''])'), false, 'and not the role held only in the other institution');
 
--- later tables do not exist yet: helpers return false instead of raising ------------
-select is(pg_temp.as_user('a', 'teacher', 'private.is_teacher_of_section(tests.inst(''a''), gen_random_uuid())'), false, 'is_teacher_of_section is false while teacher_assignments is missing');
-select is(pg_temp.as_user('a', 'teacher', 'private.teaches(tests.inst(''a''), gen_random_uuid(), gen_random_uuid())'), false, 'teaches is false while teacher_assignments is missing');
+-- the teacher_assignments table exists (M1-A1) but has no rows yet; later tables still do not exist: helpers return false instead of raising ------------
+select is(pg_temp.as_user('a', 'teacher', 'private.is_teacher_of_section(tests.inst(''a''), gen_random_uuid())'), false, 'is_teacher_of_section is false while teacher_assignments has no matching row');
+select is(pg_temp.as_user('a', 'teacher', 'private.teaches(tests.inst(''a''), gen_random_uuid(), gen_random_uuid())'), false, 'teaches is false while teacher_assignments has no matching row');
 select is(pg_temp.as_user('a', 'guardian', 'private.guardian_of_student(tests.inst(''a''), gen_random_uuid())'), false, 'guardian_of_student is false while the tables are missing');
 select is(pg_temp.as_user('a', 'student', 'private.is_student_self(tests.inst(''a''), gen_random_uuid())'), false, 'is_student_self is false while students is missing');
 select is(pg_temp.as_user('platform', 'platform_owner', 'private.impersonating(tests.inst(''a''))'), false, 'impersonating is false while impersonation_sessions is missing');
 
--- Once the tables exist (minimal stand-ins with the columns the spec names) the helpers work.
-create table public.teacher_assignments (id uuid primary key default gen_random_uuid(), institution_id uuid not null, membership_id uuid not null, section_id uuid not null, subject_id uuid);
+-- Once the tables exist the helpers work. teacher_assignments is the real table (M1-A1, with its real
+-- parents); students, guardians and student_guardians are still minimal stand-ins until M1-A2.
 create table public.students (id uuid primary key default gen_random_uuid(), institution_id uuid not null, profile_id uuid, deleted_at timestamptz);
 create table public.guardians (id uuid primary key default gen_random_uuid(), institution_id uuid not null, profile_id uuid, deleted_at timestamptz);
 create table public.student_guardians (institution_id uuid not null, student_id uuid not null, guardian_id uuid not null);
 
-insert into public.teacher_assignments (institution_id, membership_id, section_id, subject_id)
-select m.institution_id, m.id, '00000000-0000-0000-0000-0000000000a1', '00000000-0000-0000-0000-0000000000b1'
+insert into public.academic_years (id, institution_id, name_en, starts_on, ends_on, is_current)
+values ('00000000-0000-0000-0000-0000000000c1', tests.inst('a'), 'Test year', '2026-01-01', '2026-12-31', true);
+insert into public.class_levels (id, institution_id, name_en, sort_order)
+values ('00000000-0000-0000-0000-0000000000d1', tests.inst('a'), 'Test level', 1);
+insert into public.sections (id, institution_id, academic_year_id, class_level_id, name)
+values ('00000000-0000-0000-0000-0000000000a1', tests.inst('a'), '00000000-0000-0000-0000-0000000000c1', '00000000-0000-0000-0000-0000000000d1', 'A'),
+       ('00000000-0000-0000-0000-0000000000a2', tests.inst('a'), '00000000-0000-0000-0000-0000000000c1', '00000000-0000-0000-0000-0000000000d1', 'B');
+insert into public.subjects (id, institution_id, name_en)
+values ('00000000-0000-0000-0000-0000000000b1', tests.inst('a'), 'Test subject');
+
+insert into public.teacher_assignments (institution_id, academic_year_id, membership_id, section_id, subject_id, role)
+select m.institution_id, '00000000-0000-0000-0000-0000000000c1', m.id, '00000000-0000-0000-0000-0000000000a1', '00000000-0000-0000-0000-0000000000b1', 'subject_teacher'
 from public.memberships m where m.profile_id = tests.user_id('a', 'teacher') and m.institution_id = tests.inst('a');
-insert into public.teacher_assignments (institution_id, membership_id, section_id, subject_id)
-select m.institution_id, m.id, '00000000-0000-0000-0000-0000000000a2', null
+insert into public.teacher_assignments (institution_id, academic_year_id, membership_id, section_id, subject_id, role)
+select m.institution_id, '00000000-0000-0000-0000-0000000000c1', m.id, '00000000-0000-0000-0000-0000000000a2', null, 'class_teacher'
 from public.memberships m where m.profile_id = tests.user_id('a', 'teacher') and m.institution_id = tests.inst('a');
 
 select is(pg_temp.as_user('a', 'teacher', 'private.is_teacher_of_section(tests.inst(''a''), ''00000000-0000-0000-0000-0000000000a1'')'), true, 'teacher is assigned to section a1');

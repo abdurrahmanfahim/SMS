@@ -3,6 +3,59 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type Database = {
   public: {
     Tables: {
+      academic_years: {
+        Row: {
+          calendar: string;
+          created_at: string;
+          created_by: string | null;
+          ends_on: string;
+          id: string;
+          institution_id: string;
+          is_current: boolean;
+          name_bn: string | null;
+          name_en: string | null;
+          starts_on: string;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          calendar?: string;
+          created_at?: string;
+          created_by?: string | null;
+          ends_on: string;
+          id?: string;
+          institution_id: string;
+          is_current?: boolean;
+          name_bn?: string | null;
+          name_en?: string | null;
+          starts_on: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          calendar?: string;
+          created_at?: string;
+          created_by?: string | null;
+          ends_on?: string;
+          id?: string;
+          institution_id?: string;
+          is_current?: boolean;
+          name_bn?: string | null;
+          name_en?: string | null;
+          starts_on?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "academic_years_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: false;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       audit_log: {
         Row: {
           action: string;
@@ -44,6 +97,124 @@ export type Database = {
           meta?: Json;
         };
         Relationships: [];
+      };
+      class_levels: {
+        Row: {
+          category: string | null;
+          created_at: string;
+          created_by: string | null;
+          id: string;
+          institution_id: string;
+          name_bn: string | null;
+          name_en: string | null;
+          sort_order: number;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          category?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id: string;
+          name_bn?: string | null;
+          name_en?: string | null;
+          sort_order?: number;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          category?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id?: string;
+          name_bn?: string | null;
+          name_en?: string | null;
+          sort_order?: number;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "class_levels_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: false;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      class_subjects: {
+        Row: {
+          academic_year_id: string;
+          class_level_id: string;
+          created_at: string;
+          created_by: string | null;
+          id: string;
+          institution_id: string;
+          is_optional: boolean;
+          sort_order: number;
+          subject_id: string;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          academic_year_id: string;
+          class_level_id: string;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id: string;
+          is_optional?: boolean;
+          sort_order?: number;
+          subject_id: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          academic_year_id?: string;
+          class_level_id?: string;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id?: string;
+          is_optional?: boolean;
+          sort_order?: number;
+          subject_id?: string;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "class_subjects_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: false;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "class_subjects_level_fk";
+            columns: ["institution_id", "class_level_id"];
+            isOneToOne: false;
+            referencedRelation: "class_levels";
+            referencedColumns: ["institution_id", "id"];
+          },
+          {
+            foreignKeyName: "class_subjects_subject_fk";
+            columns: ["institution_id", "subject_id"];
+            isOneToOne: false;
+            referencedRelation: "subjects";
+            referencedColumns: ["institution_id", "id"];
+          },
+          {
+            foreignKeyName: "class_subjects_year_fk";
+            columns: ["institution_id", "academic_year_id"];
+            isOneToOne: false;
+            referencedRelation: "academic_years";
+            referencedColumns: ["institution_id", "id"];
+          },
+        ];
       };
       institution_settings: {
         Row: {
@@ -266,12 +437,211 @@ export type Database = {
         };
         Relationships: [];
       };
+      sections: {
+        Row: {
+          academic_year_id: string;
+          capacity: number | null;
+          class_level_id: string;
+          class_teacher_membership_id: string | null;
+          created_at: string;
+          created_by: string | null;
+          id: string;
+          institution_id: string;
+          name: string;
+          shift: string | null;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          academic_year_id: string;
+          capacity?: number | null;
+          class_level_id: string;
+          class_teacher_membership_id?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id: string;
+          name: string;
+          shift?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          academic_year_id?: string;
+          capacity?: number | null;
+          class_level_id?: string;
+          class_teacher_membership_id?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id?: string;
+          name?: string;
+          shift?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "sections_class_teacher_fk";
+            columns: ["institution_id", "class_teacher_membership_id"];
+            isOneToOne: false;
+            referencedRelation: "memberships";
+            referencedColumns: ["institution_id", "id"];
+          },
+          {
+            foreignKeyName: "sections_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: false;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "sections_level_fk";
+            columns: ["institution_id", "class_level_id"];
+            isOneToOne: false;
+            referencedRelation: "class_levels";
+            referencedColumns: ["institution_id", "id"];
+          },
+          {
+            foreignKeyName: "sections_year_fk";
+            columns: ["institution_id", "academic_year_id"];
+            isOneToOne: false;
+            referencedRelation: "academic_years";
+            referencedColumns: ["institution_id", "id"];
+          },
+        ];
+      };
+      subjects: {
+        Row: {
+          code: string | null;
+          created_at: string;
+          created_by: string | null;
+          id: string;
+          institution_id: string;
+          name_bn: string | null;
+          name_en: string | null;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          code?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id: string;
+          name_bn?: string | null;
+          name_en?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          code?: string | null;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id?: string;
+          name_bn?: string | null;
+          name_en?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "subjects_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: false;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      teacher_assignments: {
+        Row: {
+          academic_year_id: string;
+          created_at: string;
+          created_by: string | null;
+          id: string;
+          institution_id: string;
+          membership_id: string;
+          role: string;
+          section_id: string;
+          subject_id: string | null;
+          updated_at: string;
+          updated_by: string | null;
+        };
+        Insert: {
+          academic_year_id: string;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id: string;
+          membership_id: string;
+          role: string;
+          section_id: string;
+          subject_id?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Update: {
+          academic_year_id?: string;
+          created_at?: string;
+          created_by?: string | null;
+          id?: string;
+          institution_id?: string;
+          membership_id?: string;
+          role?: string;
+          section_id?: string;
+          subject_id?: string | null;
+          updated_at?: string;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "teacher_assignments_institution_id_fkey";
+            columns: ["institution_id"];
+            isOneToOne: false;
+            referencedRelation: "institutions";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "teacher_assignments_membership_fk";
+            columns: ["institution_id", "membership_id"];
+            isOneToOne: false;
+            referencedRelation: "memberships";
+            referencedColumns: ["institution_id", "id"];
+          },
+          {
+            foreignKeyName: "teacher_assignments_section_fk";
+            columns: ["institution_id", "academic_year_id", "section_id"];
+            isOneToOne: false;
+            referencedRelation: "sections";
+            referencedColumns: ["institution_id", "academic_year_id", "id"];
+          },
+          {
+            foreignKeyName: "teacher_assignments_subject_fk";
+            columns: ["institution_id", "subject_id"];
+            isOneToOne: false;
+            referencedRelation: "subjects";
+            referencedColumns: ["institution_id", "id"];
+          },
+          {
+            foreignKeyName: "teacher_assignments_year_fk";
+            columns: ["institution_id", "academic_year_id"];
+            isOneToOne: false;
+            referencedRelation: "academic_years";
+            referencedColumns: ["institution_id", "id"];
+          },
+        ];
+      };
     };
     Views: {
       [_ in never]: never;
     };
     Functions: {
-      [_ in never]: never;
+      set_current_academic_year: {
+        Args: { p_year_id: string };
+        Returns: undefined;
+      };
     };
     Enums: {
       [_ in never]: never;

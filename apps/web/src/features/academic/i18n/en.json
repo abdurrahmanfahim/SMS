@@ -1,0 +1,217 @@
+{
+  "academic": {
+    "nav": {
+      "title": "Academic structure",
+      "back": "Back to academic structure"
+    },
+    "action": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "retry": "Try again"
+    },
+    "field": {
+      "nameBn": "Name in Bangla",
+      "nameEn": "Name in English",
+      "year": "Academic year",
+      "level": "Class level",
+      "section": "Section",
+      "subject": "Subject"
+    },
+    "state": {
+      "unconfigured": "The app is not connected to the database yet.",
+      "signedOut": "Sign in to see the academic structure.",
+      "noInstitution": "You have no active institution. Contact your institution's admin.",
+      "error": "Something went wrong. Check your internet and try again.",
+      "loadFailed": "Could not load this.",
+      "readOnly": "You can view this but not change it."
+    },
+    "error": {
+      "overlap": "This year overlaps another academic year. Change the dates so no day is in two years.",
+      "duplicateName": "This name is already used. Choose a different name.",
+      "duplicateCode": "This subject code is already used. Choose a different code.",
+      "duplicateSection": "This class level already has a section with that name for this year.",
+      "duplicateMapping": "This subject is already added to this class level for this year.",
+      "duplicateAssignment": "This teacher already has this assignment in this section.",
+      "oneCurrentYear": "Only one academic year can be the current year.",
+      "classTeacherTaken": "This section already has a class teacher. Remove that assignment first.",
+      "hasDependants": "This is still in use, so it cannot be deleted. Remove what depends on it first.",
+      "invalidDates": "The end date must be after the start date.",
+      "nameRequired": "Write a name in Bangla or English.",
+      "notTeacher": "Only a teacher can be assigned to a section.",
+      "notAllowed": "You are not allowed to do this.",
+      "notFound": "That was not found. Refresh and try again.",
+      "generic": "Could not save. Check your internet and try again."
+    },
+    "hub": {
+      "title": "Academic structure",
+      "preset": {
+        "title": "Start from a preset",
+        "description": "Add class levels, sections and subjects in one step."
+      },
+      "years": {
+        "title": "Academic years",
+        "description": "Dates of each year and which one is current."
+      },
+      "levels": {
+        "title": "Class levels",
+        "description": "The classes your institution has, in order."
+      },
+      "sections": {
+        "title": "Sections",
+        "description": "Sections of each class level, year by year."
+      },
+      "subjects": {
+        "title": "Subjects",
+        "description": "Every subject your institution teaches."
+      },
+      "classSubjects": {
+        "title": "Subjects of each class",
+        "description": "Which subjects each class studies, and which are optional."
+      },
+      "assignments": {
+        "title": "Teacher assignments",
+        "description": "Who teaches which section and subject."
+      }
+    },
+    "years": {
+      "title": "Academic years",
+      "add": "Add academic year",
+      "edit": "Edit academic year",
+      "formLabel": "Academic year form",
+      "startsOn": "First day",
+      "endsOn": "Last day",
+      "current": "Current year",
+      "makeCurrent": "Make current",
+      "deleteTitle": "Delete this year?",
+      "deleteBody": "{name} will be deleted. A year with sections cannot be deleted.",
+      "empty": {
+        "title": "No academic years yet",
+        "description": "Add your first year to start building the structure."
+      }
+    },
+    "levels": {
+      "title": "Class levels",
+      "add": "Add class level",
+      "edit": "Edit class level",
+      "formLabel": "Class level form",
+      "categoryLabel": "Type",
+      "categoryNone": "Not set",
+      "category": {
+        "school": "School",
+        "madrasa": "Madrasa",
+        "coaching": "Coaching",
+        "other": "Other"
+      },
+      "moveUp": "Move {name} up",
+      "moveDown": "Move {name} down",
+      "deleteTitle": "Delete this class level?",
+      "deleteBody": "{name} will be deleted. A class level with sections cannot be deleted.",
+      "empty": {
+        "title": "No class levels yet",
+        "description": "Add class levels one by one, or start from a preset."
+      }
+    },
+    "sections": {
+      "title": "Sections",
+      "add": "Add section to {level}",
+      "edit": "Edit section",
+      "formLabel": "Section form",
+      "name": "Section name",
+      "shift": "Shift",
+      "capacity": "Seats",
+      "capacityValue": "{count} seats",
+      "none": "No sections yet.",
+      "deleteTitle": "Delete this section?",
+      "deleteBody": "Section {name} will be deleted. A section with teacher assignments cannot be deleted.",
+      "empty": {
+        "title": "No sections"
+      },
+      "noYears": {
+        "title": "Add an academic year first",
+        "description": "Sections belong to an academic year."
+      },
+      "noLevels": {
+        "title": "No class levels yet",
+        "description": "Add class levels before adding sections.",
+        "action": "Go to class levels"
+      }
+    },
+    "subjects": {
+      "title": "Subjects",
+      "add": "Add subject",
+      "edit": "Edit subject",
+      "formLabel": "Subject form",
+      "code": "Short code",
+      "deleteTitle": "Delete this subject?",
+      "deleteBody": "{name} will be deleted. A subject used by a class cannot be deleted.",
+      "empty": {
+        "title": "No subjects yet",
+        "description": "Add the subjects your institution teaches."
+      }
+    },
+    "classSubjects": {
+      "title": "Subjects of each class",
+      "none": "No subjects added to this class yet.",
+      "addLabel": "Add a subject",
+      "choose": "Choose a subject",
+      "add": "Add to class",
+      "remove": "Remove",
+      "optional": "Optional",
+      "required": "Required",
+      "makeOptional": "Make optional",
+      "makeRequired": "Make required",
+      "empty": {
+        "title": "No subjects added"
+      },
+      "noLevels": {
+        "title": "No class levels yet",
+        "description": "Add class levels first."
+      },
+      "noSubjects": {
+        "title": "No subjects yet",
+        "description": "Add subjects first.",
+        "action": "Go to subjects"
+      }
+    },
+    "assignments": {
+      "title": "Teacher assignments",
+      "add": "Assign a teacher",
+      "formLabel": "Teacher assignment form",
+      "teacher": "Teacher",
+      "chooseTeacher": "Choose a teacher",
+      "chooseSection": "Choose a section",
+      "classTeacherOption": "Class teacher (no subject)",
+      "classTeacher": "Class teacher",
+      "none": "No teacher assigned yet.",
+      "unknownTeacher": "Teacher",
+      "noTeachers": "No teachers to assign yet. Teachers appear here after they join the institution.",
+      "empty": {
+        "title": "Nothing to show"
+      },
+      "noSections": {
+        "title": "No sections for this year",
+        "description": "Add sections to this year first."
+      }
+    },
+    "preset": {
+      "title": "Start from a preset",
+      "choose": "Choose a starting point",
+      "apply": "Add to this year",
+      "done": "Added {levels} class levels, {sections} sections, {subjects} subjects and {mappings} class subjects. Anything that already existed was left as it was.",
+      "school110": {
+        "title": "School, Class 1 to 10",
+        "description": "Ten class levels, sections A and B, and common subjects. You can change everything afterwards."
+      },
+      "blank": {
+        "title": "Blank start",
+        "description": "Add everything yourself.",
+        "action": "Add class levels by hand"
+      },
+      "noYears": {
+        "title": "Add an academic year first",
+        "description": "A preset adds sections to an academic year.",
+        "action": "Go to academic years"
+      }
+    }
+  }
+}
