@@ -1,5 +1,11 @@
 -- M1-A1: row level security and audit for the academic structure tables. For every table: the
 -- allowed role passes, other roles fail, another tenant fails, anon fails (permissions.md section 2).
+-- Bootstrap: `supabase test db` runs every file in plain sorted order, and `acad/` sorts BEFORE
+-- `helpers.sql`, so the `tests` schema may not exist yet when this file starts. Install it first
+-- (the file is idempotent) with its TAP output hidden, so this file's own plan stays correct.
+\o /dev/null
+\ir ../helpers.sql
+\o
 begin;
 
 select plan(63);
