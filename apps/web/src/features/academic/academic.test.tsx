@@ -341,8 +341,8 @@ describe("registration", () => {
       "preset",
     ]);
   });
-  it("keeps the nav item ready but unregistered, and ready for staff roles only", () => {
-    expect(navItems).toEqual([]);
+  it("registers the nav item, shown to staff roles only", () => {
+    expect(navItems).toEqual([academicNavItem]);
     const seen = (role: Parameters<typeof navItemsForRole>[1]) =>
       navItemsForRole([academicNavItem], role).map((n) => n.key);
     expect(seen("institution_admin")).toEqual(["academic.home"]);

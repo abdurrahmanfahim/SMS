@@ -36,7 +36,8 @@ describe("shell", () => {
     const navs = screen.getAllByRole("navigation");
     expect(navs).toHaveLength(2);
     for (const nav of navs) {
-      expect(within(nav).getByRole("link")).toHaveAttribute("href", "/app");
+      // Feature screens add their own nav items, so look the home link up by name.
+      expect(within(nav).getByRole("link", { name: /হোম/ })).toHaveAttribute("href", "/app");
     }
   });
 

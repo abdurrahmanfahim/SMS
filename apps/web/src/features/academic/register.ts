@@ -48,13 +48,7 @@ export const routes: RouteObject[] = [
   },
 ];
 
-/**
- * The nav entry for the academic screens, ready to switch on. It is NOT registered yet because
- * `app/shell.test.tsx` ("shows the home nav item ...") asserts that each nav holds exactly one
- * link, so any feature nav item turns CI red, and that file is outside this task's owned paths.
- * Until the shell test allows feature items, the screens are reached at /app/academic.
- * To switch on: `export const navItems: NavItem[] = [academicNavItem];` (see docs/reports/M1-A1.md, Requests).
- */
+/** The nav entry for the academic screens (switched on by the Leader after M1-A1, ruling R-17). */
 export const academicNavItem: NavItem = {
   key: "academic.home",
   labelKey: "academic.nav.title",
@@ -64,4 +58,4 @@ export const academicNavItem: NavItem = {
   order: 40,
 };
 
-export const navItems: NavItem[] = [];
+export const navItems: NavItem[] = [academicNavItem];
