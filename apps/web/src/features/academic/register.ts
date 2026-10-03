@@ -1,18 +1,31 @@
 import { GraduationCap } from "lucide-react";
-import { createElement } from "react";
-import { Outlet, type RouteObject } from "react-router-dom";
+import { createElement, lazy } from "react";
+import type { RouteObject } from "react-router-dom";
 
 import type { NavItem } from "../../shared/nav";
 
-import { AcademicRoot } from "./context";
-import { AssignmentsPage } from "./pages/AssignmentsPage";
-import { ClassSubjectsPage } from "./pages/ClassSubjectsPage";
-import { HubPage } from "./pages/HubPage";
-import { LevelsPage } from "./pages/LevelsPage";
-import { PresetPage } from "./pages/PresetPage";
-import { SectionsPage } from "./pages/SectionsPage";
-import { SubjectsPage } from "./pages/SubjectsPage";
-import { YearsPage } from "./pages/YearsPage";
+// Every screen loads on demand, so the data client and the forms never reach the first bundle.
+const AcademicShell = lazy(() => import("./shell").then((m) => ({ default: m.AcademicShell })));
+const HubPage = lazy(() => import("./pages/HubPage").then((m) => ({ default: m.HubPage })));
+const YearsPage = lazy(() => import("./pages/YearsPage").then((m) => ({ default: m.YearsPage })));
+const LevelsPage = lazy(() =>
+  import("./pages/LevelsPage").then((m) => ({ default: m.LevelsPage })),
+);
+const SectionsPage = lazy(() =>
+  import("./pages/SectionsPage").then((m) => ({ default: m.SectionsPage })),
+);
+const SubjectsPage = lazy(() =>
+  import("./pages/SubjectsPage").then((m) => ({ default: m.SubjectsPage })),
+);
+const ClassSubjectsPage = lazy(() =>
+  import("./pages/ClassSubjectsPage").then((m) => ({ default: m.ClassSubjectsPage })),
+);
+const AssignmentsPage = lazy(() =>
+  import("./pages/AssignmentsPage").then((m) => ({ default: m.AssignmentsPage })),
+);
+const PresetPage = lazy(() =>
+  import("./pages/PresetPage").then((m) => ({ default: m.PresetPage })),
+);
 
 /**
  * Academic structure (M1-A1): years, class levels, sections, subjects, class subjects, teacher
@@ -21,7 +34,7 @@ import { YearsPage } from "./pages/YearsPage";
 export const routes: RouteObject[] = [
   {
     path: "/app/academic",
-    element: createElement(AcademicRoot, null, createElement(Outlet)),
+    element: createElement(AcademicShell),
     children: [
       { index: true, element: createElement(HubPage) },
       { path: "years", element: createElement(YearsPage) },
