@@ -1,0 +1,31 @@
+# Temporary (M1-A1): runs the same db steps as ci / db and prints the pgTAP failures as annotations,
+# because job logs are not reachable from the agent's sandbox. Delete once ci / db is green.
+name: acad-db-diagnose
+
+on:
+  push:
+    branches: [agent/M1-A1]
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm db:start
+      - run: pnpm db:reset
+      - name: Run pgTAP and annotate failures
+        run: |
+          set +e
+          pnpm db:test > out.txt 2>&1
+          code=$?
+          grep -nE "not ok|Failed|caught|wanted|died|ERROR|Looks like|\.sql \.\.|Parse errors|Bad plan|Result:" out.txt | head -80 > fail.txt
+          msg=$(sed ':a;N;$!ba;s/%/%25/g;s/\r/%0D/g;s/\n/%0A/g' fail.txt | cut -c1-6000)
+          echo "::error title=pgTAP exit ${code}::${msg}"
+          exit 0
